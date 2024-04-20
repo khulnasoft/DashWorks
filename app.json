@@ -1,0 +1,17 @@
+{
+  "name": "Dashworks",
+  "website": "https://dashworks.to/",
+  "description": "A Dashboard for your Homelab 🚀",
+  "repository": "https://github.com/khulnasoft/dashworks",
+  "logo": "https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docs/assets/logo.png",
+  "keywords": [
+    "node",
+    "vue",
+    "static",
+    "dashboard",
+    "self-hosted",
+    "home-lab",
+    "khulnasoft"
+  ],
+  "stack": "heroku-20"
+}
