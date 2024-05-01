@@ -50,9 +50,9 @@
 ## Config not saving
 
 ### Possible Issue 1: Unable to call save endpoint from CDN/static server
-If you're running Dashworks using a static hosting provider (like Vercel), then there is no Node server, and so the save config action will not work via the UI.
+If you're running DashWorks using a static hosting provider (like Vercel), then there is no Node server, and so the save config action will not work via the UI.
 You'll instead need to copy the YAML after making your changes, and paste that into your `conf.yml` directly. If you've connected Vercel to git, then these changes will take effect automatically, once you commit your changes. 
-Look here for more information: [https://dashworks.to/docs/deployment#deploy-to-cloud-service](https://dashworks.to/docs/deployment#deploy-to-cloud-service)
+Look here for more information: [https://dashworks.khulnasoft.com/docs/deployment#deploy-to-cloud-service](https://dashworks.khulnasoft.com/docs/deployment#deploy-to-cloud-service)
 
 If you're running on Netlify, there are some cloud functions which take care of all the server endpoints (like status checking), so these will work as expected.
 
@@ -68,7 +68,7 @@ After saving, the frontend will recompile, which may take a couple seconds (or a
 
 ## `Refused to Connect` in Modal or Workspace View
 
-This is not an issue with Dashworks, but instead caused by the target app preventing direct access through embedded elements.
+This is not an issue with DashWorks, but instead caused by the target app preventing direct access through embedded elements.
 
 As defined in [RFC-7034](https://datatracker.ietf.org/doc/html/rfc7034), for any web content to be accessed through an embedded element, it must have the [`X-Frame-Options`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options) HTTP header set to `ALLOW`. If you are getting a `Refused to Connect` error then this header is set to `DENY` (or `SAMEORIGIN` and it's on a different host). Thankfully, for self-hosted services, it is easy to set these headers.
 
@@ -115,7 +115,7 @@ Content-Security-Policy: frame-ancestors 'self' https://[dashworks-location]/
 
 ## 404 On Static Hosting
 
-If you're seeing Dashworks's 404 page on initial load/ refresh, and then the main app when you go back to Home, then this is likely caused by the Vue router, and if so can be fixed in one of two ways.
+If you're seeing DashWorks's 404 page on initial load/ refresh, and then the main app when you go back to Home, then this is likely caused by the Vue router, and if so can be fixed in one of two ways.
 
 The first solution is to switch the routing mode, from HTML5 `history` mode to `hash` mode, by setting `appConfig.routingMode` to `hash`.
 
@@ -156,7 +156,7 @@ If you're getting an error about scenarios, then you've likely installed the wro
 Alternatively, as a workaround, you have several options:
 
 - Try using [NPM](https://www.npmjs.com/get-npm) instead: So clone, cd, then run `npm install`, `npm run build` and `npm start`
-- Try using [Docker](https://www.docker.com/get-started) instead, and all of the system setup and dependencies will already be taken care of. So from within the directory, just run `docker build -t khulnasoft/dashworks .` to build, and then use docker start to run the project, e.g: `docker run -it -p 8080:80 khulnasoft/dashworks` (see the [deploying docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#deploy-with-docker) for more info)
+- Try using [Docker](https://www.docker.com/get-started) instead, and all of the system setup and dependencies will already be taken care of. So from within the directory, just run `docker build -t khulnasoft/dashworks .` to build, and then use docker start to run the project, e.g: `docker run -it -p 8080:8080 khulnasoft/dashworks` (see the [deploying docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#deploy-with-docker) for more info)
 
 ---
 
@@ -169,7 +169,7 @@ Access to XMLHttpRequest at 'https://example.com/raw/my-config.yml' from origin 
 No 'Access-Control-Allow-Origin' header is present on the requested resource.
 ```
 
-The solution is to add the appropriate headers onto the target server, to allow it to accept requests from the origin where you're running Dashworks.
+The solution is to add the appropriate headers onto the target server, to allow it to accept requests from the origin where you're running DashWorks.
 
 If it is a remote service, that you do not have admin access to, then another option is to proxy the request. Either host your own, or use a publicly accessible service, like [allorigins.win](https://allorigins.win), e.g: `https://api.allorigins.win/raw?url=https://pastebin.com/raw/4tZpaJV5`. For git-based services specifically, there's [raw.githack.com](https://raw.githack.com/)
 
@@ -234,7 +234,7 @@ Version 2.0.4 introduced changes to how the config is read, and the app is build
 
 ```yaml
 volumes:
-- /srv/dashworks/conf.yml:/app/public/conf.yml
+- /srv/dashworks/conf.yml:/app/user-data/conf.yml
 - /srv/dashworks/item-icons:/app/public/item-icons
 ```
 
@@ -244,11 +244,11 @@ volumes:
 
 Check the [browser's console output](#how-to-open-browser-console), if you've not set any headers, you will likely see a CORS error here, which would be the source of the issue.
 
-You need to allow Dashworks to make requests to Keycloak, and Keycloak to redirect to Dashworks. The way you do this depends on how you're hosting these applications / which proxy you are using, and examples can be found in the [Management Docs](/docs/management.md#setting-headers).
+You need to allow DashWorks to make requests to Keycloak, and Keycloak to redirect to DashWorks. The way you do this depends on how you're hosting these applications / which proxy you are using, and examples can be found in the [Management Docs](/docs/management.md#setting-headers).
 
 For example, add the access control header to Keycloak, like:
 
-`Access-Control-Allow-Origin [URL-of Dashworks]`
+`Access-Control-Allow-Origin [URL-of DashWorks]`
 
 Note that for requests that transport sensitive info like credentials, setting the accept header to a wildcard (`*`) is not allowed - see [MDN Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials), so you will need to specify the actual URL.
 
@@ -273,18 +273,18 @@ See also: #479, #409, #507, #491, #341, #520
 Error response from daemon: OCI runtime create failed: container_linux.go:380:
 starting container process caused: process_linux.go:545: container init caused:
 rootfs_linux.go:76: mounting "/home/ubuntu/my-conf.yml" to rootfs at
-"/app/public/conf.yml" caused: mount through procfd: not a directory:
+"/app/user-data/conf.yml" caused: mount through procfd: not a directory:
 unknown: Are you trying to mount a directory onto a file (or vice-versa)?
 Check if the specified host path exists and is the expected type.
 ```
 
-If you get an error similar to the one above, you are mounting a directory to the config file's location, when a plain file is expected. Create a YAML file, (`touch my-conf.yml`), populate it with a sample config, then pass it as a volume: `-v ./my-local-conf.yml:/app/public/conf.yml`
+If you get an error similar to the one above, you are mounting a directory to the config file's location, when a plain file is expected. Create a YAML file, (`touch my-conf.yml`), populate it with a sample config, then pass it as a volume: `-v ./my-local-conf.yml:/app/user-data/conf.yml`
 
 ---
 
 ## Config not Saving on Vercel / Netlify / CDN
 
-If you're running Dashworks using a static hosting provider (like Vercel), then there is no Node server, and so the save config action will not work via the UI.
+If you're running DashWorks using a static hosting provider (like Vercel), then there is no Node server, and so the save config action will not work via the UI.
 You'll instead need to copy the YAML after making your changes, and paste that into your `conf.yml` directly. If you've connected Vercel to git, then these changes will take effect automatically, once you commit your changes.
 
 If you're running on Netlify, there are some cloud functions which take care of all the server endpoints (like status checking), so these will work as expected.
@@ -295,7 +295,7 @@ See also [#1465](https://github.com/KhulnaSoft/dashworks/issues/1465)
 
 ## Config Not Updating
 
-Dashworks has the option to save settings and config locally, in browser storage. Anything here will take precedence over whatever is in your config file, sometimes with unintended consequences. If you've updated the config file manually, and are not seeing changes reflected in the UI, then try visiting the site in Incognito mode. If that works, then the solution is just to clear local storage. This can be done from the config menu, under "Clear Local Settings".
+DashWorks has the option to save settings and config locally, in browser storage. Anything here will take precedence over whatever is in your config file, sometimes with unintended consequences. If you've updated the config file manually, and are not seeing changes reflected in the UI, then try visiting the site in Incognito mode. If that works, then the solution is just to clear local storage. This can be done from the config menu, under "Clear Local Settings".
 
 ---
 
@@ -331,7 +331,7 @@ You can [check your rate limit status](https://www.docker.com/blog/checking-your
 
 ### Solution 1 - Use an alternate container registry
 
-- Dashworks is also available through GHCR, which at present does not have any hard limits. Just use `docker pull ghcr.io/khulnasoft/dashworks:latest` to fetch the image
+- DashWorks is also available through GHCR, which at present does not have any hard limits. Just use `docker pull ghcr.io/khulnasoft/dashworks:latest` to fetch the image
 - You can also build the image from source, by cloning the repo, and running `docker build -t dashworks .` or use the pre-made docker compose
 
 ### Solution 2 - Increase your rate limits
@@ -344,11 +344,11 @@ You can [check your rate limit status](https://www.docker.com/blog/checking-your
 
 ## Config Validation Errors
 
-The configuration file is validated against [Dashworks's Schema](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/ConfigSchema.json) using AJV.
+The configuration file is validated against [DashWorks's Schema](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/ConfigSchema.json) using AJV.
 
 First, check that your syntax is valid, using [YAML Validator](https://codebeautify.org/yaml-validator/) or [JSON Validator](https://codebeautify.org/jsonvalidator). If the issue persists, then take a look at the [schema](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/ConfigSchema.json), and verify that the field you are trying to add/ modify matches the required format. You can also use [this tool](https://www.jsonschemavalidator.net/s/JFUj7X9J) to validate your JSON config against the schema, or run `yarn validate-config`.
 
-If you're trying to use a recently released feature, and are getting a warning, this is likely because you've not yet updated the the current latest version of Dashworks.
+If you're trying to use a recently released feature, and are getting a warning, this is likely because you've not yet updated the the current latest version of DashWorks.
 
 If the issue still persists, you should raise an issue.
 
@@ -402,7 +402,7 @@ If you're using status checks, and despite a given service being online, the che
 
 If your service requires requests to include any authorization in the headers, then use the  `statusCheckHeaders` property, as described in the [docs](/docs/status-indicators.md#setting-custom-headers).
 
-If you are still having issues, it may be because your target application is blocking requests from Dashworks's IP. This is a [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and can be fixed by setting the headers on your target app, to include:
+If you are still having issues, it may be because your target application is blocking requests from DashWorks's IP. This is a [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and can be fixed by setting the headers on your target app, to include:
 
 ```text
 Access-Control-Allow-Origin: https://location-of-dashworks/
@@ -415,15 +415,15 @@ If your service is online, but responds with a status code that is not in the 2x
 
 If you get an error, like `Service Unavailable: Server resulted in a fatal error`, even when it's definitely online, this is most likely caused by missing the protocol. Don't forget to include `https://` (or whatever protocol) before the URL, and ensure that if needed, you've specified the port.
 
-Running Dashworks in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/KhulnaSoft/dashworks/discussions/445).
+Running DashWorks in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/KhulnaSoft/dashworks/discussions/445).
 
-If you have firewall rules configured, then ensure that they don't prevent Dashworks from making requests to the other services you are trying to access.
+If you have firewall rules configured, then ensure that they don't prevent DashWorks from making requests to the other services you are trying to access.
 
 Currently, the status check needs a page to be rendered, so if this URL in your browser does not return anything, then status checks will not work. This may be modified in the future, but in the meantime, a fix would be to make your own status service, which just checks if your app responds with whatever code you'd like, and then return a 200 plus renders an arbitrary message. Then just point `statusCheckUrl` to your custom page.
 
 For further troubleshooting, use an application like [Postman](https://postman.com) to diagnose the issue. Set the parameter to `GET`, and then make a call to: `https://[url-of-dashworks]/status-check/?&url=[service-url]`. Where the service URL must have first been encoded (e.g. with `encodeURIComponent()` or [urlencoder.io](https://www.urlencoder.io/))
 
-If you're serving Dashworks though a CDN, instead of using the Node server or Docker image, then the Node endpoint that makes requests will not be available to you, and all requests will fail. A workaround for this may be implemented in the future, but in the meantime, your only option is to use the Docker or Node deployment method.
+If you're serving DashWorks though a CDN, instead of using the Node server or Docker image, then the Node endpoint that makes requests will not be available to you, and all requests will fail. A workaround for this may be implemented in the future, but in the meantime, your only option is to use the Docker or Node deployment method.
 
 ---
 
@@ -453,7 +453,7 @@ If you're able to, you can find more information about why the request may be fa
 
 ## Widget CORS Errors
 
-The most common widget issue is a CORS error. This is a browser security mechanism which prevents the client-side app (Dashworks) from from accessing resources on a remote origin, without that server's explicit permission (e.g. with headers like Access-Control-Allow-Origin). See the MDN Docs for more info: [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+The most common widget issue is a CORS error. This is a browser security mechanism which prevents the client-side app (DashWorks) from from accessing resources on a remote origin, without that server's explicit permission (e.g. with headers like Access-Control-Allow-Origin). See the MDN Docs for more info: [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 There are several ways to fix a CORS error:
 
@@ -464,7 +464,7 @@ You will get a CORS error if you try and access a http service from a https sour
 ### Option 2 - Set Headers
 
 If you have control over the destination (e.g. for a self-hosted service), then you can simply apply the correct headers.
-Add the `Access-Control-Allow-Origin` header, with the value of either `*` to allow requests from anywhere, or more securely, the host of where Dashworks is served from. For example:
+Add the `Access-Control-Allow-Origin` header, with the value of either `*` to allow requests from anywhere, or more securely, the host of where DashWorks is served from. For example:
 
 ```text
 Access-Control-Allow-Origin: https://url-of-dashworks.local
@@ -480,7 +480,7 @@ For more info on how to set headers, see: [Setting Headers](/docs/management.md#
 
 ### Option 3 - Proxying Request
 
-You can route requests through Dashworks's built-in CORS proxy. Instructions and more details can be found [here](/docs/widgets.md#proxying-requests). If you don't have control over the target origin, and you are running Dashworks either through Docker, with the Node server or on Netlify, then this solution will work for you.
+You can route requests through DashWorks's built-in CORS proxy. Instructions and more details can be found [here](/docs/widgets.md#proxying-requests). If you don't have control over the target origin, and you are running DashWorks either through Docker, with the Node server or on Netlify, then this solution will work for you.
 
 Just add the `useProxy: true` option to the failing widget.
 
@@ -501,7 +501,7 @@ If this is the case, you can disable the UI error message of a given widget by s
 
 ## Weather Forecast Widget 401
 
-A 401 error means your API key is invalid, it is not an issue with Dashworks.
+A 401 error means your API key is invalid, it is not an issue with DashWorks.
 
 Usually this happens due to an error in your config. If you're unsure, copy and paste the [example](/docs/widgets.md#weather) config, replacing the API key with your own.
 
@@ -524,7 +524,7 @@ If any widget is not displaying the data you expect, first confirm that your con
 
 If the raw API output is correct, yet the widget is rendering incorrect results, then it is likely a bug, and a ticket should be raised. You can start to debug the issue, by looking at the widget's code ([here](https://github.com/KhulnaSoft/dashworks/tree/master/src/components/Widgets)), and the browser console + networking tab.
 
-If the API itself is returning incorrect, incomplete or inaccurate data then an issue needs to be raised **with the API provider** (not Dashworks!). You can find the API provider included within the widget docs, or for a full list see the [Privacy Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/privacy.md#widgets).
+If the API itself is returning incorrect, incomplete or inaccurate data then an issue needs to be raised **with the API provider** (not DashWorks!). You can find the API provider included within the widget docs, or for a full list see the [Privacy Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/privacy.md#widgets).
 
 See also: [#807](https://github.com/KhulnaSoft/dashworks/issues/807) (re, domain monitor)
 
@@ -582,7 +582,7 @@ In some instances cached assets can prevent your settings from being updated, in
 To clear all local data from the UI, head to the Config Menu, then click "Reset Local Settings", and Confirm when prompted.
 This will not affect your config file. But be sure that you keep a backup of your config, if you've not written changes it to disk.
 
-You can also view any and all data that Dashworks is storing, using the developer tools. Open your browser's dev tools (usually <kbd>F12</kbd>), in Chromium head to the Application tab, or in Firefox go to the Storage tab. Select Local Storage, then scroll down the the URL Dashworks is running on. You should now see all data being stored, and you can select and delete any fields you wish.
+You can also view any and all data that DashWorks is storing, using the developer tools. Open your browser's dev tools (usually <kbd>F12</kbd>), in Chromium head to the Application tab, or in Firefox go to the Storage tab. Select Local Storage, then scroll down the the URL DashWorks is running on. You should now see all data being stored, and you can select and delete any fields you wish.
 
 For a full list of all data that may be cached, see the [Privacy Docs](/docs/privacy.md#browser-storage).
 
@@ -605,7 +605,7 @@ Before submitting, please check that:
 
 Your ticket will likely be dealt with more effectively if you can explain the issue clearly, and provide all relevant supporting material.
 
-Complete the fields, asking for your environment info and version of Dashworks.
+Complete the fields, asking for your environment info and version of DashWorks.
 Then describe the issue, briefly explaining the steps to reproduce, expected outcome and actual outcome.
 
 ### Step 4 - Provide Supporting Info
@@ -647,7 +647,7 @@ For more detailed walk through, see [this article](https://support.shortpoint.co
 
 ## Git Contributions not Displaying
 
-If you've contributed to Dashworks (or any other project), but your contributions are not showing up on your GH profile, or in Dashworks's [Credits Page](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md), then this is likely a git config issue.
+If you've contributed to DashWorks (or any other project), but your contributions are not showing up on your GH profile, or in DashWorks's [Credits Page](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md), then this is likely a git config issue.
 
 These statistics are generated using the username / email associated with commits. This info needs to be setup on your local machine using [`git config`](https://git-scm.com/docs/git-config).
 

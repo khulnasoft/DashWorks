@@ -1,4 +1,4 @@
-/* Dashworks: Licensed under MIT, (C) KhulnaSoft DevOps 2024 <https://khulnasoft.com> */
+/* DashWorks: Licensed under MIT, (C) KhulnaSoft DevOps 2024 <https://khulnasoft.com> */
 
 /* Tile filtering utility */
 import ErrorHandler from '@/utils/ErrorHandler';

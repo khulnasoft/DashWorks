@@ -1,11 +1,11 @@
 <template>
   <article class="about">
-    <h1>About Dashworks</h1>
+    <h1>About DashWorks</h1>
     <section>
       <h2>Project Overview</h2>
       <p>
-        Dashworks is a self-hosted startpage for keeping your running applications and
-        services organised. The aim of Dashworks is to provide an easy-to-deploy,
+        DashWorks is a self-hosted startpage for keeping your running applications and
+        services organised. The aim of DashWorks is to provide an easy-to-deploy,
         highly customizable and functianl dashboard, in order to improvde productivity
         and enable easy organisation of running services or web links.
       </p>
@@ -14,7 +14,7 @@
     <section>
       <h2>Source</h2>
       <p>
-        Dashworks's source is available through <a href="https://github.com/khulnasoft/dashworks">GitHub</a>,
+        DashWorks's source is available through <a href="https://github.com/khulnasoft/dashworks">GitHub</a>,
         and the Docker image is on <a href="https://hub.docker.com/r/khulnasoft/dashworks">DockerHub</a>.
       </p>
     </section>
@@ -22,7 +22,7 @@
     <section>
       <h2>Reporting a Bug</h2>
       <p>
-        If you've come across an bug in Dashworks, please <a href="https://git.io/JnqPR">open an issue</a>,
+        If you've come across an bug in DashWorks, please <a href="https://git.io/JnqPR">open an issue</a>,
         so that it can be fixed.
       </p>
     </section>
@@ -30,7 +30,7 @@
     <section>
       <h2>Getting Support</h2>
       <p>
-        If you need any help deploying, using, or developing Dashworks, feel free to
+        If you need any help deploying, using, or developing DashWorks, feel free to
         <a href="https://git.io/JnqiA">open a support ticket</a> or start a
         <a href="https://github.com/KhulnaSoft/dashworks/discussions">discussion</a> on GitHub.
       </p>
@@ -41,12 +41,12 @@
       <a href="https://khulnasoft.com">
         <img class="aht-pic" src="https://i.ibb.co/FnxqTfx/aht-bot-round.png" alt="KhulnaSoft DevOps">
       </a>
-      Dashworks is developed an maintained by <a href="https://khulnasoft.com">KhulnaSoft DevOps</a>
+      DashWorks is developed an maintained by <a href="https://khulnasoft.com">KhulnaSoft DevOps</a>
       (<a href="https://github.com/khulnasoft">@KhulnaSoft</a>), with support from the community.
       <ul>
-        <li><b>PGP Key</b> - <a href="https://keybase.io/aliciasykes/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7"><code>0688 F8D3 4587 D954 E9E5  1FB8 FEDB 68F5 5C02 83A7</code></a></li>
+        <li><b>PGP Key</b> - <a href="https://keybase.io/khulnasoft/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7"><code>0688 F8D3 4587 D954 E9E5  1FB8 FEDB 68F5 5C02 83A7</code></a></li>
         <li><b>BTC Address</b> - <code>3853bSxupMjvxEYfwGDGAaLZhTKxB2vEVC</code></li>
-        <li><b>Mail</b> - <code>alicia at omg dot lol</code></li>
+        <li><b>Mail</b> - <code>khulnasoft at omg dot lol</code></li>
         <li><b>Blog</b> - <a href="https://notes.khulnasoft.com">notes.khulnasoft.com</a></li>
       </ul>
     </section>

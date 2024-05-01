@@ -19,7 +19,7 @@
       <!-- Source and Docs Links -->
       <h3>{{ $t('app-info.more-info') }}</h3>
       {{ $t('app-info.source') }}: <a href="https://github.com/khulnasoft/dashworks">github.com/khulnasoft/dashworks</a><br>
-      {{ $t('app-info.documentation') }}: <a href="https://dashworks.to/docs">dashworks.to/docs</a>
+      {{ $t('app-info.documentation') }}: <a href="https://dashworks.khulnasoft.com/docs">dashworks.khulnasoft.com/docs</a>
       <!-- Privacy & Security -->
       <h3>{{ $t('app-info.privacy-and-security') }}</h3>
       {{ $t('app-info.privacy-and-security-l1') }} <a href="https://github.com/KhulnaSoft/dashworks/blob/master/docs/privacy.md">{{ $t('app-info.privacy-and-security-privacy-policy') }}</a>.<br>

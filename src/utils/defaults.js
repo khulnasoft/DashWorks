@@ -1,7 +1,7 @@
 module.exports = {
   /* Default pageInfo object, used if user does not specify their own */
   pageInfo: {
-    title: 'Dashworks',
+    title: 'DashWorks',
     description: '',
     navLinks: [],
     footerText: '',
@@ -28,9 +28,9 @@ module.exports = {
   openingMethod: 'newtab',
   /* The page paths for each route within the app for the router */
   routePaths: {
-    home: '/home',
-    minimal: '/minimal',
-    workspace: '/workspace',
+    home: '/home/:config?/',
+    minimal: '/minimal/:config?/',
+    workspace: '/workspace/:config?/',
     about: '/about',
     login: '/login',
     download: '/download',
@@ -44,10 +44,12 @@ module.exports = {
     rebuild: '/config-manager/rebuild',
     systemInfo: '/system-info',
     corsProxy: '/cors-proxy',
+    getUser: '/get-user',
   },
   /* List of built-in themes, to be displayed within the theme-switcher dropdown */
   builtInThemes: [
     'default',
+    'glass',
     'callisto',
     'material',
     'material-dark',
@@ -85,6 +87,8 @@ module.exports = {
     'adventure-basic',
     'basic',
     'tama',
+    'neomorphic',
+    'glass-2',
   ],
   /* Default color options for the theme configurator swatches */
   swatches: [
@@ -112,7 +116,7 @@ module.exports = {
   /* Key names for local storage identifiers */
   localStorageKeys: {
     LANGUAGE: 'language',
-    HIDE_WELCOME_BANNER: 'hideWelcomeHelpers',
+    HIDE_INFO_NOTIFICATION: 'hideWelcomeHelpers',
     LAYOUT_ORIENTATION: 'layoutOrientation',
     COLLAPSE_STATE: 'collapseState',
     ICON_SIZE: 'iconSize',
@@ -120,6 +124,7 @@ module.exports = {
     PRIMARY_THEME: 'primaryTheme',
     CUSTOM_COLORS: 'customColors',
     CONF_SECTIONS: 'confSections',
+    CONF_PAGES: 'confPages',
     CONF_WIDGETS: 'confSections',
     PAGE_INFO: 'pageInfo',
     APP_CONFIG: 'appConfig',
@@ -130,6 +135,7 @@ module.exports = {
     MOST_USED: 'mostUsed',
     LAST_USED: 'lastUsed',
     KEYCLOAK_INFO: 'keycloakInfo',
+    DISABLE_CRITICAL_WARNING: 'disableCriticalWarning',
   },
   /* Key names for cookie identifiers */
   cookieKeys: {
@@ -184,7 +190,7 @@ module.exports = {
     // delay: { show: 380, hide: 0 },
   },
   /* Server location of the Backup & Sync cloud function */
-  backupEndpoint: 'https://dashworks-sync-service.as93.net',
+  backupEndpoint: 'https://sync-service.dashworks.khulnasoft.com',
   /* Available services for fetching favicon icon for user apps */
   faviconApiEndpoints: {
     allesedv: 'https://f1.allesedv.com/128/$URL',
@@ -302,7 +308,7 @@ module.exports = {
   },
   /* Progressive Web App settings, used by Vue Config */
   pwa: {
-    name: 'Dashworks',
+    name: 'DashWorks',
     manifestPath: './manifest.json',
     themeColor: '#00af87',
     msTileColor: '#0b1021',

@@ -9,7 +9,7 @@ body:
     id: environment
     attributes:
       label: Environment
-      description: Where are you running Dashworks?
+      description: Where are you running DashWorks?
       options:
         - Self-Hosted (Docker)
         - Self-Hosted (Bare Metal)
@@ -31,7 +31,7 @@ body:
     id: version
     attributes:
       label: Version
-      description: What version of Dashworks are you running?
+      description: What version of DashWorks are you running?
       placeholder: 4.2.0 ← should look like this (check config menu)
     validations:
       required: false
@@ -59,7 +59,7 @@ body:
       options:
         - label: You have explained the issue clearly, and included all relevant info
           required: true
-        - label: You are using a [supported](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md#supported-versions) version of Dashworks
+        - label: You are using a [supported](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md#supported-versions) version of DashWorks
           required: true
         - label: You've checked that this [issue hasn't already been raised](https://github.com/KhulnaSoft/dashworks/issues?q=is%3Aissue)
           required: true
@@ -74,6 +74,6 @@ body:
         <img align="left" width="160" src="https://i.ibb.co/S5vCnhL/gh-thanks.gif" alt="🐙" />
         Thank you for raising this ticket - in doing so you are helping to make the app better for everyone 💪<br>
         You should expect a reply within the next 48 hours :)<br>
-        ⭐️ Consider dropping the repo a star if you're enjoying Dashworks!<br>
+        ⭐️ Consider dropping the repo a star if you're enjoying DashWorks!<br>
     validations:
       required: false

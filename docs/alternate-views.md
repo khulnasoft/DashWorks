@@ -2,10 +2,10 @@
 
 ## Views
 
-Dashworks has three different views:
+DashWorks has three different views:
 
 - Default View - This is the main homepage with sections in a grid layout
-- Workspace View - Items displayed on the side, and are launched within Dashworks
+- Workspace View - Items displayed on the side, and are launched within DashWorks
 - Minimal View - A clean + simple tabbed view
 
 You can switch between views using the dropdown in the top-right corner. Set your chosen Starting View with `appConfig.startingView`. Click the page title at any time to go back to your selected starting view.
@@ -21,7 +21,7 @@ This is the main page that you will land on when you first launch the applicatio
 
 ### Workspace
 
-The workspace view displays your links in a sidebar on the left-hand side, and apps are launched inside an iframe without having to leave Dashworks. This enables you to use all of your self-hosted apps from one place, and makes multi-tasking easy.
+The workspace view displays your links in a sidebar on the left-hand side, and apps are launched inside an iframe without having to leave DashWorks. This enables you to use all of your self-hosted apps from one place, and makes multi-tasking easy.
 
 You can specify a default app to be opened when you land on the workspace, by setting `appConfig.workspaceLandingUrl: https://app-to-open/`. If this app exists within your sections.items, then the corresponding section will also be expanded.
 
@@ -43,11 +43,11 @@ The minimal view aims to be super fast and simple, and can be used as a browser 
 
 ## Opening Methods
 
-Dashworks supports several different ways to launch your apps. The primary opening method for each app can be specified using the `target` attribute, with a value of one of the following:
+DashWorks supports several different ways to launch your apps. The primary opening method for each app can be specified using the `target` attribute, with a value of one of the following:
 
 - `sametab` - The app will be launched in the current tab
 - `newtab` - The app will be launched in a new tab
-- `top` - Opens in the top-most browsing context, useful if you're accessing Dashworks through an iframe
+- `top` - Opens in the top-most browsing context, useful if you're accessing DashWorks through an iframe
 - `modal` - Launch app in a resizable/ movable popup modal on the current page
 - `workspace` - Changes to Workspace view, and launches app
 

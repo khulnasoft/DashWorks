@@ -25,14 +25,14 @@ module.exports = (ip, port, isDocker) => {
     // Prepare message for Docker users
     const containerId = process.env.HOST || undefined;
     msg = `${chars.BLUE}${stars(91)}${chars.BR}${chars.RESET}`
-      + `${chars.CYAN}Welcome to Dashworks! 🚀${chars.RESET}${chars.BR}`
+      + `${chars.CYAN}Welcome to DashWorks! 🚀${chars.RESET}${chars.BR}`
       + `${chars.GREEN}Your new dashboard is now up and running `
       + `${containerId ? `in container ID ${containerId}` : 'with Docker'}${chars.BR}`
       + `${chars.BLUE}${stars(91)}${chars.BR}${chars.RESET}`;
   } else {
     // Prepare message for users running app on bare metal
     msg = `${chars.GREEN}┏${line(75)}┓${chars.BR}`
-      + `┃ ${chars.CYAN}Welcome to Dashworks! 🚀${blanks(55)}${chars.GREEN}┃${chars.BR}`
+      + `┃ ${chars.CYAN}Welcome to DashWorks! 🚀${blanks(54)}${chars.GREEN}┃${chars.BR}`
       + `┃ ${chars.CYAN}Your new dashboard is now up and running at ${chars.BRIGHT}`
       + `http://${ip}:${port}${chars.RESET}${blanks(18 - ip.length)}${chars.GREEN}┃${chars.BR}`
       + `┗${line(75)}┛${chars.BR}${chars.BR}${chars.RESET}`;

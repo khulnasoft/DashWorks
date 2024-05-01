@@ -25,7 +25,7 @@
 
 <script>
 import FormSchema from '@formschema/native';
-import DashworksSchema from '@/utils/ConfigSchema';
+import DashWorksSchema from '@/utils/ConfigSchema';
 import StoreKeys from '@/utils/StoreMutations';
 import { modalNames } from '@/utils/defaults';
 import Button from '@/components/FormElements/Button';
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       formData: {},
-      schema: DashworksSchema.properties.pageInfo,
+      schema: DashWorksSchema.properties.pageInfo,
       modalName: modalNames.EDIT_PAGE_INFO,
     };
   },

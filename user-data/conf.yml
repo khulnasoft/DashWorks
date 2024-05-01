@@ -29,7 +29,7 @@ sections:
     icon: favicon
   - title: Docs
     description: Configuring & Usage Documentation
-    provider: DashWorks.to
+    provider: dashworks.khulnasoft.com
     icon: far fa-book
     url: https://dashworks.khulnasoft.com/docs
   - title: Showcase

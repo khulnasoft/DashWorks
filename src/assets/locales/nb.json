@@ -10,7 +10,7 @@
     "enter-to-search-web": "Trykk enter for å søke på nettet"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "username-label": "Brukernavn",
     "password-label": "Passord",
     "login-button": "Logg inn",
@@ -84,10 +84,10 @@
     "sign-in-welcome": "Hei {brukernavn}!"
   },
   "updates": {
-    "app-version-note": "Dashworks-versjon",
+    "app-version-note": "DashWorks-versjon",
     "up-to-date": "Oppdatert",
     "out-of-date": "Oppdatering tilgjengelig",
-    "unsupported-version-l1": "Du bruker en ikke-støttet versjon av Dashworks",
+    "unsupported-version-l1": "Du bruker en ikke-støttet versjon av DashWorks",
     "unsupported-version-l2": "For den beste opplevelsen og de siste sikkerhetsoppdateringene, vennligst oppdater til"
   },
   "language-switcher": {
@@ -142,7 +142,7 @@
   },
   "cloud-sync": {
     "title": "Sikkerhetskopiering & gjenoppretting",
-    "intro-l1": "Sikkerhetskopiering og gjenoppretting er en valgfri funksjon, som lar deg laste opp konfigurasjonen din til internett og deretter gjenopprette den på en hvilken som helst annen enhet eller forekomst av Dashworks.",
+    "intro-l1": "Sikkerhetskopiering og gjenoppretting er en valgfri funksjon, som lar deg laste opp konfigurasjonen din til internett og deretter gjenopprette den på en hvilken som helst annen enhet eller forekomst av DashWorks.",
     "intro-l2": "Alle data er helt ende-til-ende-kryptert med AES, og bruker passordet ditt som nøkkelen.",
     "intro-l3": "For mer informasjon, se",
     "backup-title-setup": "Lag en sikkerhetskopi",

@@ -29,7 +29,7 @@ When a PR is opened:
 
 After the PR is merged:
 
-- The app is build, and deployed to: <https://dev.dashworks.to>
+- The app is build, and deployed to: <https://dev.dashworks.khulnasoft.com>
 - A new tag in GitHub is created, using the apps version number (from the package.json)
 - The Docker container is built, and published under the `:latest` tag on DockerHub and GHCR
 
@@ -113,7 +113,7 @@ When you submit your PR, include the required info, by filling out the PR templa
 
 ## Automated Workflows
 
-Dashworks makes heavy use of [GitHub Actions](https://github.com/features/actions) to fully automate the checking, testing, building, deploying of the project, as well as administration tasks like management of issues, tags, releases and documentation. The following section outlines each workflow, along with a link the the action file, current status and short description. A lot of these automations were made possible using community actions contributed to GH marketplace by some amazing people.
+DashWorks makes heavy use of [GitHub Actions](https://github.com/features/actions) to fully automate the checking, testing, building, deploying of the project, as well as administration tasks like management of issues, tags, releases and documentation. The following section outlines each workflow, along with a link the the action file, current status and short description. A lot of these automations were made possible using community actions contributed to GH marketplace by some amazing people.
 
 ### Code Processing
 

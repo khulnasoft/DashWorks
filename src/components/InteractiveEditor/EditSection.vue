@@ -26,7 +26,7 @@
 <script>
 import FormSchema from '@formschema/native';
 import StoreKeys from '@/utils/StoreMutations';
-import DashworksSchema from '@/utils/ConfigSchema';
+import DashWorksSchema from '@/utils/ConfigSchema';
 import { modalNames } from '@/utils/defaults';
 import SaveCancelButtons from '@/components/InteractiveEditor/SaveCancelButtons';
 import AccessError from '@/components/Configuration/AccessError';
@@ -45,7 +45,7 @@ export default {
   data() {
     return {
       modalName: modalNames.EDIT_SECTION,
-      schema: DashworksSchema.properties.sections.items.properties,
+      schema: DashWorksSchema.properties.sections.items.properties,
       sectionData: {},
     };
   },

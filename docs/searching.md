@@ -2,7 +2,7 @@
 
 ## Searching
 
-One of the primary purposes of Dashworks is to allow you to quickly find and launch a given app. To make this as quick as possible, there is no need to touch the mouse, or press a certain key to begin searching - just start typing. Results will be filtered in real-time. No need to worry about case, special characters or small typos, these are taken care of, and your results should appear.
+One of the primary purposes of DashWorks is to allow you to quickly find and launch a given app. To make this as quick as possible, there is no need to touch the mouse, or press a certain key to begin searching - just start typing. Results will be filtered in real-time. No need to worry about case, special characters or small typos, these are taken care of, and your results should appear.
 
 ## Navigating
 
@@ -53,7 +53,7 @@ In the above example, pressing <kbd>2</kbd> will launch Bookstack. Or hitting <k
 
 ## Web Search
 
-It's possible to search the web directly from Dashworks, which might be useful if you're using Dashworks as your start page. This can be done by typing your query as normal, and then pressing <kbd>⏎</kbd>. Web search options are configured under `appConfig.webSearch`.
+It's possible to search the web directly from DashWorks, which might be useful if you're using DashWorks as your start page. This can be done by typing your query as normal, and then pressing <kbd>⏎</kbd>. Web search options are configured under `appConfig.webSearch`.
 
 ### Setting Search Engine
 
@@ -82,7 +82,7 @@ In a similar way to opening apps, you can specify where you would like search re
 
 ### Using Bangs
 
-An insanely useful feature of DDG is [Bangs](https://duckduckgo.com/bang), where you type a specific character combination at the start of your search query, and it will be redirected the that website, such as '!w Docker' will display the Docker wikipedia page. Dashworks has a similar feature, enabling you to define your own custom bangs to redirect search results to a specific app, website or search engine.
+An insanely useful feature of DDG is [Bangs](https://duckduckgo.com/bang), where you type a specific character combination at the start of your search query, and it will be redirected the that website, such as '!w Docker' will display the Docker wikipedia page. DashWorks has a similar feature, enabling you to define your own custom bangs to redirect search results to a specific app, website or search engine.
 
 This is done under the `searchBangs` property, with a list of key value pairs. The key is what you will type, and the value is the destination, either as an identifier or a URL with query parameters.
 

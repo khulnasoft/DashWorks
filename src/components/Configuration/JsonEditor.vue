@@ -116,7 +116,8 @@ export default {
   },
   mounted() {
     const jsonData = { ...this.config };
-    jsonData.sections = jsonData.sections.map(({ filteredItems, ...section }) => section);
+    jsonData.sections = (jsonData.sections || []).map(({ filteredItems, ...section }) => section);
+    if (!jsonData.pageInfo) jsonData.pageInfo = { title: 'DashWorks' };
     this.jsonData = jsonData;
     if (!this.allowWriteToDisk) this.saveMode = 'local';
   },
@@ -143,7 +144,11 @@ export default {
       this.$modal.hide(modalNames.CONF_EDITOR);
     },
     writeToDisk() {
-      this.writeConfigToDisk(this.config);
+      const newData = this.jsonData;
+      this.writeConfigToDisk(newData);
+      // this.$store.commit(StoreKeys.SET_APP_CONFIG, newData.appConfig);
+      this.$store.commit(StoreKeys.SET_PAGE_INFO, newData.pageInfo);
+      this.$store.commit(StoreKeys.SET_SECTIONS, newData.sections);
     },
     saveLocally() {
       const msg = this.$t('interactive-editor.menu.save-locally-warning');

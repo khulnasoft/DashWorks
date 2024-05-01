@@ -102,7 +102,7 @@ export default {
     validateResponse(response) {
       const data = response?.ocs?.data;
       let meta = response?.ocs?.meta;
-      const error = response?.error; // Dashworks error when cors-proxied
+      const error = response?.error; // DashWorks error when cors-proxied
       if (error && error.status) {
         meta = { statuscode: error.status };
       }

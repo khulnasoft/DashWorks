@@ -1,9 +1,9 @@
 {
   "name": "dashworks",
-  "version": "2.1.2",
+  "version": "3.0.1",
   "license": "MIT",
   "main": "server",
-  "author": "KhulnaSoft DevOps <info@khulnasoft.com> (https://khulnasoft.com)",
+  "author": "KhulnaSoft DevOps <support@khulnasoft.com> (https://khulnasoft.com)",
   "scripts": {
     "start": "node server",
     "dev": "NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",

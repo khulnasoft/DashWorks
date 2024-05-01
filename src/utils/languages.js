@@ -140,7 +140,7 @@ export const languages = [
     locale: pt,
     flag: '🇵🇹',
   },
-  { // Galician
+  { // Gkhulnasoftn
     name: 'Galego',
     code: 'gl',
     locale: gl,

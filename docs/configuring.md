@@ -1,6 +1,6 @@
 # Configuring
 
-All app configuration is specified in [`/public/conf.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/public/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
+All app configuration is specified in [`/user-data/conf.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/user-data/conf.yml) which is in [YAML Format](https://yaml.org/) format. If you're using Docker, this file can be passed in as a volume. Changes can either be made directly to this file, or done [through the UI](#editing-config-through-the-ui). From the UI you can also export, backup, reset, validate and download your configuration file.
 
 ## There are three ways to edit the config
 
@@ -36,6 +36,7 @@ The following file provides a reference of all supported configuration options.
   - [`auth`](#appconfigauth-optional) - Built-in authentication setup
     - [`users`](#appconfigauthusers-optional) - List or users (for simple auth)
     - [`keycloak`](#appconfigauthkeycloak-optional) - Auth config for Keycloak
+    - [`headerAuth`](#appconfigauthheaderauth-optional) - Auth config for HeaderAuth
 - [**`sections`**](#section) - List of sections
   - [`displayData`](#sectiondisplaydata-optional) - Section display settings
     - [`show/hideForKeycloakUsers`](#sectiondisplaydatahideforkeycloakusers-sectiondisplaydatashowforkeycloakusers-itemdisplaydatahideforkeycloakusers-and-itemdisplaydatashowforkeycloakusers) - Set user controls
@@ -100,10 +101,10 @@ The following file provides a reference of all supported configuration options.
 
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
-**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/KhulnaSoft/dashworks/tree/master/src/assets/locales) into. If your language is unavailable, Dashworks will fallback to English. By default Dashworks will attempt to auto-detect your language, although this may not work on some privacy browsers.
-**`startingView`** | `enum` | _Optional_ | Which page to load by default, and on the base page or domain root. You can still switch to different views from within the UI. Can be either `default`, `minimal` or `workspace`. Defaults to `default`
+**`language`** | `string` | _Optional_ | The 2 (or 4-digit) [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) for your language, e.g. `en` or `en-GB`. This must be a language that the app has already been [translated](https://github.com/KhulnaSoft/dashworks/tree/master/src/assets/locales) into. If your language is unavailable, DashWorks will fallback to English. By default DashWorks will attempt to auto-detect your language, although this may not work on some privacy browsers.
+~~**`startingView`**~~ | `enum` | _Optional_ | Which page to load by default, and on the base page or domain root. You can still switch to different views from within the UI. Can be either `default`, `minimal` or `workspace`. Defaults to `default`. NOTE: This has been replaced by an environmental variable: `VUE_APP_STARTING_VIEW` in V3 onwards
 **`defaultOpeningMethod`** | `enum` | _Optional_ | The default opening method for items, if no `target` is specified for a given item. Can be either `newtab`, `sametab`, `modal`, `workspace`, `clipboard`, `top` or `parent`. Defaults to `newtab`
-**`statusCheck`** | `boolean` | _Optional_ | When set to `true`, Dashworks will ping each of your services and display their status as a dot next to each item. This can be overridden by setting `statusCheck` under each item. Defaults to `false`
+**`statusCheck`** | `boolean` | _Optional_ | When set to `true`, DashWorks will ping each of your services and display their status as a dot next to each item. This can be overridden by setting `statusCheck` under each item. Defaults to `false`
 **`statusCheckInterval`** | `number` | _Optional_ | The number of seconds between checks. If set to `0` then service will only be checked on initial page load, which is usually the desired functionality. If value is less than `10` you may experience a hit in performance. Defaults to `0`
 **`webSearch`** | `object` | _Optional_ | Configuration options for the web search feature, set your default search engine, opening method or disable web search. See [`webSearch`](#appconfigwebsearch-optional)
 **`backgroundImg`** | `string` | _Optional_ | Path to an optional full-screen app background image. This can be either remote (http) or local (relative to /app/public/item-icons/ inside the container). Note that this will slow down initial load
@@ -122,7 +123,7 @@ The following file provides a reference of all supported configuration options.
 **`externalStyleSheet`** | `string`  or `string[]` | _Optional_ | Either a URL to an external stylesheet or an array or URLs, which can be applied as themes within the UI
 **`customCss`** | `string` | _Optional_ | Raw CSS that will be applied to the page. This can also be set from the UI. Please minify it first.
 **`hideComponents`** | `object` | _Optional_ | A list of key page components (header, footer, search, settings, etc) that are present by default, but can be removed using this option. See [`appConfig.hideComponents`](#appconfighideComponents-optional)
-**`routingMode`** | `string` | _Optional_ | Can be either `hash` or `history`. Determines the URL format for sub-pages, hash mode will look like `/#/home` whereas with history mode available you have nice clean URLs, like `/home`. For more info, see the [Vue docs](https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations). If you're hosting Dashworks with a custom BASE_URL, you will find that a bit of extra server config is necessary to get history mode working, so here you may want to instead use `hash` mode.Defaults to `history`.
+**`routingMode`** | `string` | _Optional_ | Can be either `hash` or `history`. Determines the URL format for sub-pages, hash mode will look like `/#/home` whereas with history mode available you have nice clean URLs, like `/home`. For more info, see the [Vue docs](https://router.vuejs.org/guide/essentials/history-mode.html#example-server-configurations). If you're hosting DashWorks with a custom BASE_URL, you will find that a bit of extra server config is necessary to get history mode working, so here you may want to instead use `hash` mode.Defaults to `history`.
 **`enableMultiTasking`** | `boolean` | _Optional_ | If set to true, will keep apps open in the background when in the workspace view. Useful for quickly switching between multiple sites, and preserving their state, but comes at the cost of performance.
 **`workspaceLandingUrl`** | `string` | _Optional_ | The URL or an app, service or website to launch when the workspace view is opened, before another service has been launched
 **`preventWriteToDisk`** | `boolean` | _Optional_ | If set to `true`, users will be prevented from saving config changes to disk through the UI
@@ -131,22 +132,32 @@ The following file provides a reference of all supported configuration options.
 **`disableConfigurationForNonAdmin`** | `boolean` | _Optional_ | If set to true, only admin users will be able to view or edit the config through the UI. disableConfiguration must not be set to true.
 **`widgetsAlwaysUseProxy`** | `boolean` | _Optional_ | If set to `true`, requests made by widgets will always be proxied, same as setting `useProxy: true` on each widget. Note that this may break some widgets.
 **`showSplashScreen`** | `boolean` | _Optional_ | If set to `true`, a loading screen will be shown. Defaults to `false`.
-**`enableErrorReporting`** | `boolean` | _Optional_ | Enable reporting of unexpected errors and crashes. This is off by default, and **no data will ever be captured unless you explicitly enable it**. Turning on error reporting helps previously unknown bugs get discovered and fixed. Dashworks uses [Sentry](https://github.com/getsentry/sentry) for error reporting. Defaults to `false`.
+**`enableErrorReporting`** | `boolean` | _Optional_ | Enable reporting of unexpected errors and crashes. This is off by default, and **no data will ever be captured unless you explicitly enable it**. Turning on error reporting helps previously unknown bugs get discovered and fixed. DashWorks uses [Sentry](https://github.com/getsentry/sentry) for error reporting. Defaults to `false`.
 **`sentryDsn`** | `boolean` | _Optional_ | If you need to monitor errors in your instance, then you can use Sentry to collect and process bug reports. Sentry can be self-hosted, or used as SaaS, once your instance is setup, then all you need to do is pass in the DSN here, and enable error reporting. You can learn more on the [Sentry DSN Docs](https://docs.sentry.io/product/sentry-basics/dsn-explainer/). Note that this will only ever be used if `enableErrorReporting` is explicitly enabled.
 **`disableSmartSort`** | `boolean` | _Optional_ | For the most-used and last-used app sort functions to work, a basic open-count is stored in local storage. If you do not want this to happen, then disable smart sort here, but you wil no longer be able to use these sort options. Defaults to `false`.
-**`disableUpdateChecks`** | `boolean` | _Optional_ | If set to true, Dashworks will not check for updates. Defaults to `false`.
-**`enableServiceWorker`** | `boolean` | _Optional_ | Service workers cache web applications to improve load times and offer basic offline functionality, and are enabled by default in Dashworks. The service worker can sometimes cause older content to be cached, requiring the app to be hard-refreshed. If you do not want SW functionality, or are having issues with caching, set this property to `false` to disable all service workers.
+**`disableUpdateChecks`** | `boolean` | _Optional_ | If set to true, DashWorks will not check for updates. Defaults to `false`.
+**`enableServiceWorker`** | `boolean` | _Optional_ | Service workers cache web applications to improve load times and offer basic offline functionality, and are enabled by default in DashWorks. The service worker can sometimes cause older content to be cached, requiring the app to be hard-refreshed. If you do not want SW functionality, or are having issues with caching, set this property to `false` to disable all service workers.
 **`disableContextMenu`** | `boolean` | _Optional_ | If set to `true`, the custom right-click context menu will be disabled. Defaults to `false`.
 
 **[⬆️ Back to Top](#configuring)**
 
 ## `appConfig.auth` _(optional)_
 
+> [!NOTE]
+> Since the auth is initiated in the main app entry point (for security), a rebuild is required to apply changes to the auth configuration.
+> You can trigger a rebuild through the UI, under Config --> Rebuild, or by running `yarn build` in the root directory.
+
+> [!WARNING]
+> Built-in auth should **not be used** for security-critical applications, or if your DashWorks instance is publicly accessible.
+> For these, it is recommended to use an [alternate authentication method](/docs/authentication.md#alternative-authentication-methods).
+
 **Field** | **Type** | **Required**| **Description**
 --- | --- | --- | ---
 **`users`** | `array` | _Optional_ | An array of objects containing usernames and hashed passwords. If this is not provided, then authentication will be off by default, and you will not need any credentials to access the app. See [`appConfig.auth.users`](#appconfigauthusers-optional). <br>**Note** this method of authentication is handled on the client side, so for security critical situations, it is recommended to use an [alternate authentication method](/docs/authentication.md#alternative-authentication-methods).
 **`enableKeycloak`** | `boolean` | _Optional_ | If set to `true`, then authentication using Keycloak will be enabled. Note that you need to have an instance running, and have also configured `auth.keycloak`. Defaults to `false`
-**`keycloak`** | `object` | _Optional_ | Config options to point Dashworks to your Keycloak server. Requires `enableKeycloak: true`. See  [`auth.keycloak`](#appconfigauthkeycloak-optional) for more info
+**`keycloak`** | `object` | _Optional_ | Config options to point DashWorks to your Keycloak server. Requires `enableKeycloak: true`. See  [`auth.keycloak`](#appconfigauthkeycloak-optional) for more info
+**`enableHeaderAuth`** | `boolean` | _Optional_ | If set to `true`, then authentication using HeaderAuth will be enabled. Note that you need to have your web server/reverse proxy running, and have also configured `auth.headerAuth`. Defaults to `false`
+**`headerAuth`** | `object` | _Optional_ | Config options to point DashWorks to your headers for authentication. Requires `enableHeaderAuth: true`. See  [`auth.headerAuth`](#appconfigauthheaderauth-optional) for more info
 **`enableGuestAccess`** | `boolean` | _Optional_ | When set to `true`, an unauthenticated user will be able to access the dashboard, with read-only access, without having to login. Requires `auth.users` to be configured. Defaults to `false`.
 
 For more info, see the **[Authentication Docs](/docs/authentication.md)**
@@ -169,8 +180,17 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 --- | --- | --- | ---
 **`serverUrl`** | `string` | Required | The URL (or URL/ IP + Port) where your keycloak server is running
 **`realm`** | `string` | Required | The name of the realm (must already be created) that you want to use
-**`clientId`** | `string` | Required | The Client ID of the client you created for use with Dashworks
+**`clientId`** | `string` | Required | The Client ID of the client you created for use with DashWorks
 **`legacySupport`** | `boolean` | _Optional_ | If using Keycloak 17 or older, then set this to `true`
+
+**[⬆️ Back to Top](#configuring)**
+
+## `appConfig.auth.headerAuth` _(optional)_
+
+**Field** | **Type** | **Required**| **Description**
+--- | --- | --- | ---
+**`userHeader`** | `string` | _Optional_ | The Header name which contains username (default: REMOTE_USER). Case insensitive
+**`proxyWhitelist`** | `array` | Required | An array of Upstream proxy servers to expect authencticated requests from
 
 **[⬆️ Back to Top](#configuring)**
 
@@ -221,14 +241,14 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`target`** | `string` | _Optional_ | The opening method for when the item is clicked, either `newtab`, `sametab`, `modal`, `workspace`, `clipboard`, `top` or `parent`. Where `newtab` will open the link in a new tab, `sametab` will open it in the current tab, and `modal` will open a pop-up modal, `workspace` will open in the Workspace view and `clipboard` will copy the URL to system clipboard (but not launch app). Defaults to `newtab`
 **`hotkey`** | `number` | _Optional_ | Give frequently opened applications a numeric hotkey, between `0 - 9`. You can then just press that key to launch that application.
 **`tags`** | `string[]` | _Optional_ | A list of tags, which can be used for improved search
-**`statusCheck`** | `boolean` | _Optional_ | When set to `true`, Dashworks will ping the URL associated with the current service, and display its status as a dot next to the item. The value here will override `appConfig.statusCheck` so you can turn off or on checks for a given service. Defaults to `appConfig.statusCheck`, falls back to `false`
+**`statusCheck`** | `boolean` | _Optional_ | When set to `true`, DashWorks will ping the URL associated with the current service, and display its status as a dot next to the item. The value here will override `appConfig.statusCheck` so you can turn off or on checks for a given service. Defaults to `appConfig.statusCheck`, falls back to `false`
 **`statusCheckUrl`** | `string` | _Optional_ | If you've enabled `statusCheck`, and want to use a different URL to what is defined under the item, then specify it here
 **`statusCheckHeaders`** | `object` | _Optional_ | If you're endpoint requires any specific headers for the status checking, then define them here
 **`statusCheckAllowInsecure`** | `boolean` | _Optional_ | By default, any request to insecure content will be blocked. Setting this option to `true` will disable the `rejectUnauthorized` option, enabling you to ping non-HTTPS services for the current item. Defaults to `false`
 **`statusCheckAcceptCodes`** | `string` | _Optional_ | If your service's response code is anything other than 2xx, then you can opt to specify an alternative success code. E.g. if you expect your server to return 403, but still want the status indicator to be green, set this value to `403`
 **`statusCheckMaxRedirects`** | `number` | _Optional_ | If your service redirects to another page, and you would like status checks to follow redirects, then specify the maximum number of redirects here. Defaults to `0` / will not follow redirects
 **`color`** | `string` | _Optional_ | An optional color for the text and font-awesome icon to be displayed in. Note that this will override the current theme and so may not display well
-**`rel`** | `string` | _Optional_ | The value of the `rel` attribute for the link. Useful for specifying the relationship between the target link/document and Dashworks. Defaults to `noopener noreferrer`
+**`rel`** | `string` | _Optional_ | The value of the `rel` attribute for the link. Useful for specifying the relationship between the target link/document and DashWorks. Defaults to `noopener noreferrer`
 **`backgroundColor`** | `string` | _Optional_ | An optional background fill color for the that given item. Again, this will override the current theme and so might not display well against the background
 **`provider`** | `string` | _Optional_ | The name of the provider for a given service, useful for when including hosted apps. In some themes, this is visible under the item name
 **`displayData`** | `object` | _Optional_ | Meta-data to optionally override display settings for a given item. See [`displayData`](#itemdisplaydata-optional)
@@ -254,7 +274,7 @@ For more info, see the **[Authentication Docs](/docs/authentication.md)**
 **`type`** | `string` | Required | The widget type. See [Widget Docs](/docs/widgets.md) for full list of supported widgets
 **`options`** | `object` | _Optional_ | Some widgets accept either optional or required additional options. Again, see the [Widget Docs](/docs/widgets.md) for full list of options
 **`updateInterval`** | `number` | _Optional_ | You can keep a widget constantly updated by specifying an update interval, in seconds. See [Continuous Updates Docs](/docs/widgets.md#continuous-updates) for more info
-**`useProxy`** | `boolean` | _Optional_ | Some widgets make API requests to services that are not CORS-enabled. For these instances, you will need to route requests through a proxy, Dashworks has a built in CORS-proxy, which you can use by setting this option to `true`. Defaults to `false`. See the [Proxying Requests Docs](/docs/widgets.md#proxying-requests) for more info
+**`useProxy`** | `boolean` | _Optional_ | Some widgets make API requests to services that are not CORS-enabled. For these instances, you will need to route requests through a proxy, DashWorks has a built in CORS-proxy, which you can use by setting this option to `true`. Defaults to `false`. See the [Proxying Requests Docs](/docs/widgets.md#proxying-requests) for more info
 **`timeout`** | `number` | _Optional_ | Request timeout in milliseconds, defaults to ½ a second (`500`)
 **`ignoreErrors`** | `boolean` | _Optional_ | Prevent an error message being displayed, if a network request or something else fails. Useful for false-positives
 **`label`** | `string` | _Optional_ | Add custom label to a given widget. Useful for identification, if there are multiple of the same type of widget in a single section
@@ -330,7 +350,7 @@ If you're new to YAML, it's pretty straight-forward. The format is exactly the s
 When updating the config through the JSON editor in the UI, you have two save options: **Local** or **Write to Disk**.
 
 - Changes saved locally will only be applied to the current user through the browser, and will not apply to other instances - you either need to use the cloud sync feature, or manually update the conf.yml file.
-- On the other-hand, if you choose to write changes to disk, then your main `conf.yml` file will be updated, and changes will be applied to all users, and visible across all devices. For this functionality to work, you must be running Dashworks with using the Docker container, or the Node server.  A backup of your current configuration will also be saved in the same directory.
+- On the other-hand, if you choose to write changes to disk, then your main `conf.yml` file will be updated, and changes will be applied to all users, and visible across all devices. For this functionality to work, you must be running DashWorks with using the Docker container, or the Node server.  A backup of your current configuration will also be saved in the same directory.
 
 ### Preventing Changes
 

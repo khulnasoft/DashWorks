@@ -14,7 +14,7 @@
       "loading": "Cargando"
    },
    "login": {
-      "title": "Dashworks",
+      "title": "DashWorks",
       "guest-label": "Acceso de convidado",
       "username-label": "Nome de usuario",
       "password-label": "Contrasinal",
@@ -49,9 +49,9 @@
       "error-log": "Rexistro de erros",
       "no-errors": "Non se detectaron erros recentes",
       "help-support": "Axuda e soporte",
-      "help-support-description": "Para obter axuda sobre a execución ou configuración de Dashworks, consulta as",
+      "help-support-description": "Para obter axuda sobre a execución ou configuración de DashWorks, consulta as",
       "help-support-discussions": "Discusións",
-      "support-dashworks": "Apoia Dashworks",
+      "support-dashworks": "Apoia DashWorks",
       "support-dashworks-description": "Para saber como participar, consulta a páxina de",
       "support-dashworks-link": "Contribucións",
       "report-bug": "Informar dun erro",
@@ -61,7 +61,7 @@
       "source": "Código fonte",
       "documentation": "Documentación",
       "privacy-and-security": "Privacidade e seguridade",
-      "privacy-and-security-l1": "Para obter detalles sobre como os teus datos son xestionados por Dashworks, consulta a",
+      "privacy-and-security-l1": "Para obter detalles sobre como os teus datos son xestionados por DashWorks, consulta a",
       "privacy-and-security-privacy-policy": "Política de privacidade",
       "privacy-and-security-advice": "Para consellos sobre como asegurar o teu panel de control, consulta os",
       "privacy-and-security-advice-link": "Documentos de xestión",
@@ -136,10 +136,10 @@
       "open": "Abrir"
    },
    "updates": {
-      "app-version-note": "Versión de Dashworks",
+      "app-version-note": "Versión de DashWorks",
       "up-to-date": "Actualizado",
       "out-of-date": "Actualización dispoñible",
-      "unsupported-version-l1": "Estás a usar unha versión non soportada de Dashworks",
+      "unsupported-version-l1": "Estás a usar unha versión non soportada de DashWorks",
       "unsupported-version-l2": "Para a mellor experiencia e actualizacións de seguridade recentes, por favor, actualiza a"
    },
    "language-switcher": {
@@ -196,7 +196,7 @@
    },
    "cloud-sync": {
       "title": "Copia de seguridade e restauración en nube",
-      "intro-l1": "A copia de seguridade e restauración en nube é unha característica opcional que che permite cargar a túa configuración á internet e restaurala en calquera outro dispositivo ou instancia de Dashworks.",
+      "intro-l1": "A copia de seguridade e restauración en nube é unha característica opcional que che permite cargar a túa configuración á internet e restaurala en calquera outro dispositivo ou instancia de DashWorks.",
       "intro-l2": "Todos os datos están totalmente cifrados de extremo a extremo con AES, usando o teu contrasinal como clave.",
       "intro-l3": "Para obter máis información, consulta a",
       "intro-docs": "documentación",

@@ -14,7 +14,7 @@
     "loading": "Chargement"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "guest-label": "Accès invité",
     "username-label": "Nom d'utilisateur",
     "password-label": "Mot de passe",
@@ -49,9 +49,9 @@
     "error-log": "Journal des erreurs",
     "no-errors": "Aucune erreur récente détectée",
     "help-support": "Aide & Support",
-    "help-support-description" : "Pour obtenir de l'aide pour faire tourner ou configurer Dashworks, voir les",
+    "help-support-description" : "Pour obtenir de l'aide pour faire tourner ou configurer DashWorks, voir les",
     "help-support-discussions": "discussions",
-    "support-dashworks": "Soutenir Dashworks",
+    "support-dashworks": "Soutenir DashWorks",
     "support-dashworks-description": "Pour savoir comment vous pouvez vous impliquer, consultez la page",
     "support-dashworks-link": "« Contributions »",
     "report-bug": "Signaler un bug",
@@ -61,7 +61,7 @@
     "source": "Source ",
     "documentation": "Documentation ",
     "privacy-and-security": "Vie privée & Sécurité",
-    "privacy-and-security-l1": "Pour connaître la manière dont vos données sont gérées par Dashworks, consultez la",
+    "privacy-and-security-l1": "Pour connaître la manière dont vos données sont gérées par DashWorks, consultez la",
     "privacy-and-security-privacy-policy": "politique de confidentialité",
     "privacy-and-security-advice": "Pour obtenir des conseils sur la sécurisation de votre tableau de bord, vous pouvez vous référer à la",
     "privacy-and-security-advice-link": "documentation",
@@ -136,10 +136,10 @@
     "open": "Ouvrir"
   },
   "updates": {
-    "app-version-note": "Version de Dashworks",
+    "app-version-note": "Version de DashWorks",
     "up-to-date": "À jour",
     "out-of-date": "Mise à jour disponible !",
-    "unsupported-version-l1": "Vous utilisez une version non prise en charge de Dashworks",
+    "unsupported-version-l1": "Vous utilisez une version non prise en charge de DashWorks",
     "unsupported-version-l2": "Pour une meilleure expérience et des correctifs de sécurité récents, veuillez mettre à jour vers"
   },
   "language-switcher": {
@@ -196,7 +196,7 @@
   },
   "cloud-sync": {
     "title": "Sauvegarde Cloud & Restauration",
-    "intro-l1": "Ce service de sauvegarde et de restauration depuis le cloud est une fonctionnalité facultative qui vous permet de télécharger votre configuration sur Internet, puis de la restaurer sur n'importe quel autre appareil ou instance de Dashworks.",
+    "intro-l1": "Ce service de sauvegarde et de restauration depuis le cloud est une fonctionnalité facultative qui vous permet de télécharger votre configuration sur Internet, puis de la restaurer sur n'importe quel autre appareil ou instance de DashWorks.",
     "intro-l2": "Toutes les données sont entièrement chiffrées de bout en bout avec le protocole AES, en utilisant votre mot de passe comme clé.",
     "intro-l3": "Pour plus d'informations, veuillez consulter la",
     "intro-docs": "documentation",

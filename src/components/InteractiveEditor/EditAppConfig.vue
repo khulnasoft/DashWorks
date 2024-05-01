@@ -16,7 +16,7 @@
     </p>
     {{ $t('interactive-editor.edit-app-config.warning-msg-l1') }}
     {{ $t('interactive-editor.edit-app-config.warning-msg-l2') }}
-    <a href="https://dashworks.to/docs/configuring#appconfig-optional">
+    <a href="https://dashworks.khulnasoft.com/docs/configuring#appconfig-optional">
       {{ $t('interactive-editor.edit-app-config.warning-msg-docs') }}
     </a>
     {{ $t('interactive-editor.edit-app-config.warning-msg-l3') }}
@@ -41,7 +41,7 @@
 
 <script>
 import FormSchema from '@formschema/native';
-import DashworksSchema from '@/utils/ConfigSchema';
+import DashWorksSchema from '@/utils/ConfigSchema';
 import StoreKeys from '@/utils/StoreMutations';
 import { modalNames } from '@/utils/defaults';
 import AccessError from '@/components/Configuration/AccessError';
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       formData: {},
-      schema: DashworksSchema.properties.appConfig,
+      schema: DashWorksSchema.properties.appConfig,
       modalName: modalNames.EDIT_APP_CONFIG,
     };
   },

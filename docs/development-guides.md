@@ -16,7 +16,7 @@ Sections:
 
 ## Creating a new theme
 
-Adding a new theme is really easy. There're two things you need to do: Pass the theme name to Dashworks, so that it can be added to the theme selector dropdown menu, and then write some styles!
+Adding a new theme is really easy. There're two things you need to do: Pass the theme name to DashWorks, so that it can be added to the theme selector dropdown menu, and then write some styles!
 
 ### 1. Add Theme Name
 
@@ -42,9 +42,9 @@ Note that if your theme is just for yourself, and you're not submitting a PR, th
 
 ## Writing Translations
 
-For full docs about Dashworks's multi-language support, see [Multi-Language Support](./multi-language-support.md)
+For full docs about DashWorks's multi-language support, see [Multi-Language Support](./multi-language-support.md)
 
-Dashworks is using [vue-i18n](https://vue-i18n.intlify.dev/guide/) to manage multi-language support.
+DashWorks is using [vue-i18n](https://vue-i18n.intlify.dev/guide/) to manage multi-language support.
 
 Adding a new language is pretty straightforward, with just three steps:
 
@@ -104,7 +104,7 @@ If you are not comfortable with making pull requests, or do not want to modify t
 
 This section is for, adding a new setting to the config file.
 
-All of the users config is specified in `./public/conf.yml` - see [Configuring Docs](./configuring.md) for info.
+All of the users config is specified in `./user-data/conf.yml` - see [Configuring Docs](./configuring.md) for info.
 It's important to first ensure that there isn't a similar option already available, the new option is definitely necessary, and most importantly that it is fully backwards compatible.
 
 Next choose the appropriate section to place it under
@@ -172,12 +172,12 @@ It is important to thoroughly test after any big dependency updates.
 
 ## Developing Netlify Cloud Functions
 
-When Dashworks is deployed to Netlify, it is effectively running as a static app, and therefore the server-side code for the Node.js endpoints is not available. However Netlify now supports serverless cloud lambda functions, which can be used to replace most functionality.
+When DashWorks is deployed to Netlify, it is effectively running as a static app, and therefore the server-side code for the Node.js endpoints is not available. However Netlify now supports serverless cloud lambda functions, which can be used to replace most functionality.
 
 ### 1. Run Netlify Dev Server
 
 First off all, install the Netlify CLI: `npm install netlify-cli -g`
-Then, from within the root of Dashworks's directory, start the server, by running: `netlify dev`
+Then, from within the root of DashWorks's directory, start the server, by running: `netlify dev`
 
 ### 2. Create a lambda function
 
@@ -260,7 +260,7 @@ If add any new variables, ensure that there is always a fallback (define it in [
 
 ### Step 0 - Prerequisites
 
-If this is your first time working on Dashworks, then the [Developing Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/developing.md) instructions for project setup and running. In short, you just need to clone the project, cd into it, install dependencies (`yarn`) and then start the development server (`yarn dev`).
+If this is your first time working on DashWorks, then the [Developing Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/developing.md) instructions for project setup and running. In short, you just need to clone the project, cd into it, install dependencies (`yarn`) and then start the development server (`yarn dev`).
 
 To build a widget, you'll also need some basic knowledge of Vue.js. The [official Vue docs](https://vuejs.org/v2/guide/) provides a good starting point, as does [this guide](https://www.taniarascia.com/getting-started-with-vue/) by Tania Rascia
 

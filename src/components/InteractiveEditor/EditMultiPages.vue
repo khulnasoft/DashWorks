@@ -22,7 +22,7 @@
 
 <script>
 import FormSchema from '@formschema/native';
-import DashworksSchema from '@/utils/ConfigSchema';
+import DashWorksSchema from '@/utils/ConfigSchema';
 import StoreKeys from '@/utils/StoreMutations';
 import { modalNames } from '@/utils/defaults';
 import SaveCancelButtons from '@/components/InteractiveEditor/SaveCancelButtons';
@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       formData: {},
-      schema: DashworksSchema.properties.pages,
+      schema: DashWorksSchema.properties.pages,
       modalName: modalNames.EDIT_MULTI_PAGES,
     };
   },

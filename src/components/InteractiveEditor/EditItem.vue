@@ -80,7 +80,7 @@ import Input from '@/components/FormElements/Input';
 import Radio from '@/components/FormElements/Radio';
 import Select from '@/components/FormElements/Select';
 import StoreKeys from '@/utils/StoreMutations';
-import DashworksSchema from '@/utils/ConfigSchema';
+import DashWorksSchema from '@/utils/ConfigSchema';
 import { modalNames } from '@/utils/defaults';
 
 export default {
@@ -88,7 +88,7 @@ export default {
   data() {
     return {
       modalName: modalNames.EDIT_ITEM,
-      schema: DashworksSchema.properties.sections.items.properties.items.items.properties,
+      schema: DashWorksSchema.properties.sections.items.properties.items.items.properties,
       formData: [], // Array of form fields
       additionalFormData: [], // Array of not-yet-used form fields
       item: {},

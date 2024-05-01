@@ -6,11 +6,14 @@
   - [Logging In and Out](#logging-in-and-out)
   - [Guest Access](#enabling-guest-access)
   - [Per-User Access](#granular-access)
+  - [Using Environment Variables for Passwords](#using-environment-variables-for-passwords)
+  - [Adding HTTP Auth to Configuration](#adding-http-auth-to-configuration)
   - [Security Considerations](#security)
+- [HTTP Auth](#http-auth)
 - [Keycloak Auth](#keycloak)
   - [Deploying Keycloak](#1-deploy-keycloak)
   - [Setting up Keycloak](#2-setup-keycloak-users)
-  - [Configuring Dashworks for Keycloak](#3-enable-keycloak-in-dashworks-config-file)
+  - [Configuring DashWorks for Keycloak](#3-enable-keycloak-in-dashworks-config-file)
 - [Alternative Authentication Methods](#alternative-authentication-methods)
   - [VPN](#vpn)
   - [IP-Based Access](#ip-based-access)
@@ -20,13 +23,18 @@
 
 
 > [!IMPORTANT]
-> Dashworks's built-in auth is not indented to protect a publicly hosted instance against unauthorized access. Instead you should use an auth provider compatible with your reverse proxy, or access Dashworks via your VPN. 
+> DashWorks's built-in auth is not indented to protect a publicly hosted instance against unauthorized access. Instead you should use an auth provider compatible with your reverse proxy, or access DashWorks via your VPN, or implement your own SSO logic. 
 >
-> In cases where Dashworks is only accessibly within your home network, and you just want to add a login page, then the built-in auth may be sufficient, but keep in mind that configuration can still be accessed.
+> In cases where DashWorks is only accessibly within your home network, and you just want to add a login page, then the built-in auth may be sufficient, but keep in mind that configuration can still be accessed.
 
 ## Built-In Auth
 
-Dashworks has a basic login page included, and frontend authentication. You can enable this by adding users to the `auth` section under `appConfig` in your `conf.yml`. If this section is not specified, then no authentication will be required to access the app, and the homepage will resolve to your dashboard.
+DashWorks has a basic login page included, and frontend authentication. You can enable this by adding users to the `auth` section under `appConfig` in your `conf.yml`. If this section is not specified, then no authentication will be required to access the app, and the homepage will resolve to your dashboard.
+
+> [!NOTE]
+> Since the auth is initiated in the main app entry point (for security), a rebuild is required to apply changes to the auth configuration.
+> You can trigger a rebuild through the UI, under Config --> Rebuild, or by running `yarn build` in the root directory.
+
 
 ### Setting Up Authentication
 
@@ -38,7 +46,7 @@ For example:
 appConfig:
   auth:
     users:
-    - user: alicia
+    - user: khulnasoft
       hash: 4D1E58C90B3B94BCAD9848ECCACD6D2A8C9FBC5CA913304BBA5CDEAB36FEEFA3
       type: admin
     - user: bob
@@ -47,7 +55,7 @@ appConfig:
 
 ### Hash Password
 
-Dashworks uses [SHA-256 Hash](https://en.wikipedia.org/wiki/Sha-256), a 64-character string, which you can generate using an online tool, such as [this one](https://passwordsgenerator.net/sha256-hash-generator/) or [CyberChef](https://gchq.github.io/CyberChef/) (which can be self-hosted/ ran locally).
+DashWorks uses [SHA-256 Hash](https://en.wikipedia.org/wiki/Sha-256), a 64-character string, which you can generate using an online tool, such as [this one](https://passwordsgenerator.net/sha256-hash-generator/) or [CyberChef](https://gchq.github.io/CyberChef/) (which can be self-hosted/ ran locally).
 
 A hash is a one-way cryptographic function, meaning that it is easy to generate a hash for a given password, but very hard to determine the original password for a given hash. This means, that so long as your password is long, strong and unique, it is safe to store its hash in the clear. Having said that, you should never reuse passwords, hashes can be cracked by iterating over known password lists, generating a hash of each.
 
@@ -78,7 +86,7 @@ pages:
     path: intranet.yml
     displayData:
       hideForGuests: true
-      hideForUsers: [alicia, bob]
+      hideForUsers: [khulnasoft, bob]
 ```    
 
 ```yaml
@@ -86,7 +94,7 @@ pages:
   icon: fas fa-code
   displayData:
     cols: 2
-    hideForUsers: [alicia, bob]
+    hideForUsers: [khulnasoft, bob]
   items:
     ...
 ```
@@ -99,7 +107,7 @@ pages:
   items:
     - title: Hide Me
       displayData:
-        hideForUsers: [alicia, bob]
+        hideForUsers: [khulnasoft, bob]
 ```
 
 ### Permissions
@@ -110,6 +118,27 @@ You can also prevent any user from writing changes to disk, using `preventWriteT
 
 To disable all UI config features, including View Config, set `disableConfiguration`. Alternatively you can disable UI config features for all non admin users by setting `disableConfigurationForNonAdmin` to true.
 
+### Using Environment Variables for Passwords
+
+If you don't want to hash your password, you can instead leave out the `hash` attribute, and replace it with `password` which should have the value of an environmental variable name you wish to use.
+
+Note that env var must begin with `VUE_APP_`, and you must set this variable before building the app.
+
+For example:
+
+```yaml
+  auth:
+    users:
+    - user: bob
+      password: VUE_APP_BOB
+```
+
+Just be sure to set `VUE_APP_BOB='my super secret password'` before build-time.
+
+### Adding HTTP Auth to Configuration
+
+If you'd also like to prevent direct visit access to your configuration file, you can set the `ENABLE_HTTP_AUTH` environmental variable.
+
 ### Security
 
 With basic auth, all logic is happening on the client-side, which could mean a skilled user could manipulate the code to view parts of your configuration, including the hash. If the SHA-256 hash is of a common password, it may be possible to determine it, using a lookup table, in order to find the original password. Which can be used to manually generate the auth token, that can then be inserted into session storage, to become a valid logged in user. Therefore, you should always use a long, strong and unique password, and if you instance contains security-critical info and/ or is exposed directly to the internet, and alternative authentication method may be better. The purpose of the login page is merely to prevent immediate unauthorized access to your homepage.
@@ -118,12 +147,22 @@ With basic auth, all logic is happening on the client-side, which could mean a s
 
 ---
 
+## HTTP Auth
+
+If you'd like to protect all your config files from direct access, you can set the `BASIC_AUTH_USERNAME` and `BASIC_AUTH_PASSWORD` environmental variables. You'll then be prompted to enter these credentials when visiting DashWorks.
+
+Then, if you'd like your frontend to automatically log you in, without prompting you for credentials, then also specify `VUE_APP_BASIC_AUTH_USERNAME` and `VUE_APP_BASIC_AUTH_PASSWORD`. This is useful for when you're hosting DashWorks on a private server, and you want to prevent unauthorized access to your config files, while still allowing the frontend to access them. Note that a rebuild is required for these changes to take effect.
+
+**[⬆️ Back to Top](#authentication)**
+
+---
+
 ## Keycloak
 
-Dashworks also supports using a [Keycloak](https://www.keycloak.org/) authentication server. The setup for this is a bit more involved, but it gives you greater security overall, useful for if your instance is exposed to the internet.
+DashWorks also supports using a [Keycloak](https://www.keycloak.org/) authentication server. The setup for this is a bit more involved, but it gives you greater security overall, useful for if your instance is exposed to the internet.
 
 [Keycloak](https://www.keycloak.org/about.html) is a Java-based [open source](https://github.com/keycloak/keycloak), high-performance, secure authentication system, supported by [RedHat](https://www.redhat.com/en). It is easy to setup ([with Docker](https://quay.io/repository/keycloak/keycloak)), and enables you to secure multiple self-hosted applications with single-sign-on using standard protocols (OpenID Connect, OAuth 2.0, SAML 2.0 and social login). It's also very customizable, you can write or use custom [themes](https://wjw465150.gitbooks.io/keycloak-documentation/content/server_development/topics/themes.html), [plugins](https://www.keycloak.org/extensions.html), [password policies](https://wjw465150.gitbooks.io/keycloak-documentation/content/server_admin/topics/authentication/password-policies.html) and more.
-The following guide will walk you through setting up Keycloak with Dashworks. If you already have a Keycloak instance configured, then skip to Step 3.
+The following guide will walk you through setting up Keycloak with DashWorks. If you already have a Keycloak instance configured, then skip to Step 3.
 
 ### 1. Deploy Keycloak
 
@@ -161,12 +200,12 @@ You can now create your first user.
 The last thing we need to do in the Keycloak admin console is to create a new client
 
 1. Within your new realm, navigate to 'Clients' on the left-hand side, then click 'Create' in the top-right
-2. Choose a 'Client ID', set 'Client Protocol' to 'openid-connect', and for 'Valid Redirect URIs' put a URL pattern to where you're hosting Dashworks (if you're just testing locally, then * is fine), and do the same for the 'Web Origins' field
+2. Choose a 'Client ID', set 'Client Protocol' to 'openid-connect', and for 'Valid Redirect URIs' put a URL pattern to where you're hosting DashWorks (if you're just testing locally, then * is fine), and do the same for the 'Web Origins' field
 3. Make note of your client-id, and click 'Save'
 
-### 3. Enable Keycloak in Dashworks Config File
+### 3. Enable Keycloak in DashWorks Config File
 
-Now that your Keycloak instance is up and running, all that's left to do is to configure Dashworks to use it. Under `appConfig`, set `auth.enableKeycloak: true`, then fill in the details in `auth.keycloak`, including: `serverUrl` - the URL where your Keycloak instance is hosted, `realm` - the name you gave your Realm, and `clientId` - the Client ID you chose.
+Now that your Keycloak instance is up and running, all that's left to do is to configure DashWorks to use it. Under `appConfig`, set `auth.enableKeycloak: true`, then fill in the details in `auth.keycloak`, including: `serverUrl` - the URL where your Keycloak instance is hosted, `realm` - the name you gave your Realm, and `clientId` - the Client ID you chose.
 For example:
 
 ```yaml
@@ -176,7 +215,7 @@ appConfig:
     enableKeycloak: true
     keycloak:
       serverUrl: 'http://localhost:8081'
-      realm: 'alicia-homelab'
+      realm: 'khulnasoft-homelab'
       clientId: 'dashworks'
 ```
 
@@ -186,7 +225,7 @@ If you use Keycloak with an external Identity Provier, you can set the `idpHint:
 
 ### 4. Add groups and roles (Optional)
 
-Keycloak allows you to assign users roles and groups. You can use these values to configure who can access various sections or items in Dashworks.
+Keycloak allows you to assign users roles and groups. You can use these values to configure who can access various sections or items in DashWorks.
 Keycloak server administration and configuration is a deep topic; please refer to the [server admin guide](https://www.keycloak.org/docs/latest/server_admin/index.html#assigning-permissions-and-access-using-roles-and-groups) to see details about creating and assigning roles and groups.
 Once you have groups or roles assigned to users you can configure access under each section or item `displayData.showForKeycloakUser` and `displayData.hideForKeycloakUser`.
 Both show and hide configurations accept a list of `groups` and `roles` that limit access. If a users data matches one or more items in these lists they will be allowed or excluded as defined.
@@ -206,20 +245,20 @@ sections:
             groups: ['DevelopmentTeam']
 ```
 
-Depending on how you're hosting Dashworks and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of Dashworks]` on your Keycloak instance. See the [Setting Headers](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
+Depending on how you're hosting DashWorks and Keycloak, you may also need to set some HTTP headers, to prevent a CORS error. This would typically be the `Access-Control-Allow-Origin [URL-of DashWorks]` on your Keycloak instance. See the [Setting Headers](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md#setting-headers) guide in the management docs for more info.
 
-Your app is now secured :) When you load Dashworks, it will redirect to your Keycloak login page, and any user without valid credentials will be prevented from accessing your dashboard.
+Your app is now secured :) When you load DashWorks, it will redirect to your Keycloak login page, and any user without valid credentials will be prevented from accessing your dashboard.
 
-From within the Keycloak console, you can then configure things like time-outs, password policies, etc. You can also backup your full Keycloak config, and it is recommended to do this, along with your Dashworks config. You can spin up both Dashworks and Keycloak simultaneously and restore both applications configs using a `docker-compose.yml` file, and this is recommended.
+From within the Keycloak console, you can then configure things like time-outs, password policies, etc. You can also backup your full Keycloak config, and it is recommended to do this, along with your DashWorks config. You can spin up both DashWorks and Keycloak simultaneously and restore both applications configs using a `docker-compose.yml` file, and this is recommended.
 
 ---
 
 ## Alternative Authentication Methods
 
-If you are self-hosting Dashworks, and require secure authentication to prevent unauthorized access, then you can either use Keycloak, or one of the following options:
+If you are self-hosting DashWorks, and require secure authentication to prevent unauthorized access, then you can either use Keycloak, or one of the following options:
 
-- [Authentication Server](#authentication-server) - Put Dashworks behind a self-hosted auth server
-- [VPN](#vpn) - Use a VPN to tunnel into the network where Dashworks is running
+- [Authentication Server](#authentication-server) - Put DashWorks behind a self-hosted auth server
+- [VPN](#vpn) - Use a VPN to tunnel into the network where DashWorks is running
 - [IP-Based Access](#ip-based-access) - Disallow access from all IP addresses, except your own
 - [Web Server Authentication](#web-server-authentication) - Enable user control within your web server or proxy
 - [OAuth Services](#oauth-services) - Implement a user management system using a cloud provider
@@ -245,11 +284,11 @@ A catch-all solution to accessing services running from your home network remote
 
 ### IP-Based Access
 
-If you have a static IP or use a VPN to access your running services, then you can use conditional access to block access to Dashworks from everyone except users of your pre-defined IP address. This feature is offered by most cloud providers, and supported by most web servers.
+If you have a static IP or use a VPN to access your running services, then you can use conditional access to block access to DashWorks from everyone except users of your pre-defined IP address. This feature is offered by most cloud providers, and supported by most web servers.
 
 #### Apache
 
-In Apache, this is configured in your `.htaccess` file in Dashworks's root folder, and should look something like:
+In Apache, this is configured in your `.htaccess` file in DashWorks's root folder, and should look something like:
 
 ```text
 Order Deny,Allow
@@ -263,7 +302,7 @@ In NGINX you can specify [control access](https://docs.nginx.com/nginx/admin-gui
 
 ```text
 server {
-	listen 80;
+	listen 8080;
 	server_name www.dashworks.example.com;
 	location / {
 		root /path/to/dashworks/;
@@ -291,11 +330,11 @@ Most web servers make password protecting certain apps very easy. Note that you 
 
 #### Apache
 
-First crate a `.htaccess` file in Dashworks's route directory. Specify the auth type and path to where you want to store the password file (usually the same folder). For example:
+First crate a `.htaccess` file in DashWorks's route directory. Specify the auth type and path to where you want to store the password file (usually the same folder). For example:
 
 ```text
 AuthType Basic
-AuthName "Please Sign into Dashworks"
+AuthName "Please Sign into DashWorks"
 AuthUserFile /path/dashworks/.htpasswd
 require valid-user
 ```
@@ -303,7 +342,7 @@ require valid-user
 Then create a `.htpasswd` file in the same directory. List users and their hashed passwords here, with one user on each line, and a colon between username and password (e.g. `[username]:[hashed-password]`). You will need to generate an MD5 hash of your desired password, this can be done with an [online tool](https://www.web2generators.com/apache-tools/htpasswd-generator).  Your file will look something like:
 
 ```text
-alicia:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
+khulnasoft:$apr1$jv0spemw$RzOX5/GgY69JMkgV6u16l0
 ```
 
 #### NGINX
@@ -323,7 +362,7 @@ Caddy has a [basic-auth](https://caddyserver.com/docs/caddyfile/directives/basic
 
 ```text
 basicauth /secret/* {
-	alicia JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
+	khulnasoft JDJhJDEwJEVCNmdaNEg2Ti5iejRMYkF3MFZhZ3VtV3E1SzBWZEZ5Q3VWc0tzOEJwZE9TaFlZdEVkZDhX
 }
 ```
 
@@ -349,7 +388,7 @@ $HTTP["host"] == "dashworks.my-domain.net" {
     "/docs/" => (
       "method" => "basic",
       "realm" => "Password protected area",
-      "require" => "user=alicia"
+      "require" => "user=khulnasoft"
     )
   )
 }
@@ -363,6 +402,6 @@ There are also authentication services, such as [Ory.sh](https://www.ory.sh/), [
 
 ### Static Site Hosting Providers
 
-If you are hosting Dashworks on a cloud platform, you will probably find that it has built-in support for password protected access to web apps. For more info, see the relevant docs for your provider, for example: [Netlify Password Protection](https://docs.netlify.com/visitor-access/password-protection/), [Cloudflare Access](https://www.cloudflare.com/teams/access/), [AWS Cognito](https://aws.amazon.com/cognito/), [Azure Authentication](https://docs.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service) and [Vercel Password Protection](https://vercel.com/docs/platform/projects#password-protection).
+If you are hosting DashWorks on a cloud platform, you will probably find that it has built-in support for password protected access to web apps. For more info, see the relevant docs for your provider, for example: [Netlify Password Protection](https://docs.netlify.com/visitor-access/password-protection/), [Cloudflare Access](https://www.cloudflare.com/teams/access/), [AWS Cognito](https://aws.amazon.com/cognito/), [Azure Authentication](https://docs.microsoft.com/en-us/azure/app-service/scenario-secure-app-authentication-app-service) and [Vercel Password Protection](https://vercel.com/docs/platform/projects#password-protection).
 
 **[⬆️ Back to Top](#authentication)**

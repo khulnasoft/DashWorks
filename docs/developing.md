@@ -1,7 +1,7 @@
 
 # Developing
 
-This article outlines how to get Dashworks running in a development environment, and outlines the basics of the architecture.
+This article outlines how to get DashWorks running in a development environment, and outlines the basics of the architecture.
 If you're adding new features, you may want to check out the [Development Guides](./docs/development-guides.md) docs, for tutorials covering basic tasks.
 
 - [Setting up the Development Environment](#setting-up-the-dev-environment)
@@ -34,7 +34,7 @@ You will need either the latest or LTS version of **[Node.js](https://nodejs.org
 3. Install dependencies: `yarn`
 4. Start dev server: `yarn dev`
 
-Dashworks should now be being served on <http://localhost:8080/>. Hot reload is enabled, so making changes to any of the files will trigger them to be rebuilt and the page refreshed.
+DashWorks should now be being served on <http://localhost:8080/>. Hot reload is enabled, so making changes to any of the files will trigger them to be rebuilt and the page refreshed.
 
 ### Project Commands
 
@@ -51,7 +51,7 @@ Dashworks should now be being served on <http://localhost:8080/>. Hot reload is 
 
 #### Utils and Checks
 
-- **`yarn validate-config`** - If you have quite a long configuration file, you may wish to check that it's all good to go, before deploying the app. This can be done with `yarn validate-config` or `docker exec -it [container-id] yarn validate-config`. Your config file needs to be in `/public/conf.yml` (or within your Docker container at `/app/public/conf.yml`). This will first check that your YAML is valid, and then validates it against Dashworks's [schema](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/ConfigSchema.js).
+- **`yarn validate-config`** - If you have quite a long configuration file, you may wish to check that it's all good to go, before deploying the app. This can be done with `yarn validate-config` or `docker exec -it [container-id] yarn validate-config`. Your config file needs to be in `/user-data/conf.yml` (or within your Docker container at `/app/user-data/conf.yml`). This will first check that your YAML is valid, and then validates it against DashWorks's [schema](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/ConfigSchema.js).
 - **`yarn health-check`** - Checks that the application is up and running on it's specified port, and outputs current status and response times. Useful for integrating into your monitoring service, if you need to maintain high system availability
 
 #### Alternate Start Commands
@@ -74,7 +74,7 @@ You can set variables either in your environment, or using the [`.env`](https://
 
 - `NODE_ENV` - Current environment, can be either development, production or test
 - `PORT` - The port to expose the running application on
-- `HOST` - The host that Dashworks is running on, domain or IP
+- `HOST` - The host that DashWorks is running on, domain or IP
 - `BASE_URL` - The default base path for serving up static assets
 - `VUE_APP_DOMAIN` - Usually the same as BASE_URL, but accessible in frontend
 - `INTEGRITY` - Should enable SRI for build script and link resources
@@ -160,7 +160,7 @@ When you submit your PR, include the required info, by filling out the PR templa
 
 ## Resources for Beginners
 
-New to Web Development? Glad you're here! Dashworks is a pretty simple app, so it should make a good candidate for your first PR. Presuming that you already have a basic knowledge of JavaScript, the following articles should point you in the right direction for getting up to speed with the technologies used in this project:
+New to Web Development? Glad you're here! DashWorks is a pretty simple app, so it should make a good candidate for your first PR. Presuming that you already have a basic knowledge of JavaScript, the following articles should point you in the right direction for getting up to speed with the technologies used in this project:
 
 - [Open Source for Beginners](https://opensource.guide/how-to-contribute/)
 - [Introduction to Vue.js](https://v3.vuejs.org/guide/introduction.html)

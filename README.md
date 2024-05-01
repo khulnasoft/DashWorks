@@ -1,31 +1,24 @@
 
-<h1 align="center">Dashworks</h1>
+<h1 align="center">DashWorks</h1>
 <p align="center">
-  <i>Dashworks helps you organize your self-hosted services by making them accessible from a single place</i>
+  <i>DashWorks helps you organize your self-hosted services by making them accessible from a single place</i>
    <br/>
   <img width="120" src="https://i.ibb.co/yhbt6CY/dashworks.png" />
   <br/>
-  <b><a href="./docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.dashworks.to">Live Demo</a></b> | <b><a href="./docs/quick-start.md">Getting Started</a></b> | <b><a href="https://dashworks.to/docs">Documentation</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks">GitHub</a></b>
-  <br/><br/>
-  <a href="https://github.com/awesome-selfhosted/awesome-selfhosted#personal-dashboards">
-    <img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome Self-Hosted">
-  </a>
-  <a href="./LICENSE">
-    <img src="https://img.shields.io/badge/License-MIT-0aa8d2?logo=opensourceinitiative&logoColor=fff" alt="License MIT">
-  </a>
-  <a href="./.github/CHANGELOG.md">
-    <img src="https://img.shields.io/github/package-json/v/khulnasoft/dashworks?logo=azurepipelines&amp;color=0aa8d2" alt="Current Version">
-  </a>
-  <a href="https://hub.docker.com/r/khulnasoft/dashworks">
-    <img src="https://img.shields.io/docker/pulls/khulnasoft/dashworks?logo=docker&color=0aa8d2&logoColor=fff" alt="Docker Pulls">
-  </a>
-  <a href="http://as93.link/dashworks-build-status">
-   <img src="https://badgen.net/github/status/khulnasoft/dashworks?icon=github" alt="GitHub Status">
-  </a>
-  <a href="https://snyk.io/test/github/khulnasoft/dashworks">
-    <img src="https://snyk.io/test/github/khulnasoft/dashworks/badge.svg" alt="Known Vulnerabilities">
-  </a>
+  <b><a href="./docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.dashworks.khulnasoft.com">Live Demo</a></b> | <b><a href="./docs/quick-start.md">Getting Started</a></b> | <b><a href="https://dashworks.khulnasoft.com/docs">Documentation</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks">GitHub</a></b>
 </p>
+
+<p align="center">
+<br>
+<sup>DashWorks is kindly sponsored by <a href="https://umbrel.com?ref=dashworks">Umbrel</a> - the personal home cloud and OS for self-hosting</sup><br>
+<a href="https://umbrel.com?ref=dashworks">
+<img width="400" src="https://github.com/KhulnaSoft/dashworks/blob/WEBSITE/docs-site-source/static/umbrel-banner.jpg?raw=true" />
+</a>
+</p>
+
+> [!NOTE]
+> Version [3.0.0](https://github.com/KhulnaSoft/dashworks/releases/tag/3.0.0) has been released, and requires some changes to your setup, see [#1529](https://github.com/KhulnaSoft/dashworks/discussions/1529) for details.
+
 
 <details>
   <summary><b>Table of Contents</b></summary>
@@ -52,7 +45,7 @@
 - **Community**
   - [📊 System Requirements](#system-requirements-)
   - [🙋‍♀️ Support](#support-)
-  - [💖 Supporting Dashworks](#supporting-dashworks-)
+  - [💖 Supporting DashWorks](#supporting-dashworks-)
   - [🏆 Credits](#credits-)
   - [🧱 Developing](#developing-)
   - [🗞️ Release Schedule](#release-schedule-)
@@ -91,11 +84,11 @@
 
 ## Demo ⚡
 
-**Live Instances**: [Demo 1](https://demo.dashworks.to) (Live Demo) ┆ [Demo 2](https://live.dashworks.to) (Dashworks Links) ┆ [Demo 3](https://dev.dashworks.to) (Dev Preview)
+**Live Instances**: [Demo 1](https://demo.dashworks.khulnasoft.com) (Live Demo) ┆ [Demo 2](https://live.dashworks.khulnasoft.com) (DashWorks Links) ┆ [Demo 3](https://dev.dashworks.khulnasoft.com) (Dev Preview)
 
 **Screenshots**: Checkout the [Showcase](./docs/showcase.md), to see example dashboards from the community
 
-**Spin up your own demo**: [![One-Click Deploy with PWD](https://img.shields.io/badge/Play--with--Docker-Deploy-2496ed?style=flat-square&logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docker-compose.yml) or [`docker run -p 8080:80 khulnasoft/dashworks`](./docs/quick-start.md)
+**Spin up your own demo**: [![One-Click Deploy with PWD](https://img.shields.io/badge/Play--with--Docker-Deploy-2496ed?style=flat-square&logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docker-compose.yml) or [`docker run -p 8080:8080 khulnasoft/dashworks`](./docs/quick-start.md)
 
 
 <p align="center">
@@ -116,40 +109,40 @@
 You will need [Docker](https://docs.docker.com/get-docker/) installed on your system
 
 ```
-docker run -p 8080:80 khulnasoft/dashworks
+docker run -p 8080:8080 khulnasoft/dashworks
 ```
 
 Or
 
 ```docker
 docker run -d \
-  -p 4000:80 \
-  -v /root/my-local-conf.yml:/app/public/conf.yml \
+  -p 4000:8080 \
+  -v /root/my-local-conf.yml:/app/user-data/conf.yml \
   --name my-dashboard \
   --restart=always \
   khulnasoft/dashworks:latest
 ```
-[![Dashworks on Docker Hub](https://dockeri.co/image/khulnasoft/dashworks)](https://hub.docker.com/r/khulnasoft/dashworks)
+[![DashWorks on Docker Hub](https://dockeri.co/image/khulnasoft/dashworks)](https://hub.docker.com/r/khulnasoft/dashworks)
 
-See also: [examples with Docker Compose](./docs/deployment.md#using-docker-compose). Dashworks is also available via GHCR, and tags for other architectures (`arm32v7`, `arm64v8`, etc.) and set versions are supported
+See also: [examples with Docker Compose](./docs/deployment.md#using-docker-compose). DashWorks is also available via GHCR, and tags for other architectures (`arm32v7`, `arm64v8`, etc.) and set versions are supported
 
-> Once you've got Dashworks running, see [App Management Docs](./docs/management.md) for info on using health checks, updating, backups, web-server configs, logs, performance, security, and more.
+> Once you've got DashWorks running, see [App Management Docs](./docs/management.md) for info on using health checks, updating, backups, web-server configs, logs, performance, security, and more.
 
 ### Deploying from Source 🔨
 
 You will need [git](https://git-scm.com/downloads), the latest or LTS version of [Node.js](https://nodejs.org/) and _(optionally)_ [Yarn](https://yarnpkg.com/) installed on your system.
 
 - Clone the Repo: `git clone https://github.com/KhulnaSoft/dashworks.git` and `cd dashworks`
-- Configuration: Fill in your settings in `./public/conf.yml`
+- Configuration: Fill in your settings in `./user-data/conf.yml`
 - Install dependencies: `yarn`
 - Build: `yarn build`
 - Run: `yarn start`
 
-> See docs: [Full list of Dashworks's commands](./docs/management.md#basic-commands)
+> See docs: [Full list of DashWorks's commands](./docs/management.md#basic-commands)
 
 ### Deploy to the Cloud ☁️
 
-Dashworks supports **1-Click deployments** on several popular cloud platforms. To spin up a new instance, just click a link below:
+DashWorks supports **1-Click deployments** on several popular cloud platforms. To spin up a new instance, just click a link below:
 - [<img src="https://i.ibb.co/ZxtzrP3/netlify.png" width="18"/> Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/khulnasoft/dashworks)
 - [<img src="https://i.ibb.co/d2P1WZ7/heroku.png" width="18"/> Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/KhulnaSoft/dashworks)
 - [<img src="https://i.ibb.co/Ld2FZzb/vercel.png" width="18"/> Deploy to Vercel](https://vercel.com/new/project?template=https://github.com/khulnasoft/dashworks)
@@ -169,7 +162,7 @@ Dashworks supports **1-Click deployments** on several popular cloud platforms. T
 
 > For full configuration documentation, see: [**Configuring**](./docs/configuring.md)
 
-Dashworks is configured through a YAML file, located at `./public/conf.yml`. In addition, you can find a complete list of available options in the [Configuring Docs](./docs/configuring.md). The config can also be edited and saved directly through the UI.
+DashWorks is configured through a YAML file, located at `./user-data/conf.yml`. In addition, you can find a complete list of available options in the [Configuring Docs](./docs/configuring.md). The config can also be edited and saved directly through the UI.
 
 **[⬆️ Back to Top](#dashworks)**
 
@@ -179,7 +172,7 @@ Dashworks is configured through a YAML file, located at `./public/conf.yml`. In 
 
 > For full theming documentation, see: [**Theming**](./docs/theming.md)
 
-Dashworks comes pre-bundled with several built-in themes, which you can preview, apply and edit through the UI. With the theme configurator and support for custom CSS, everything is in place to quickly develop your own unique-looking dashboard.
+DashWorks comes pre-bundled with several built-in themes, which you can preview, apply and edit through the UI. With the theme configurator and support for custom CSS, everything is in place to quickly develop your own unique-looking dashboard.
 
 <p align="center">
   <a href="https://i.ibb.co/BVSHV1v/dashworks-themes-slideshow.gif">
@@ -232,7 +225,7 @@ The following icon types are supported:
 
 > For full monitoring documentation, see: [**Status Indicators**](./docs/status-indicators.md)
 
-Dashworks has an optional feature to check if each app/ service is up and responding, then display a small status indicator icon. Hovering over it will show additional stats like response time and status code.
+DashWorks has an optional feature to check if each app/ service is up and responding, then display a small status indicator icon. Hovering over it will show additional stats like response time and status code.
 
 Status indicators can be globally enabled by setting `appConfig.statusCheck: true` or enabled/ disabled on a per-item basis. Status is checked on page load, but you can allow continuous polling by specifying a time interval between checks, in seconds under `appConfig.statusCheckInterval`. You can also use a different endpoint for status checking, with `statusCheckUrl`, and if needed, pass in custom headers under `statusCheckHeaders`.
 
@@ -264,7 +257,7 @@ You can display dynamic content from services in the form of widgets. There are 
 
 > For full authentication documentation, see: [**Authentication**](./docs/authentication.md)
 
-Dashworks has full support for secure single-sign-on using [Keycloak](https://www.keycloak.org/) for secure, easy authentication, see [setup docs](/docs/authentication.md#keycloak) for a full usage guide.
+DashWorks has full support for secure single-sign-on using [Keycloak](https://www.keycloak.org/) for secure, easy authentication, see [setup docs](/docs/authentication.md#keycloak) for a full usage guide.
 
 There is also a basic auth feature, which doesn't require additional setup. To enable this, add an `auth` attribute under `appConfig`, containing an array of `users`, each with a username, SHA-256 hashed password and optional user type. Basic auth also supports several access control features, including read-only guest access and granular controls.
 
@@ -273,7 +266,7 @@ There is also a basic auth feature, which doesn't require additional setup. To e
 appConfig:
   auth:
     users:
-    - user: alicia
+    - user: khulnasoft
       hash: 4D1E58C90B3B94BCAD9848ECCACD6D2A8C9FBC5CA913304BBA5CDEAB36FEEFA3
       type: admin
 ```
@@ -316,7 +309,7 @@ There are several different ways you can launch apps. You can specify the defaul
 - `modal` - Launch app in a resizable/ movable popup modal on the current page (or use Alt + Click)
 - `workspace` - Changes to Workspace view and launches app
 - `clipboard` - Copy the app's URL to your system clipboard
-- `top` - Opens in the top-most browsing context, useful if you're accessing Dashworks through an iframe
+- `top` - Opens in the top-most browsing context, useful if you're accessing DashWorks through an iframe
 
 **[⬆️ Back to Top](#dashworks)**
 
@@ -326,7 +319,7 @@ There are several different ways you can launch apps. You can specify the defaul
 
 > For full documentation on searching, see: [**Searching & Shortcuts**](./docs/searching.md)
 
-Quickly finding and launching applications is the primary aim of Dashworks. To that end, instant search and customizable keyboard shortcuts are built-in.
+Quickly finding and launching applications is the primary aim of DashWorks. To that end, instant search and customizable keyboard shortcuts are built-in.
 
 To start filtering, start typing—no need to select the search bar or use any special key. Then use either the tab key or arrow keys to select and move between results, and hit enter to launch the currently selected application.
 
@@ -344,7 +337,7 @@ You can also add custom tags to a given item to make finding them based on keywo
     tags: [ movies, videos, music ]
 ```
 
-To search the web directly through Dashworks, just press enter after typing your query. Options for web search are set under `appConfig.webSearch`. There is built-in support for [10+ search engines](./docs/searching.md#setting-search-engine), or [use your own custom provider](./docs/searching.md#using-custom-search-engine) or self-hosted instance. With the web search, you can also define your bangs to redirect results to any given app, website, or search engine, when the query is preceded with a certain character sequence (usually beginning in `/`, `!` or `:`).
+To search the web directly through DashWorks, just press enter after typing your query. Options for web search are set under `appConfig.webSearch`. There is built-in support for [10+ search engines](./docs/searching.md#setting-search-engine), or [use your own custom provider](./docs/searching.md#using-custom-search-engine) or self-hosted instance. With the web search, you can also define your bangs to redirect results to any given app, website, or search engine, when the query is preceded with a certain character sequence (usually beginning in `/`, `!` or `:`).
 
 ```yaml
 webSearch:
@@ -391,7 +384,7 @@ Under the config menu, you can export, view, backup, or reset app config and edi
 
 > For full backup documentation, see: [**Cloud Backup & Sync**](./docs/backup-restore.md)
 
-Dashworks has an **optional** built-in feature for securely backing up your config to a hosted cloud service and then restoring it on another instance. This is useful not only for backing up your configuration off-site but also enables Dashworks to be used without having to write a YAML config file.
+DashWorks has an **optional** built-in feature for securely backing up your config to a hosted cloud service and then restoring it on another instance. This is useful not only for backing up your configuration off-site but also enables DashWorks to be used without having to write a YAML config file.
 
 All data is fully E2E encrypted before being sent to the backend (done in [`CloudBackup.js`](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/CloudBackup.js) using [crypto.js](https://github.com/brix/crypto-js) 's AES method). The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
 
@@ -402,7 +395,7 @@ All data is fully E2E encrypted before being sent to the backend (done in [`Clou
 ## Language Switching 🌎
 > For full internationalization documentation, see: [**Multi-Language Support**](./docs/multi-language-support.md)
 
-Dashworks supports multiple languages and locales. When available, your language should be automatically detected and applied on load. But you can also select a language through the UI (under config --> Switch Language) or set `appConfig.language` to your language (specified as a 2-digit [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)), as seen below, e.g. `language: de`.
+DashWorks supports multiple languages and locales. When available, your language should be automatically detected and applied on load. But you can also select a language through the UI (under config --> Switch Language) or set `appConfig.language` to your language (specified as a 2-digit [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)), as seen below, e.g. `language: de`.
 
 #### Supported Languages
 - 🇬🇧 **English**: `en` - _Default_
@@ -423,7 +416,7 @@ Dashworks supports multiple languages and locales. When available, your language
 - 🇳🇴 **Norwegian Bokmål**: `nb` - Contributed by **[@rubjo](https://github.com/rubjo)**
 - 🇵🇱 **Polish**: `pl` - Contributed by **[@skaarj1989](https://github.com/skaarj1989)**
 - 🇵🇹 **Portuguese**: `pt` - Contributed by **[@LeoColman](https://github.com/LeoColman)**
-- 🛰️ **Galician**: `gl` - Contributed by **[@pvillaverde](https://github.com/pvillaverde)**
+- 🛰️ **Gkhulnasoftn**: `gl` - Contributed by **[@pvillaverde](https://github.com/pvillaverde)**
 - 🇷🇺 **Russian**: `ru` - _Auto-generated_
 - 🇸🇰 **Slovak**: `sk` - Contributed by **[@Smexhy](https://github.com/Smexhy)**
 - 🇸🇮 **Slovenian**: `sl` - Contributed by **[@UrekD](https://github.com/UrekD)**
@@ -434,7 +427,7 @@ Dashworks supports multiple languages and locales. When available, your language
 - 🏴‍☠️ **Pirate**: `pirate` - Contributed by **[@KhulnaSoft](https://github.com/khulnasoft)**
 
 #### Add your Language
-I would love Dashworks to be available to everyone without language being a barrier to entry. If you've got a few minutes to spare, consider adding translations for your language. It's a quick task, and all text is in [a single JSON file](https://github.com/KhulnaSoft/dashworks/tree/master/src/assets/locales). Since any missing text will fall back to English, you don't need to translate it all.
+I would love DashWorks to be available to everyone without language being a barrier to entry. If you've got a few minutes to spare, consider adding translations for your language. It's a quick task, and all text is in [a single JSON file](https://github.com/KhulnaSoft/dashworks/tree/master/src/assets/locales). Since any missing text will fall back to English, you don't need to translate it all.
 
 **[⬆️ Back to Top](#dashworks)**
 
@@ -470,15 +463,15 @@ pages:
 
 ## System Requirements 📊
 
-If running on bare metal, Dashworks requires [Node](https://nodejs.org/en/) V 16.0.0 or later, LTS (16.13.2) is recommended.
+If running on bare metal, DashWorks requires [Node](https://nodejs.org/en/) V 16.0.0 or later, LTS (16.13.2) is recommended.
 
 If running in Docker container, the recommended base image is Alpine (3.15)
 
-The hardware requirements vary depending on where and how you are running Dashworks. Generally speaking, on a bare-metal system or Docker container, 1GB of memory should be more than enough, and depending on whether you are using your own assets, then 1GB of disk space should be sufficient. 
+The hardware requirements vary depending on where and how you are running DashWorks. Generally speaking, on a bare-metal system or Docker container, 1GB of memory should be more than enough, and depending on whether you are using your own assets, then 1GB of disk space should be sufficient. 
 
 If you are using one of the 1-click cloud deployment methods, serving the app through a CDN or using a static hosting provider, then there are no specific requirements, as the built app is just a series of static JS files, and so is very light-weight.
 
-Dashworks also wells run on low-powered ARM-based single board computers, such as a Raspberry Pi (tested on Pi 3)
+DashWorks also wells run on low-powered ARM-based single board computers, such as a Raspberry Pi (tested on Pi 3)
 
 **Browser Support**
 ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![IE](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Opera](https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png)
@@ -491,7 +484,7 @@ Latest ✔ | Latest ✔ | 10+ ✔ | Latest ✔ | 6.1+ ❌ |
 
 ## Support 🙋‍♀️
 
-If you're having trouble getting Dashworks up and running, or have a question about usage or configuration, feel free to ask. The best place to do this is via [the Discussions](https://github.com/KhulnaSoft/dashworks/discussions).
+If you're having trouble getting DashWorks up and running, or have a question about usage or configuration, feel free to ask. The best place to do this is via [the Discussions](https://github.com/KhulnaSoft/dashworks/discussions).
 
 If you've found something which isn't working as it should, please raise a bug by [opening a ticket](https://github.com/KhulnaSoft/dashworks/issues/new/choose).
 
@@ -501,20 +494,20 @@ It's best to check the [docs](./docs), [previous issues](https://github.com/Khul
 
 ---
 
-## Supporting Dashworks 💖
+## Supporting DashWorks 💖
 
 > For full details and other ways you can help out, see: [**Contributing**](./docs/contributing.md)
 
-If you're using Dashworks and would like to help support its development, then that would be awesome! Contributions of any type, any size, are always very much appreciated, and we will appropriately credit you for your effort.
+If you're using DashWorks and would like to help support its development, then that would be awesome! Contributions of any type, any size, are always very much appreciated, and we will appropriately credit you for your effort.
 
 Several areas that we need a bit of help with at the moment are:
-- Translating - Help make Dashworks available to non-native English speakers by [adding your language](./docs/multi-language-support.md#adding-a-new-language)
+- Translating - Help make DashWorks available to non-native English speakers by [adding your language](./docs/multi-language-support.md#adding-a-new-language)
 - Donate a small amount by [Sponsoring @KhulnaSoft on GitHub](https://github.com/sponsors/KhulnaSoft) and receive some extra perks!
 - Complete a [short survey](https://survey.typeform.com/to/gl0L68ou) to have your say about future features
 - Share your dashboard in the [Showcase](https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md#dashworks-showcase-), to inspire others
-- Spread the word by sharing Dashworks or a screenshot of your dashboard to help new users discover it
+- Spread the word by sharing DashWorks or a screenshot of your dashboard to help new users discover it
 - Submit a PR to add a new feature, fix a bug, update the docs, add a theme, widget or something else
-- Star Dashworks on GitHub/ DockerHub or leave an upvote / review on [these platforms](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md#star-upvote-or-leave-a-review)
+- Star DashWorks on GitHub/ DockerHub or leave an upvote / review on [these platforms](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md#star-upvote-or-leave-a-review)
 
 [![Sponsor KhulnaSoft on GitHub](./docs/assets/sponsor-button.svg)](https://github.com/sponsors/KhulnaSoft)
 
@@ -522,15 +515,195 @@ Several areas that we need a bit of help with at the moment are:
 
 ## Credits 🏆
 
-> For a complete list of credits, and attributions to packages used within Dashworks, see: [**Credits**](./docs/credits.md)
+> For a complete list of credits, and attributions to packages used within DashWorks, see: [**Credits**](./docs/credits.md)
 
-Thank you so much to everyone who has helped with Dashworks so far; every contribution is very much appreciated.
+Thank you so much to everyone who has helped with DashWorks so far; every contribution is very much appreciated.
 
 #### Sponsors
 
-Huge thanks to the sponsors helping to support Dashworks's development!
+Huge thanks to the sponsors helping to support DashWorks's development!
 <!-- readme: sponsors -start -->
 <table>
+<tr>
+    <td align="center">
+        <a href="https://github.com/undefined">
+            <img src="" width="80;" alt="undefined"/>
+            <br />
+            <sub><b>Undefined</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/koconder">
+            <img src="https://avatars.githubusercontent.com/u/25068?u=582657b23622aaa3dfe68bd028a780f272f456fa&v=4" width="80;" alt="koconder"/>
+            <br />
+            <sub><b>Vincent Koc</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Admonstrator">
+            <img src="https://avatars.githubusercontent.com/u/69824?u=1e226d7a36cdd661c3e4cd486fea140d045b7d57&v=4" width="80;" alt="Admonstrator"/>
+            <br />
+            <sub><b>Aaron Viehl</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/tbjers">
+            <img src="https://avatars.githubusercontent.com/u/1117052?v=4" width="80;" alt="tbjers"/>
+            <br />
+            <sub><b>Torgny Bjers</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/emlazzarin">
+            <img src="https://avatars.githubusercontent.com/u/1141361?u=714e3487a3f2e0df721b01a0133945f075d3ff68&v=4" width="80;" alt="emlazzarin"/>
+            <br />
+            <sub><b>Eddy Lazzarin</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/AnandChowdhary">
+            <img src="https://avatars.githubusercontent.com/u/2841780?u=747e554b3a7f12eb20b7910e1c87d817844f714f&v=4" width="80;" alt="AnandChowdhary"/>
+            <br />
+            <sub><b>Anand Chowdhary</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/shrippen">
+            <img src="https://avatars.githubusercontent.com/u/2873570?v=4" width="80;" alt="shrippen"/>
+            <br />
+            <sub><b>Shrippen</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/bile0026">
+            <img src="https://avatars.githubusercontent.com/u/5022496?u=aec96ad173c0ea9baaba93807efa8a848af6595c&v=4" width="80;" alt="bile0026"/>
+            <br />
+            <sub><b>Zach Biles</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/UlisesGascon">
+            <img src="https://avatars.githubusercontent.com/u/5110813?u=3c41facd8aa26154b9451de237c34b0f78d672a5&v=4" width="80;" alt="UlisesGascon"/>
+            <br />
+            <sub><b>Ulises Gascón</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/digitalarche">
+            <img src="https://avatars.githubusercontent.com/u/6546135?u=564756d7f44ab2206819eb3148f6d822673f5066&v=4" width="80;" alt="digitalarche"/>
+            <br />
+            <sub><b>Digital Archeology</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/InDieTasten">
+            <img src="https://avatars.githubusercontent.com/u/7047377?u=8d8f8017628b38bc46dcbf3620e194b01d3fb2d1&v=4" width="80;" alt="InDieTasten"/>
+            <br />
+            <sub><b>InDieTasten</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/araguaci">
+            <img src="https://avatars.githubusercontent.com/u/7318668?v=4" width="80;" alt="araguaci"/>
+            <br />
+            <sub><b>Araguaci</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/bmcgonag">
+            <img src="https://avatars.githubusercontent.com/u/7346620?u=2a0f9284f3e12ac1cc15288c254d1ec68a5081e8&v=4" width="80;" alt="bmcgonag"/>
+            <br />
+            <sub><b>Brian McGonagill</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/vlad-timofeev">
+            <img src="https://avatars.githubusercontent.com/u/11474041?u=eee43705b54d2ec9f51fc4fcce5ad18dd17c87e4&v=4" width="80;" alt="vlad-timofeev"/>
+            <br />
+            <sub><b>Vlad Timofeev</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/helixzz">
+            <img src="https://avatars.githubusercontent.com/u/12218889?u=d06d0c103dfbdb99450623064f7da3c5a3675fb6&v=4" width="80;" alt="helixzz"/>
+            <br />
+            <sub><b>HeliXZz</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/patvdv">
+            <img src="https://avatars.githubusercontent.com/u/12430107?u=e8911c2fb91af4d30432f76da8c40927b2830bd7&v=4" width="80;" alt="patvdv"/>
+            <br />
+            <sub><b>Patrick Van Der Veken</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/plgonzalezrx8">
+            <img src="https://avatars.githubusercontent.com/u/19900049?v=4" width="80;" alt="plgonzalezrx8"/>
+            <br />
+            <sub><b>Pedro Gonzalez</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/mryesiller">
+            <img src="https://avatars.githubusercontent.com/u/24632172?u=0d20f2d615158f87cd60a3398d3efb026c32f291&v=4" width="80;" alt="mryesiller"/>
+            <br />
+            <sub><b>Göksel Yeşiller</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/allesauseinerhand">
+            <img src="https://avatars.githubusercontent.com/u/32039836?v=4" width="80;" alt="allesauseinerhand"/>
+            <br />
+            <sub><b>Allesauseinerhand</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/lamtrinhdev">
+            <img src="https://avatars.githubusercontent.com/u/49742151?u=c5eaca5aa6841a80605cf4f7d0e861a9e6339ef3&v=4" width="80;" alt="lamtrinhdev"/>
+            <br />
+            <sub><b>LamTrinh.Dev</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/Bastii717">
+            <img src="https://avatars.githubusercontent.com/u/53431819?u=604977bed6ad6875ada890d0d3765a4cacc2fa14&v=4" width="80;" alt="Bastii717"/>
+            <br />
+            <sub><b>Bastii717</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/M2TD">
+            <img src="https://avatars.githubusercontent.com/u/85460457?v=4" width="80;" alt="M2TD"/>
+            <br />
+            <sub><b>M2TD</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/frankdez93">
+            <img src="https://avatars.githubusercontent.com/u/87549420?v=4" width="80;" alt="frankdez93"/>
+            <br />
+            <sub><b>Frankdez93</b></sub>
+        </a>
+    </td>
+    <td align="center">
+        <a href="https://github.com/NixyJuppie">
+            <img src="https://avatars.githubusercontent.com/u/138570196?u=b102c222487905728b858704962d32759df29ebe&v=4" width="80;" alt="NixyJuppie"/>
+            <br />
+            <sub><b>Nixy</b></sub>
+        </a>
+    </td></tr>
+<tr>
+    <td align="center">
+        <a href="https://github.com/nrvo">
+            <img src="https://avatars.githubusercontent.com/u/151435968?u=e1dcb307fd0efdc45cddbe9490a7b956e4da6835&v=4" width="80;" alt="nrvo"/>
+            <br />
+            <sub><b>Nrvo</b></sub>
+        </a>
+    </td></tr>
 </table>
 <!-- readme: sponsors -end -->
 
@@ -548,7 +721,7 @@ Huge thanks to the sponsors helping to support Dashworks's development!
 
 > For full development documentation, see: [**Developing**](./docs/developing.md)
 
-[![Open Project in VS Code](https://img.shields.io/badge/Open_in-VS_Code-863cfc?style=flat-square&logo=visualstudiocode)](https://open.vscode.dev/KhulnaSoft/Dashworks)
+[![Open Project in VS Code](https://img.shields.io/badge/Open_in-VS_Code-863cfc?style=flat-square&logo=visualstudiocode)](https://open.vscode.dev/KhulnaSoft/DashWorks)
 [![Open in GitPod](https://img.shields.io/badge/Open_in-GitPod-ffae33?style=flat-square&logo=gitpod)](https://gitpod.io/#github.com/khulnasoft/dashworks.git)
 [![Open in GitHub Code Spaces](https://img.shields.io/badge/Open_in-Code%20Spaces-131313?style=flat-square&logo=github)](https://github.dev/KhulnaSoft/dashworks)
 
@@ -577,9 +750,9 @@ If you're new to web development, I've put together a short [list of resources](
 
 ## Documentation 📘
 > For full docs, see: **[Documentation Contents](./docs/readme.md)**
-#### Running Dashworks
-- 💨 [Quick Start](/docs/quick-start.md) - TDLR guide on getting Dashworks up and running in under 5 minutes
-- 🚀 [Deployment](/docs/deployment.md) - Full guide on setting up Dashworks on various different environments
+#### Running DashWorks
+- 💨 [Quick Start](/docs/quick-start.md) - TDLR guide on getting DashWorks up and running in under 5 minutes
+- 🚀 [Deployment](/docs/deployment.md) - Full guide on setting up DashWorks on various different environments
 - 🔧 [Configuring](/docs/configuring.md) - Complete list of all available options in the config file
 - 💻 [Management](/docs/management.md) - Managing your app, updating, security, web server configuration, etc
 - 🚒 [Troubleshooting](/docs/troubleshooting.md) - Common errors and problems, and how to fix them
@@ -587,19 +760,19 @@ If you're new to web development, I've put together a short [list of resources](
 #### Feature Docs
 - 🛡️ [Authentication](/docs/authentication.md) - Guide to setting up authentication to protect your dashboard
 - 🌈 [Alternate Views](/docs/alternate-views.md) - Outline of available pages / views and item opening methods
-- 💾 [Backup & Restore](/docs/backup-restore.md) - Guide to backing up config with Dashworks's cloud sync feature
+- 💾 [Backup & Restore](/docs/backup-restore.md) - Guide to backing up config with DashWorks's cloud sync feature
 - 🧸 [Icons](/docs/icons.md) - Outline of all available icon types for sections and items, with examples
 - 🌐 [Multi-Language Support](/docs/multi-language-support.md) - Switching languages, and adding a new locales
-- 🚦 [Status Indicators](/docs/status-indicators.md) - Using Dashworks to monitor uptime and status of your apps
+- 🚦 [Status Indicators](/docs/status-indicators.md) - Using DashWorks to monitor uptime and status of your apps
 - 🔍 [Searching  & Shortcuts](/docs/searching.md) - Searching, launching methods + keyboard shortcuts
 - 🎨 [Theming](/docs/theming.md) - Complete guide to applying, writing and modifying themes + styles
 - 📊 [Widgets](/docs/widgets.md) - List of all dynamic content widgets, with usage guides and examples
 
 #### Development and Contributing
-- 🧱 [Developing](/docs/developing.md) - Running Dashworks development server locally, and general workflow
+- 🧱 [Developing](/docs/developing.md) - Running DashWorks development server locally, and general workflow
 - 🛎️ [Development Guides](/docs/development-guides.md) - Common development tasks, to help new contributors
-- 💖 [Contributing](/docs/contributing.md) - How to contribute to Dashworks
-- 🌟 [Showcase](/docs/showcase.md) - See how others are using Dashworks, and share your dashboard
+- 💖 [Contributing](/docs/contributing.md) - How to contribute to DashWorks
+- 🌟 [Showcase](/docs/showcase.md) - See how others are using DashWorks, and share your dashboard
 - 🏆 [Credits](/docs/credits.md) - Shout out to the amazing people who have contributed so far
 - 🗞️ [Release Workflow](/docs/release-workflow.md) - Info about releases, CI and automated tasks
 
@@ -626,7 +799,7 @@ For past updates, see the [**Changelog**](/.github/CHANGELOG.md)
 
 ## Alternatives 🙌
 
-A few self-hosted web apps serve a similar purpose to Dashworks. If you're looking for a dashboard, and Dashworks doesn't meet your needs, I highly recommend you check these projects out! 
+A few self-hosted web apps serve a similar purpose to DashWorks. If you're looking for a dashboard, and DashWorks doesn't meet your needs, I highly recommend you check these projects out! 
 - [Flame](https://github.com/pawelmalak/flame) by @pawelmalak (`MIT`)
 - [HomeDash2](https://lamarios.github.io/Homedash2)
 - [Homer](https://github.com/bastienwirtz/homer) (`Apache License 2.0`)
@@ -640,7 +813,7 @@ A few self-hosted web apps serve a similar purpose to Dashworks. If you're looki
 ---
 ## License 📜
 
-Dashworks is Licensed under [MIT X11](https://en.wikipedia.org/wiki/MIT_License)
+DashWorks is Licensed under [MIT X11](https://en.wikipedia.org/wiki/MIT_License)
 
 ```
 Copyright © 2021-2024 KhulnaSoft DevOps <https://khulnasoft.com>
@@ -661,12 +834,12 @@ LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTR
 TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 OR OTHER DEALINGS IN THE SOFTWARE.
 
-Except as contained in this notice, Dashworks shall not be used in advertising or otherwise
+Except as contained in this notice, DashWorks shall not be used in advertising or otherwise
 to promote the sale, use, or other dealings in this Software without prior written
 authorization from the repo owner.
 ```
 
-**TDLR;** _You can do whatever you like with Dashworks: use it in private or commercial settings,_
+**TDLR;** _You can do whatever you like with DashWorks: use it in private or commercial settings,_
 _redistribute and modify it. But you must display this license and credit the author._
 _There is no warranty that this app will work as expected, and the author cannot be held_
 _liable for anything that goes wrong._
@@ -678,16 +851,25 @@ For more info, see TLDR Legal's [Explanation of MIT](https://tldrlegal.com/licen
 
 ---
 
-
-<p align="center">
-  <br>
-  <a href="https://dashboard.trackgit.com/token/ks0bx7bb14lsvbwoc3ik">
-    <img src="https://us-central1-trackgit-analytics.cloudfunctions.net/token/ping/ks0bx7bb14lsvbwoc3ik?style=flat-square" />
-  </a>
-  <br><br>
-  <a href="https://github.com/KhulnaSoft/dashworks">
-    <img src="https://github.githubassets.com/images/icons/emoji/octocat.png" />
-  </a>
-  <br><br>
-  <i>Thank you for Visiting</i>
+<!-- License + Copyright -->
+<p  align="center">
+  <i>© <a href="https://khulnasoft.com">KhulnaSoft DevOps</a> 2024</i><br>
+  <i>Licensed under <a href="https://gist.github.com/KhulnaSoft/143d2ee01ccc5c052a17">MIT</a></i><br>
+  <a href="https://github.com/khulnasoft"><img src="https://i.ibb.co/4KtpYxb/octocat-clean-mini.png" /></a><br>
+  <sup>Thanks for visiting :)</sup>
 </p>
+
+<!-- Dinosaurs are Awesome -->
+<!-- 
+                        . - ~ ~ ~ - .
+      ..     _      .-~               ~-.
+     //|     \ `..~                      `.
+    || |      }  }              /       \  \
+(\   \\ \~^..'                 |         }  \
+ \`.-~  o      /       }       |        /    \
+ (__          |       /        |       /      `.
+  `- - ~ ~ -._|      /_ - ~ ~ ^|      /- _      `.
+              |     /          |     /     ~-.     ~- _
+              |_____|          |_____|         ~ - . _ _~_-_
+-->
+

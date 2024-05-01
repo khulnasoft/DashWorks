@@ -62,7 +62,7 @@ export default {
     }
   },
   methods: {
-    /* Gets the apps latest version from Dashworks's git repo */
+    /* Gets the apps latest version from DashWorks's git repo */
     checkVersion() {
       const packageUrl = 'https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/package.json';
       this.progress.start();

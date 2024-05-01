@@ -1,8 +1,10 @@
 # Cloud Backup and Restore
 
-Dashworks has a built-in feature for securely backing up your config to a hosted cloud service, and then restoring it on another instance. This feature is totally optional, and if you do not enable it, then Dashworks will not make any external network requests.
+Beyond the cloud backup/restore service, there are several other self-hosted options you can use to backup DashWorks, and any other Docker container data. These are outlined in the Management docs, at: [Docker Backup Options](/docs/management.md#backing-up).
 
-This is useful not only for backing up your configuration off-site, but it also enables Dashworks to be used without having write a YAML config file, and makes it possible to use a public hosted instance, without the need to self-host.
+DashWorks has a built-in feature for securely backing up your config to a hosted cloud service, and then restoring it on another instance. This feature is totally optional, and if you do not enable it, then DashWorks will not make any external network requests.
+
+This is useful not only for backing up your configuration off-site, but it also enables DashWorks to be used without having write a YAML config file, and makes it possible to use a public hosted instance, without the need to self-host.
 
 <p align="center">
   <img src="https://i.ibb.co/p4pxSqX/dashworks-backup-restore.png" width="600" />
@@ -10,11 +12,11 @@ This is useful not only for backing up your configuration off-site, but it also 
 
 ## How it Works
 
-All data is encrypted before being sent to the backend. In Dashworks, this is done in [`CloudBackup.js`](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/CloudBackup.js), using [crypto.js](https://github.com/brix/crypto-js)'s AES method, using the users chosen password as the key. The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) (a platform for running serverless functions), and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
+All data is encrypted before being sent to the backend. In DashWorks, this is done in [`CloudBackup.js`](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/CloudBackup.js), using [crypto.js](https://github.com/brix/crypto-js)'s AES method, using the users chosen password as the key. The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) (a platform for running serverless functions), and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
 
 ## Creating a Backup
 
-Once you've got Dashworks configured to your preference, open the Backup & Restore menu (click the Cloud icon in the top-right corner). Here you will be prompted to choose a password, which will be used to encrypt your data. If you forget this password, there will be no way to recover your config. After clicking 'Backup' your data will be encrypted, compressed and sent to the hosted cloud service. A backup ID will be returned (in the format of xxxx-xxxx-xxxx-xxxx), this is what you use, along with your password to restore the backup on another system, so take note of it. To update a backup, return to this menu, enter your password, and click 'Update Backup'.
+Once you've got DashWorks configured to your preference, open the Backup & Restore menu (click the Cloud icon in the top-right corner). Here you will be prompted to choose a password, which will be used to encrypt your data. If you forget this password, there will be no way to recover your config. After clicking 'Backup' your data will be encrypted, compressed and sent to the hosted cloud service. A backup ID will be returned (in the format of xxxx-xxxx-xxxx-xxxx), this is what you use, along with your password to restore the backup on another system, so take note of it. To update a backup, return to this menu, enter your password, and click 'Update Backup'.
 
 ## Restoring a Backup
 
@@ -59,7 +61,7 @@ zone_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 account_id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 
 kv_namespaces = [
-  { binding = "DESHWORK_CLOUD_BACKUP", id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
+  { binding = "DASHWORKER_CLOUD_BACKUP", id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" }
 ]
 ```
 
@@ -81,7 +83,7 @@ async function handleRequest(request) {
 }
 ```
 
-- For the code used for Dashworks's cloud service, see [here](https://gist.github.com/KhulnaSoft/d19b43d50f30e02fa25f349cf5cb5ed8#file-index-js)
+- For the code used for DashWorks's cloud service, see [here](https://gist.github.com/KhulnaSoft/d19b43d50f30e02fa25f349cf5cb5ed8#file-index-js)
 
 ### Commands
 

@@ -1,15 +1,15 @@
 # Quick Start
 
-Welcome to Dashworks! So glad you're here 😊 In a couple of minutes, you'll have your new dashboard up and running 🚀
+Welcome to DashWorks! So glad you're here 😊 In a couple of minutes, you'll have your new dashboard up and running 🚀
 
-**TLDR;** Run `docker run -p 8080:80 khulnasoft/dashworks`, then open `http://localhost:8080`
+**TLDR;** Run `docker run -p 8080:8080 khulnasoft/dashworks`, then open `http://localhost:8080`
 
 ---
 
 ## 1. Prerequisites
 
-The quickest and easiest method of running Dashworks is using Docker (or another container engine). You can find installation instructions for your system in the [Docker Documentation](https://docs.docker.com/get-docker/).
-If you don't want to use Docker, then you can use one of Dashworks's other supported installation methods instead, all of which are outlined in the [Deployment Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md).
+The quickest and easiest method of running DashWorks is using Docker (or another container engine). You can find installation instructions for your system in the [Docker Documentation](https://docs.docker.com/get-docker/).
+If you don't want to use Docker, then you can use one of DashWorks's other supported installation methods instead, all of which are outlined in the [Deployment Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md).
 
 ---
 
@@ -19,28 +19,54 @@ To pull the latest image, and build and start the app run:
 
 ```bash
 docker run -d \
-  -p 8080:80 \
-  -v ~/my-conf.yml:/app/public/conf.yml \
+  -p 8080:8080 \
+  -v ~/my-conf.yml:/app/user-data/conf.yml \
   --name my-dashboard \
   --restart=always \
   khulnasoft/dashworks:latest
 ```
 
-Either replace the -v path to point to your config file, or leave it out. For a full list of available options, then see [Dashworks with Docker](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#deploy-with-docker) Docs. If you'd prefer to use Docker Compose, then see [Dashworks with Docker Compose](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#using-docker-compose) Docs. Alternate registries, architectures and pinned versions are also supported.
+Either replace the -v path to point to your config file, or leave it out. For a full list of available options, then see [DashWorks with Docker](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#deploy-with-docker) Docs. If you'd prefer to use Docker Compose, then see [DashWorks with Docker Compose](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md#using-docker-compose) Docs. Alternate registries, architectures and pinned versions are also supported.
 
 Your dashboard should now be up and running at `http://localhost:8080` (or your servers IP address/ domain, and the port that you chose). The first time you build, it may take a few minutes.
 
 ---
 
-## 3. Configure
+## 3. User Data Directory
 
-Now that you've got Dashworks running, you are going to want to set it up with your own content.
-Config is written in [YAML Format](https://yaml.org/), and saved in [`/public/conf.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/public/conf.yml).
+Your config file should be placed inside `user-data/` (in Docker, that's `/app/user-data/`).
+
+This directory can also contain some optional assets you wish to use within your dashboard, like icons, fonts, styles, scripts, etc.
+
+Any files placed here will be served up to the root of the domain, and override the contents of `public/`.
+For example, if you had `user-data/favicon.ico` this would be accessible at `http://my-dashworks-instance.local/favicon.ico`
+
+Example Files in `user-data`:
+- `conf.yml` - This is the only file that is compulsary, it's your main DashWorks config
+- `**.yml` - Include more config files, if you'd like to have multiple pages, see [Multi-page support](/docs/pages-and-sections.md#multi-page-support) for docs
+- `favicon.ico` - The default favicon, shown in the browser's tab title
+- `initialization.html` - Static HTML page displayed before the app has finished compiling, see [`public/initialization.html`](https://github.com/KhulnaSoft/dashworks/blob/master/public/initialization.html)
+- `robots.txt` - Search engine crawl rules, override this if you want your dashboard to be indexable
+- `manifest.json` - PWA configuration file, for installing DashWorks on mobile devices
+- `index.html` - The main index page which initializes the client-side app, copy it from [`/public/index.html`](https://github.com/KhulnaSoft/dashworks/blob/master/public/index.html)
+- `**.html` - Write your own HTML pages, and access them at `http://my-dashworks-instance.local/my-page.html`
+- `fonts/` - Custom fonts (be sure to include the ones already in [`public/fonts`](https://github.com/KhulnaSoft/dashworks/tree/master/public/fonts)
+- `item-icons/` - To use your own icons for items on your dashboard, see [Icons --> Local Icons](/docs/icons.md#local-icons)
+- `web-icons/` - Override DashWorks logo
+- `widget-resources/` - Fonts, icons and assets for custom widgets
+
+---
+
+## 4. Configure
+
+Now that you've got DashWorks running, you are going to want to set it up with your own content.
+Config is written in [YAML Format](https://yaml.org/), and saved in [`/user-data/conf.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/user-data/conf.yml).
 The format on the config file is pretty straight forward. There are three root attributes:
 
 - [`pageInfo`](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md#pageinfo) - Dashboard meta data, like title, description, nav bar links and footer text
 - [`appConfig`](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md#appconfig-optional) - Dashboard settings, like themes, authentication, language and customization
 - [`sections`](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md#section) - An array of sections, each including an array of items
+- [`pages`](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md#pages-optional) - Have multiples pages in your dashboard
 
 You can view a full list of all available config options in the [Configuring Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md).
 
@@ -52,7 +78,7 @@ sections: # An array of sections
   icon: far fa-rocket
   items:
   - title: GitHub
-    description: Dashworks source code and docs
+    description: DashWorks source code and docs
     icon: fab fa-github
     url: https://github.com/KhulnaSoft/dashworks
   - title: Issues
@@ -72,36 +98,36 @@ sections: # An array of sections
 Notes:
 
 - You can use a Docker volume to pass a config file from your host system to the container
-  - E.g. `-v ./host-system/my-local-conf.yml:/app/public/conf.yml`
+  - E.g. `-v ./host-system/my-local-conf.yml:/app/user-data/conf.yml`
 - It's also possible to edit your config directly through the UI, and changes will be saved in this file
-- Check your config against Dashworks's schema, with `docker exec -it [container-id] yarn validate-config`
+- Check your config against DashWorks's schema, with `docker exec -it [container-id] yarn validate-config`
 - You might find it helpful to look at some examples, a collection of which can be [found here](https://gist.github.com/KhulnaSoft/000f712a5ce98f212817d20bc16bab10)
-- After editing your config, the app will rebuild in the background, which may take a minute
+- It's also possible to load a remote config, e.g. from a GitHub Gist
 
 ---
 
-## 4. Further Customisation
+## 5. Further Customisation
 
-Once you've got Dashworks setup, you'll want to ensure the container is properly healthy, secured, backed up and kept up-to-date. All this is covered in the [Management Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md).
+Once you've got DashWorks setup, you'll want to ensure the container is properly healthy, secured, backed up and kept up-to-date. All this is covered in the [Management Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md).
 
 You might also want to check out the docs for specific features you'd like to use:
 
 - [Authentication](/docs/authentication.md) - Setting up authentication to protect your dashboard
 - [Alternate Views](/docs/alternate-views.md) - Using the startpage and workspace view
-- [Backup & Restore](/docs/backup-restore.md) - Guide to Dashworks's cloud sync feature
+- [Backup & Restore](/docs/backup-restore.md) - Guide to DashWorks's cloud sync feature
 - [Icons](/docs/icons.md) - Outline of all available icon types for sections and items
 - [Localisation](/docs/multi-language-support.md) - How to change language, or add your own
-- [Status Indicators](/docs/status-indicators.md) - Using Dashworks to monitor uptime and status of your apps
+- [Status Indicators](/docs/status-indicators.md) - Using DashWorks to monitor uptime and status of your apps
 - [Search & Shortcuts](/docs/searching.md) - Using instant filter, web search and custom hotkeys
 - [Theming](/docs/theming.md) - Complete guide to applying, writing and modifying themes and styles
 
 ---
 
-## 5. Final Note
+## 6. Final Note
 
-If you need any help or support in getting Dashworks running, head over to the [Discussions](https://github.com/KhulnaSoft/dashworks/discussions) page. If you think you've found a bug, please do [raise it](https://github.com/KhulnaSoft/dashworks/issues/new/choose) so it can be fixed. For contact options, see the [Support Page](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SUPPORT.md).
+If you need any help or support in getting DashWorks running, head over to the [Discussions](https://github.com/KhulnaSoft/dashworks/discussions) page. If you think you've found a bug, please do [raise it](https://github.com/KhulnaSoft/dashworks/issues/new/choose) so it can be fixed. For contact options, see the [Support Page](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SUPPORT.md).
 
-If you're enjoying Dashworks, and have a few minutes to spare, please do take a moment to look at the [Contributing Page](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md). Huge thanks to [everyone](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md) who has already helped out!
+If you're enjoying DashWorks, and have a few minutes to spare, please do take a moment to look at the [Contributing Page](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md). Huge thanks to [everyone](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md) who has already helped out!
 
 Enjoy your dashboard :)
 
@@ -118,24 +144,24 @@ yarn build # Build the app
 yarn start # Start the app
 ```
 
-Then edit `./public/conf.yml` and rebuild the app with `yarn build`
+Then edit `./user-data/conf.yml`
 
 ---
 
 ## Alternative Deployment Method 2 - Netlify
 
-Don't have a server? No problem! You can run Dashworks for free on Netlify (as well as many [other cloud providers](./docs/deployment.md#deploy-to-cloud-service)). All you need it a GitHub account.
+Don't have a server? No problem! You can run DashWorks for free on Netlify (as well as many [other cloud providers](./docs/deployment.md#deploy-to-cloud-service)). All you need it a GitHub account.
 
-1. Fork Dashworks's repository on GitHub
+1. Fork DashWorks's repository on GitHub
 2. [Log in](app.netlify.com/login/) to Netlify with GitHub
 3. Click "New site from Git" and select your forked repo, then click **Deploy**!
-4. You can then edit the config in `./public/conf.yml` in your repo, and Netlify will rebuild the app
+4. You can then edit the config in `./user-data/conf.yml` in your repo, and Netlify will rebuild the app
 
 ---
 
 ## Alternative Deployment Method 3 - Cloud Services
 
-Dashworks supports 1-Click deployments on several popular cloud platforms. To spin up a new instance, just click a link below:
+DashWorks supports 1-Click deployments on several popular cloud platforms. To spin up a new instance, just click a link below:
 
 - [<img src="https://i.ibb.co/ZxtzrP3/netlify.png" width="18"/> Deploy to Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/khulnasoft/dashworks)
 - [<img src="https://i.ibb.co/d2P1WZ7/heroku.png" width="18"/> Deploy to Heroku](https://heroku.com/deploy?template=https://github.com/KhulnaSoft/dashworks)

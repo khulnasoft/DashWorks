@@ -1,7 +1,7 @@
 comment:
   on-update: edit
   header: |
-    Hi {{ prAuthor }}! Thank you for contributing to Dashworks! ✨
+    Hi {{ prAuthor }}! Thank you for contributing to DashWorks! ✨
   footer: |
     ---
     > I'm a bot, and this is an automated comment 🤖
@@ -47,7 +47,7 @@ comment:
     - id: license
       files: [ 'LICENSE', '**/**/LICENSE*' ]
       body: >
-        Dashworks is licensed under MIT. Your modifying the license file, which shouldn't usually
+        DashWorks is licensed under MIT. Your modifying the license file, which shouldn't usually
         need to be changed. Please ensure that you intended to make this update before continuing.
     
     - id: cname-file
@@ -126,10 +126,10 @@ comment:
       files:
       - src/assets/locales/**.json
       body: >
-        Thank you for contributing to Dashworks's translations 💖
+        Thank you for contributing to DashWorks's translations 💖
     
     - id: themes
       files:
       - src/styles/color-themes.scss
       body: >
-        Thank you for contributing to Dashworks's themes 🎨
+        Thank you for contributing to DashWorks's themes 🎨

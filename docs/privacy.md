@@ -1,9 +1,9 @@
 # Privacy & Security
 
-Dashworks was built with privacy in mind.
-Self-hosting your own apps and services is a great way to protect yourself from the mass data collection employed by big tech companies, and Dashworks was designed to make self-hosting easier, by keeping your local services organized and accessible from a single place. The [management docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md) contains a though guide on the steps you can take to secure your homelab.
+DashWorks was built with privacy in mind.
+Self-hosting your own apps and services is a great way to protect yourself from the mass data collection employed by big tech companies, and DashWorks was designed to make self-hosting easier, by keeping your local services organized and accessible from a single place. The [management docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md) contains a though guide on the steps you can take to secure your homelab.
 
-Dashworks operates on the premise, that no external data requests should ever be made, unless explicitly enabled by the user. In the interest of transparency, the code is 100% open source and clearly documented throughout.
+DashWorks operates on the premise, that no external data requests should ever be made, unless explicitly enabled by the user. In the interest of transparency, the code is 100% open source and clearly documented throughout.
 
 | 🔐 For privacy and security tips, check out another project of mine: **[Personal Security Checklist](https://github.com/KhulnaSoft/personal-security-checklist)** |
 |-|
@@ -30,7 +30,7 @@ Dashworks operates on the premise, that no external data requests should ever be
 
 ## External Requests
 
-By default, Dashworks will not make any external requests, unless you configure it to. Some features (which are off by default) do require internat access, and this section outlines those features, the services used, and links to their privacy policies.
+By default, DashWorks will not make any external requests, unless you configure it to. Some features (which are off by default) do require internat access, and this section outlines those features, the services used, and links to their privacy policies.
 
 The following section outlines all network requests that are made when certain features are enabled.
 
@@ -46,7 +46,7 @@ If either any of your sections, items or themes are mdi icons, then it will be a
 
 #### Favicon Fetching
 
-If an item's icon is set to `favicon`, then it will be auto-fetched from the corresponding URL. Since not all websites have their icon located at `/favicon.ico`, and if they do, it's often very low resolution (like `16 x 16 px`). Therefore, the default behavior is for Dashworks to check if the URL is public, and if so will use an API to fetch the favicon. For self-hosted services, the favicon will be fetched from the default path, and no external requests will be made.
+If an item's icon is set to `favicon`, then it will be auto-fetched from the corresponding URL. Since not all websites have their icon located at `/favicon.ico`, and if they do, it's often very low resolution (like `16 x 16 px`). Therefore, the default behavior is for DashWorks to check if the URL is public, and if so will use an API to fetch the favicon. For self-hosted services, the favicon will be fetched from the default path, and no external requests will be made.
 
 The default favicon API is [allesedv.com](https://favicon.allesedv.com/), but this can be changed by setting `appConfig.faviconApi` to an alternate source (`iconhorse`, `clearbit`, `faviconkit`, `besticon`, `duckduckgo`, `google` and `allesedv` are supported). If you do not want to use any API, then you can set this property to `local`, and the favicon will be fetched from the default path. For hosted services, this will still incur an external request.
 
@@ -62,7 +62,7 @@ Section icons, item icons and app icons are able to accept a URL to a raw image,
 
 #### Web Assets
 
-By default, all assets required by Dashworks come bundled within the source, and so no external requests are made. If you add an additional font, which is imported from a CDN, then that will incur an external request. The same applies for other web assets, like external images, scripts or styles.
+By default, all assets required by DashWorks come bundled within the source, and so no external requests are made. If you add an additional font, which is imported from a CDN, then that will incur an external request. The same applies for other web assets, like external images, scripts or styles.
 
 ---
 
@@ -72,15 +72,15 @@ By default, all assets required by Dashworks come bundled within the source, and
 
 The status checking feature allows you to ping your apps/ services to check if they are currently operational.
 
-Dashworks will ping your services directly, and does not rely on any third party. If you are checking the uptime status of a public/ hosted application, then please refer to that services privacy policy. For all self-hosted services, requests happen locally within your network, and are not external.
+DashWorks will ping your services directly, and does not rely on any third party. If you are checking the uptime status of a public/ hosted application, then please refer to that services privacy policy. For all self-hosted services, requests happen locally within your network, and are not external.
 
 #### Update Checks
 
-When the application loads, it checks for updates. The results of which are displayed in the config menu of the UI. This was implemented because using a very outdated version of Dashworks may have unfixed issues. Your version is fetched from the source (local request), but the latest version is fetched from GitHub, which is an external request. This can be disabled by setting `appConfig.disableUpdateChecks: true`
+When the application loads, it checks for updates. The results of which are displayed in the config menu of the UI. This was implemented because using a very outdated version of DashWorks may have unfixed issues. Your version is fetched from the source (local request), but the latest version is fetched from GitHub, which is an external request. This can be disabled by setting `appConfig.disableUpdateChecks: true`
 
 #### Cloud Backup
 
-Dashworks has an optional End-to-End encrypted [cloud backup feature](https://github.com/KhulnaSoft/dashworks/blob/master/docs/backup-restore.md). No data is ever transmitted unless you actively enable this feature through the UI.
+DashWorks has an optional End-to-End encrypted [cloud backup feature](https://github.com/KhulnaSoft/dashworks/blob/master/docs/backup-restore.md). No data is ever transmitted unless you actively enable this feature through the UI.
 
 All data is encrypted before being sent to the backend. This is done in [`CloudBackup.js`](https://github.com/KhulnaSoft/dashworks/blob/master/src/utils/CloudBackup.js), using [crypto.js](https://github.com/brix/crypto-js)'s AES method, using the users chosen password as the key. The data is then sent to a [Cloudflare worker](https://developers.cloudflare.com/workers/learning/how-workers-works) (a platform for running serverless functions), and stored in a [KV](https://developers.cloudflare.com/workers/learning/how-kv-works) data store.
 
@@ -88,7 +88,7 @@ Your selected password never leaves your device, and is hashed before being comp
 
 #### Web Search
 
-Dashworks has a primitive [web search feature](https://github.com/KhulnaSoft/dashworks/blob/master/docs/searching.md#web-search). No external requests are made, instead you are redirected to your chosen search engine (defaults to DuckDuckGo), using your chosen opening method.
+DashWorks has a primitive [web search feature](https://github.com/KhulnaSoft/dashworks/blob/master/docs/searching.md#web-search). No external requests are made, instead you are redirected to your chosen search engine (defaults to DuckDuckGo), using your chosen opening method.
 
 This feature can be disabled under appConfig, with `webSearch: { disableWebSearch: true }`
 
@@ -98,9 +98,9 @@ Error reporting is disabled by default, and no data will ever be sent without yo
 
 The crash report includes the file or line of code that triggered the error, and a 2-layer deep stack trace. Reoccurring errors will also include the following user information: OS type (Mac, Windows, Linux, Android or iOS) and browser type (Firefox, Chrome, IE, Safari). Data scrubbing is enabled. IP address will not be stored. If any potentially identifiable data ever finds its way into a crash report, it will be automatically and permanently erased. All statistics collected are anonymized and stored securely, and ae automatically deleted after 14 days. For more about privacy and security, see the [Sentry Docs](https://sentry.io/security/).
 
-Enabling anonymous error reporting helps me to discover bugs I was unaware of, and then fix them, in order to make Dashworks more reliable long term. Error reporting is activated by setting `appConfig.enableErrorReporting: true`.
+Enabling anonymous error reporting helps me to discover bugs I was unaware of, and then fix them, in order to make DashWorks more reliable long term. Error reporting is activated by setting `appConfig.enableErrorReporting: true`.
 
-If you need to monitor bugs yourself, then you can [self-host your own Sentry Server](https://develop.sentry.dev/self-hosted/), and use it by setting `appConfig.sentryDsn` to your Sentry instances [Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/), then just enable error reporting in Dashworks.
+If you need to monitor bugs yourself, then you can [self-host your own Sentry Server](https://develop.sentry.dev/self-hosted/), and use it by setting `appConfig.sentryDsn` to your Sentry instances [Data Source Name](https://docs.sentry.io/product/sentry-basics/dsn-explainer/), then just enable error reporting in DashWorks.
 
 ---
 
@@ -112,7 +112,7 @@ Certain themes may use external assets (such as fonts or images). Currently, thi
 
 ### Widgets
 
-Dashworks supports [Widgets](/docs/widgets.md) for displaying dynamic content. Below is a list of all widgets that make external data requests, along with the endpoint they call and a link to the Privacy Policy of that service.
+DashWorks supports [Widgets](/docs/widgets.md) for displaying dynamic content. Below is a list of all widgets that make external data requests, along with the endpoint they call and a link to the Privacy Policy of that service.
 
 - **[Weather](/docs/widgets.md#weather)** and **[Weather Forecast](/docs/widgets.md#weather-forecast)**: `https://api.openweathermap.org`
   - [OWM Privacy Policy](https://openweather.co.uk/privacy-policy)
@@ -192,7 +192,7 @@ The following section outlines all data that is stored in the browsers, as cooki
 > [Local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) is persisted between sessions, and only deleted when manually removed
 
 - `LANGUAGE` - The locale to show app text in
-- `HIDE_WELCOME_BANNER` - Set to true once user dismissed welcome message, so that it's not shown again
+- `HIDE_INFO_NOTIFICATION` - Set to true once user dismissed welcome message, so that it's not shown again
 - `LAYOUT_ORIENTATION` - Preferred section layout, either horizontal, vertical or auto
 - `COLLAPSE_STATE` - Remembers which sections are collapsed
 - `ICON_SIZE` - Size of items, either small, medium or large
@@ -216,9 +216,9 @@ You can manually view and delete session storage, local storage and cookies at a
 
 ## Dependencies
 
-As with most web projects, Dashworks relies on several [dependencies](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md#dependencies-). For links to each, and a breakdown of their licenses, please see [Legal](https://github.com/KhulnaSoft/dashworks/blob/master/.github/LEGAL.md).
+As with most web projects, DashWorks relies on several [dependencies](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md#dependencies-). For links to each, and a breakdown of their licenses, please see [Legal](https://github.com/KhulnaSoft/dashworks/blob/master/.github/LEGAL.md).
 
-Dependencies can introduce security vulnerabilities, but since all these packages are open source any issues are usually very quickly spotted. Dashworks is using Snyk for dependency security monitoring, and you can see [the latest report here](https://snyk.io/test/github/khulnasoft/dashworks). If any issue is detected by Snyk, a note about it will appear at the top of the Readme, and will usually be fixed within 48 hours.
+Dependencies can introduce security vulnerabilities, but since all these packages are open source any issues are usually very quickly spotted. DashWorks is using Snyk for dependency security monitoring, and you can see [the latest report here](https://snyk.io/test/github/khulnasoft/dashworks). If any issue is detected by Snyk, a note about it will appear at the top of the Readme, and will usually be fixed within 48 hours.
 
 Note that packages listed under `devDependencies` section are only used for building the project, and are not included in the production environment.
 
@@ -228,13 +228,13 @@ Note that packages listed under `devDependencies` section are only used for buil
 
 Running your self-hosted applications in individual, containerized environments (such as containers or VMs) helps keep them isolated, and prevent an exploit in one service effecting another.
 
-If you're running Dashworks in a container, see [Management Docs --> Container Security](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md#container-security) for step-by-step security guide.
+If you're running DashWorks in a container, see [Management Docs --> Container Security](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md#container-security) for step-by-step security guide.
 
-There is very little complexity involved with Dashworks, and therefore the attack surface is reasonably small, but it is still important to follow best practices and employ monitoring for all your self-hosted apps. A couple of things that you should look at include:
+There is very little complexity involved with DashWorks, and therefore the attack surface is reasonably small, but it is still important to follow best practices and employ monitoring for all your self-hosted apps. A couple of things that you should look at include:
 
 - Use SSL for securing traffic in transit
 - Configure [authentication](/docs/authentication.md#alternative-authentication-methods) to prevent unauthorized access
-- Keep your system, software and Dashworks up-to-date
+- Keep your system, software and DashWorks up-to-date
 - Ensure your server is appropriately secured
 - Manage users and SSH correctly
 - Enable and configure firewall rules
@@ -252,7 +252,7 @@ This is covered in more detail in [App Management](/docs/management.md).
 
 [Subresource Integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) or SRI is a security feature that enables browsers to verify that resources they fetch are delivered without unexpected manipulation. It works by allowing you to provide a cryptographic hash that a fetched resource must match. This prevents the app from loading any resources that have been manipulated, by verifying the files hashes. It safeguards against the risk of an attacker injecting arbitrary malicious content into any files served up via a CDN.
 
-Dashworks supports SRI, and it is recommended to enable this if you are hosting your dashboard via a public CDN. To enable SRI, set the `INTEGRITY` environmental variable to `true`.
+DashWorks supports SRI, and it is recommended to enable this if you are hosting your dashboard via a public CDN. To enable SRI, set the `INTEGRITY` environmental variable to `true`.
 
 ### SSL
 
@@ -260,7 +260,7 @@ Native SSL support is enabled, for setup instructions, see the [Management Docs]
 
 ### Authentication
 
-Dashworks supports both basic auth, as well as server-based SSO using Keycloak. Full details of which, along with alternate authentication methods can be found in the [Authentication Docs](/docs/authentication.md). If your dashboard is exposed to the internet and/ or contains any sensitive info it is strongly recommended to configure access control with Keycloak or another server-side method.
+DashWorks supports both basic auth, as well as server-based SSO using Keycloak. Full details of which, along with alternate authentication methods can be found in the [Authentication Docs](/docs/authentication.md). If your dashboard is exposed to the internet and/ or contains any sensitive info it is strongly recommended to configure access control with Keycloak or another server-side method.
 
 ---
 
@@ -280,7 +280,7 @@ You may wish to disable features that you don't want to use, if they involve sto
 
 ## Reporting a Security Issue
 
-If you think you've found a critical issue with Dashworks, please send an email to `security@mail.alicia.omg.lol`. You can encrypt it, using [`0688 F8D3 4587 D954 E9E5 1FB8 FEDB 68F5 5C02 83A7`](https://keybase.io/aliciasykes/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7). You should receive a response within 48 hours. For more information, see [SECURITY.md](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md).
+If you think you've found a critical issue with DashWorks, please send an email to `security@mail.khulnasoft.omg.lol`. You can encrypt it, using [`0688 F8D3 4587 D954 E9E5 1FB8 FEDB 68F5 5C02 83A7`](https://keybase.io/khulnasoft/pgp_keys.asc?fingerprint=0688f8d34587d954e9e51fb8fedb68f55c0283a7). You should receive a response within 48 hours. For more information, see [SECURITY.md](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md).
 
 All non-critical issues can be raised as a ticket.
 

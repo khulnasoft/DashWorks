@@ -10,7 +10,7 @@ Internationalization is the process of making an application available in other 
 
 ## Setting Language
 
-By default, Dashworks will attempt to use the language of your browser or system. If a translation for your language does not yet exist, it will fallback to English.
+By default, DashWorks will attempt to use the language of your browser or system. If a translation for your language does not yet exist, it will fallback to English.
 
 ### In the UI
 
@@ -33,7 +33,7 @@ At the time of writing the following languages are supported: `en`, `zh-CN`, `nl
 
 ## Adding a new Language
 
-Dashworks is using [vue-i18n](https://vue-i18n.intlify.dev/guide/) to manage multi-language support.
+DashWorks is using [vue-i18n](https://vue-i18n.intlify.dev/guide/) to manage multi-language support.
 
 Adding a new language is pretty straightforward, with just three steps:
 
@@ -137,13 +137,13 @@ For example, you would set your translation to:
 And then pass that variable (`name`) within a JSON object as the second parameter on `$t`, like:
 
 ```javascript
-$t('welcome-message', { name: 'Alicia' })
+$t('welcome-message', { name: 'khulnasoft' })
 ```
 
 Which will render:
 
 ```text
-Hello Alicia!
+Hello khulnasoft!
 ```
 
 There are many other advanced features, including  Pluralization,  Datetime & Number Formatting, Message Support and more, all of which are outlined in the [Vue-i18n Docs](https://vue-i18n.intlify.dev/guide/).

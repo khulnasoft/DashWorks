@@ -14,7 +14,7 @@
     "loading": "読み込み中"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "guest-label": "ゲストアクセス",
     "username-label": "ユーザー名",
     "password-label": "パスワード",
@@ -49,9 +49,9 @@
     "error-log": "エラーログ",
     "no-errors": "エラーはありません",
     "help-support": "ヘルプとサポート",
-    "help-support-description": "Dashworksの実行や設定についてサポートが必要な場合は、こちらをご覧ください: ",
+    "help-support-description": "DashWorksの実行や設定についてサポートが必要な場合は、こちらをご覧ください: ",
     "help-support-discussions": "Discussions",
-    "support-dashworks": "Dashworksを支援",
+    "support-dashworks": "DashWorksを支援",
     "support-dashworks-description": "参加する方法を知るには、こちらをご覧ください: ",
     "support-dashworks-link": "コントリビューションページ",
     "report-bug": "バグの報告",
@@ -136,10 +136,10 @@
     "open": "開く"
   },
   "updates": {
-    "app-version-note": "Dashworksのバージョン",
+    "app-version-note": "DashWorksのバージョン",
     "up-to-date": "最新",
     "out-of-date": "アップデートがあります",
-    "unsupported-version-l1": "サポートされていないバージョンのDashworksを使用しています",
+    "unsupported-version-l1": "サポートされていないバージョンのDashWorksを使用しています",
     "unsupported-version-l2": "最高のエクスペリエンスと新しいセキュリティパッチのために、更新してください:"
   },
   "language-switcher": {
@@ -196,7 +196,7 @@
   },
   "cloud-sync": {
     "title": "クラウドバックアップと復元",
-    "intro-l1": "クラウドバックアップと復元はオプションの機能です。設定をインターネットにアップロードし、他のデバイスまたはDashworksのインスタンスに復元することができます。",
+    "intro-l1": "クラウドバックアップと復元はオプションの機能です。設定をインターネットにアップロードし、他のデバイスまたはDashWorksのインスタンスに復元することができます。",
     "intro-l2": "すべてのデータは、パスワードをキーとして使用して、AESで完全にエンドツーエンドで暗号化されます。",
     "intro-l3": "詳細については、以下をご覧ください: ",
     "intro-docs": "ドキュメント",

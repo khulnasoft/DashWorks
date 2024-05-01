@@ -19,4 +19,4 @@ COPY --from=build /dashworks/dist /usr/share/nginx/html
 EXPOSE 80
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 
-LABEL maintainer="KhulnaSoft DevOps <info@khulnasoft.com>"
+LABEL maintainer="KhulnaSoft DevOps <support@khulnasoft.com>"

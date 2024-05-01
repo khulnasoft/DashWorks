@@ -1,5 +1,5 @@
 name: Question 🤷‍♂️
-description: Got a question about Dashworks, deployment, development or usage?
+description: Got a question about DashWorks, deployment, development or usage?
 title: '[QUESTION] <title>'
 labels: ['🤷‍♂️ Question']
 
@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: >
-        Thanks for using Dashworks! Questions are welcome, but in the future will be moving over to
+        Thanks for using DashWorks! Questions are welcome, but in the future will be moving over to
         [Discussions](https://github.com/KhulnaSoft/dashworks/discussions) page.
         Quick questions should be asked [here](https://github.com/KhulnaSoft/dashworks/discussions/148) instead.
     validations:
@@ -54,7 +54,7 @@ body:
       label: Please tick the boxes
       description: Before submitting, please ensure that
       options:
-        - label: You are using a [supported](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md#supported-versions) version of Dashworks (check the first two digits of the version number)
+        - label: You are using a [supported](https://github.com/KhulnaSoft/dashworks/blob/master/.github/SECURITY.md#supported-versions) version of DashWorks (check the first two digits of the version number)
           required: true
         - label: You've checked that this [question hasn't already been raised](https://github.com/KhulnaSoft/dashworks/issues?q=is%3Aissue)
           required: true

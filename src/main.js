@@ -11,16 +11,19 @@ import VTabs from 'vue-material-tabs';  // Tab view component, used on the confi
 import Toasted from 'vue-toasted';      // Toast component, used to show confirmation notifications
 import TreeView from 'vue-json-tree-view';
 
-// Import base Dashworks components and utils
-import Dashworks from '@/App.vue';          // Main Dashworks Vue app
-import router from '@/router';          // Router, for navigation
+// Import base DashWorks components and utils
+import DashWorks from '@/App.vue';          // Main DashWorks Vue app
 import store from '@/store';            // Store, for local state management
+import router from '@/router';          // Router, for navigation
 import serviceWorker from '@/utils/InitServiceWorker'; // Service worker initialization
 import { messages } from '@/utils/languages';         // Language texts
 import ErrorReporting from '@/utils/ErrorReporting';  // Error reporting initializer (off)
 import clickOutside from '@/directives/ClickOutside'; // Directive for closing popups, modals, etc
 import { toastedOptions, tooltipOptions, language as defaultLanguage } from '@/utils/defaults';
 import { initKeycloakAuth, isKeycloakEnabled } from '@/utils/KeycloakAuth';
+import { initHeaderAuth, isHeaderAuthEnabled } from '@/utils/HeaderAuth';
+import Keys from '@/utils/StoreMutations';
+import ErrorHandler from '@/utils/ErrorHandler';
 
 // Initialize global Vue components
 Vue.use(VueI18n);
@@ -51,18 +54,27 @@ serviceWorker();
 ErrorReporting(Vue, router);
 
 // Render function
-const render = (awesome) => awesome(Dashworks);
+const render = (awesome) => awesome(DashWorks);
 
 // Mount the app, with router, store i18n and render func
 const mount = () => new Vue({
   store, router, render, i18n,
 }).$mount('#app');
 
-// If Keycloak not enabled, then proceed straight to the app
-if (!isKeycloakEnabled()) {
-  mount();
-} else { // Keycloak is enabled, redirect to KC login page
-  initKeycloakAuth()
-    .then(() => mount())
-    .catch(() => window.location.reload());
-}
+store.dispatch(Keys.INITIALIZE_CONFIG).then(() => {
+  if (isKeycloakEnabled()) { // If Keycloak is enabled, initialize auth
+    initKeycloakAuth()
+      .then(() => mount())
+      .catch((e) => {
+        ErrorHandler('Failed to authenticate with Keycloak', e);
+      });
+  } else if (isHeaderAuthEnabled()) { // If header auth is enabled, initialize auth
+    initHeaderAuth()
+      .then(() => mount())
+      .catch((e) => {
+        ErrorHandler('Failed to authenticate with server', e);
+      });
+  } else { // If no third-party auth, just mount the app as normal
+    mount();
+  }
+});

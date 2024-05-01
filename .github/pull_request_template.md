@@ -1,4 +1,4 @@
-*Thank you for contributing to Dashworks! So that your PR can be handled effectively, please populate the following fields (delete sections that are not applicable)*
+*Thank you for contributing to DashWorks! So that your PR can be handled effectively, please populate the following fields (delete sections that are not applicable)*
 
 **Category**: 
 > One of: Bugfix / Feature / Code style update / Refactoring Only / Build related changes /  Documentation / Other (please specify)

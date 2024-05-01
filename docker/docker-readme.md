@@ -1,10 +1,10 @@
-<h1 align="center">Dashworks</h1>
+<h1 align="center">DashWorks</h1>
 <p align="center">
-  <i>Dashworks helps you organize your self-hosted services by making them accessible from a single place</i>
+  <i>DashWorks helps you organize your self-hosted services by making them accessible from a single place</i>
    <br/>
   <img width="120" src="https://i.ibb.co/yhbt6CY/dashworks.png" />
   <br/>
-  <b><a href="https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.dashworks.to">Live Demo</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks/blob/master/docs/quick-start.md">Getting Started</a></b> | <b><a href="https://dashworks.to/docs">Documentation</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks">GitHub</a></b>
+  <b><a href="https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md">User Showcase</a></b> | <b><a href="https://demo.dashworks.khulnasoft.com">Live Demo</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks/blob/master/docs/quick-start.md">Getting Started</a></b> | <b><a href="https://dashworks.khulnasoft.com/docs">Documentation</a></b> | <b><a href="https://github.com/KhulnaSoft/dashworks">GitHub</a></b>
   <br/><br/>
   <a href="https://github.com/awesome-selfhosted/awesome-selfhosted#personal-dashboards">
     <img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome Self-Hosted">
@@ -51,11 +51,11 @@
 
 ## Demo ⚡
 
-**Live Instances**: [Demo 1](https://demo.dashworks.to) (Live Demo) ┆ [Demo 2](https://live.dashworks.to) (Dashworks Links) ┆ [Demo 3](https://dev.dashworks.to) (Dev Preview)
+**Live Instances**: [Demo 1](https://demo.dashworks.khulnasoft.com) (Live Demo) ┆ [Demo 2](https://live.dashworks.khulnasoft.com) (DashWorks Links) ┆ [Demo 3](https://dev.dashworks.khulnasoft.com) (Dev Preview)
 
 **Screenshots**: Checkout the [Showcase](https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md), to see example dashboards from the community
 
-**Spin up your own demo**: [![One-Click Deploy with PWD](https://img.shields.io/badge/Play--with--Docker-Deploy-2496ed?style=flat-square&logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docker-compose.yml) or [`docker run -p 8080:80 khulnasoft/dashworks`](./docs/quick-start.md)
+**Spin up your own demo**: [![One-Click Deploy with PWD](https://img.shields.io/badge/Play--with--Docker-Deploy-2496ed?style=flat-square&logo=docker)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docker-compose.yml) or [`docker run -p 8080:8080 khulnasoft/dashworks`](./docs/quick-start.md)
 
 
 <p align="center">
@@ -69,19 +69,19 @@
 
 ## Getting Started 🛫
 
-To deploy Dashworks with Docker, just run `docker run -p 8080:80 khulnasoft/dashworks`, then open `http://localhost:8080`
+To deploy DashWorks with Docker, just run `docker run -p 8080:8080 khulnasoft/dashworks`, then open `http://localhost:8080`
 
 For full list of options and a Docker compose file, see the [Deployment Docs](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md).
 
-Dashworks can also be run on bare metal using Node.js, or deployed to a cloud service, using the 1-Click deploy script.
+DashWorks can also be run on bare metal using Node.js, or deployed to a cloud service, using the 1-Click deploy script.
 
 ---
 
 ## Documentation 📝
 
-#### Running Dashworks
-- **[Quick Start](https://github.com/KhulnaSoft/dashworks/blob/master/docs/quick-start.md)** - TDLR guide on getting Dashworks up and running
-- **[Deployment](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md)** - Full guide on deploying Dashworks either locally or online
+#### Running DashWorks
+- **[Quick Start](https://github.com/KhulnaSoft/dashworks/blob/master/docs/quick-start.md)** - TDLR guide on getting DashWorks up and running
+- **[Deployment](https://github.com/KhulnaSoft/dashworks/blob/master/docs/deployment.md)** - Full guide on deploying DashWorks either locally or online
 - **[Configuring](https://github.com/KhulnaSoft/dashworks/blob/master/docs/configuring.md)** - Complete list of all available options in the config file
 - **[App Management](https://github.com/KhulnaSoft/dashworks/blob/master/docs/management.md)** - Managing your app, updating, security, web server configuration, etc
 - **[Troubleshooting](https://github.com/KhulnaSoft/dashworks/blob/master/docs/troubleshooting.md)** - Common errors and problems, and how to fix them
@@ -89,27 +89,27 @@ Dashworks can also be run on bare metal using Node.js, or deployed to a cloud se
 #### Feature Docs
 - **[Authentication](https://github.com/KhulnaSoft/dashworks/blob/master/docs/authentication.md)** - Guide to setting up authentication to protect your dashboard
 - **[Alternate Views](https://github.com/KhulnaSoft/dashworks/blob/master/docs/alternate-views.md)** - Outline of available pages / views and item opening methods
-- **[Backup & Restore](https://github.com/KhulnaSoft/dashworks/blob/master/docs/backup-restore.md)** - Guide to backing up config with Dashworks's cloud sync feature
+- **[Backup & Restore](https://github.com/KhulnaSoft/dashworks/blob/master/docs/backup-restore.md)** - Guide to backing up config with DashWorks's cloud sync feature
 - **[Icons](https://github.com/KhulnaSoft/dashworks/blob/master/docs/icons.md)** - Outline of all available icon types for sections and items, with examples
 - **[Language Switching](https://github.com/KhulnaSoft/dashworks/blob/master/docs/multi-language-support.md)** - Details on how to switch language, or add a new locale
-- **[Status Indicators](https://github.com/KhulnaSoft/dashworks/blob/master/docs/status-indicators.md)** - Using Dashworks to monitor uptime and status of your apps
+- **[Status Indicators](https://github.com/KhulnaSoft/dashworks/blob/master/docs/status-indicators.md)** - Using DashWorks to monitor uptime and status of your apps
 - **[Searching  & Shortcuts](https://github.com/KhulnaSoft/dashworks/blob/master/docs/searching.md)** - Searching, launching methods + keyboard shortcuts
 - **[Theming](https://github.com/KhulnaSoft/dashworks/blob/master/docs/theming.md)** - Complete guide to applying, writing and modifying themes + styles
 - **[Widgets](https://github.com/KhulnaSoft/dashworks/blob/master/docs/widgets.md)** - List of all dynamic content widgets, with usage guides and examples
 
 #### Development and Contributing 
-- **[Developing](https://github.com/KhulnaSoft/dashworks/blob/master/docs/developing.md)** - Running Dashworks development server locally, and general workflow
+- **[Developing](https://github.com/KhulnaSoft/dashworks/blob/master/docs/developing.md)** - Running DashWorks development server locally, and general workflow
 - **[Development Guides](https://github.com/KhulnaSoft/dashworks/blob/master/docs/development-guides.md)** - Common development tasks, to help new contributors
-- **[Contributing](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md)** - How you can help keep Dashworks alive
-- **[Showcase](https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md)** - See how others are using Dashworks, and share your dashboard
-- **[Credits](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md)** - List of people and projects that have made Dashworks possible
+- **[Contributing](https://github.com/KhulnaSoft/dashworks/blob/master/docs/contributing.md)** - How you can help keep DashWorks alive
+- **[Showcase](https://github.com/KhulnaSoft/dashworks/blob/master/docs/showcase.md)** - See how others are using DashWorks, and share your dashboard
+- **[Credits](https://github.com/KhulnaSoft/dashworks/blob/master/docs/credits.md)** - List of people and projects that have made DashWorks possible
 - **[Release Workflow](https://github.com/KhulnaSoft/dashworks/blob/master/docs/release-workflow.md)** - Info about releases, CI and automated tasks
 
 ---
 
 ## License 📜
 
-Dashworks is Licensed under [MIT X11](https://en.wikipedia.org/wiki/MIT_License)
+DashWorks is Licensed under [MIT X11](https://en.wikipedia.org/wiki/MIT_License)
 
 ```
 Copyright © 2024 KhulnaSoft DevOps <https://khulnasoft.com>
@@ -130,7 +130,7 @@ LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTR
 TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
 OR OTHER DEALINGS IN THE SOFTWARE.
 
-Except as contained in this notice, Dashworks shall not be used in advertising or otherwise
+Except as contained in this notice, DashWorks shall not be used in advertising or otherwise
 to promote the sale, use, or other dealings in this Software without prior written
 authorization from the repo owner.
 ```

@@ -41,7 +41,7 @@ pages:
 There are many options of how this can be used. You could store your config within a Git repository, in order to easily track and rollback changes. Or host your config on your NAS, to have it backed up with the rest of your files. Or use a hosted paste service, for example [snippet.host](https://snippet.host/), which supports never-expiring CORS-enabled pastes, which can also be edited later.
 
 You will obviously not be able to write updates to remote configs directly through the UI editor, but you can still make and preview changes, then use the export menu to get a copy of the new config, which can then be pasted to the remote source manually.
-The config file must, of course be accessible from within Dashworks. If your config contains sensitive info (like API keys, credentials, secret URLs, etc), take care not to expose it to the internet.
+The config file must, of course be accessible from within DashWorks. If your config contains sensitive info (like API keys, credentials, secret URLs, etc), take care not to expose it to the internet.
 
 The following example shows creating a config, publishing it as a [Gist](https://gist.github.com/), copying the URL to the raw file, and using it within your dashboard.
 

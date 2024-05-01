@@ -1,6 +1,6 @@
 {
-  "name": "Dashworks Web",
-  "short_name": "Dashworks",
+  "name": "DashWorks Web",
+  "short_name": "DashWorks",
   "description": "A Dashboard for your Homelab",
   "scope": "/",
   "start_url": "./",

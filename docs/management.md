@@ -1,6 +1,6 @@
 # App Management
 
-_The following article is a primer on managing self-hosted apps. It covers everything from keeping the Dashworks (or any other app) up-to-date, secure, backed up, to other topics like auto-starting, monitoring, log management, web server configuration and using custom domains._
+_The following article is a primer on managing self-hosted apps. It covers everything from keeping the DashWorks (or any other app) up-to-date, secure, backed up, to other topics like auto-starting, monitoring, log management, web server configuration and using custom domains._
 
 ## Contents
 
@@ -30,11 +30,11 @@ _The following article is a primer on managing self-hosted apps. It covers every
 
 Although not essential, you will most likely want to provide several assets to your running app.
 
-This is easy to do using [Docker Volumes](https://docs.docker.com/storage/volumes/), which lets you share a file or directory between your host system, and the container. Volumes are specified in the Docker run command, or Docker compose file, using the `--volume` or `-v` flags. The value of which consists of the path to the file / directory on your host system, followed by the destination path within the container. Fields are separated by a colon (`:`), and must be in the correct order. For example: `-v ~/alicia/my-local-conf.yml:/app/public/conf.yml`
+This is easy to do using [Docker Volumes](https://docs.docker.com/storage/volumes/), which lets you share a file or directory between your host system, and the container. Volumes are specified in the Docker run command, or Docker compose file, using the `--volume` or `-v` flags. The value of which consists of the path to the file / directory on your host system, followed by the destination path within the container. Fields are separated by a colon (`:`), and must be in the correct order. For example: `-v ~/khulnasoft/my-local-conf.yml:/app/user-data/conf.yml`
 
-In Dashworks, commonly configured resources include:
+In DashWorks, commonly configured resources include:
 
-- `./public/conf.yml` - Your main application config file
+- `./user-data/conf.yml` - Your main application config file
 - `./public/item-icons` - A directory containing your own icons. This allows for offline access, and better performance than fetching from a CDN
 - Also within `./public` you'll find standard website assets, including `favicon.ico`, `manifest.json`, `robots.txt`, etc. There's no need to pass these in, but you can do so if you wish
 - `/src/styles/user-defined-themes.scss` - A stylesheet for applying custom CSS to your app. You can also write your own themes here.
@@ -47,7 +47,7 @@ In Dashworks, commonly configured resources include:
 
 If you're running an app in Docker, then commands will need to be passed to the container to be executed. This can be done by preceding each command with `docker exec -it [container-id]`, where container ID can be found by running `docker ps`. For example `docker exec -it 26c156c467b4 yarn build`. You can also enter the container, with `docker exec -it [container-id] /bin/ash`, and navigate around it with normal Linux commands.
 
-Dashworks has several commands that can be used for various tasks, you can find a list of these either in the [Developing Docs](/docs/developing.md#project-commands), or by looking at the [`package.json`](https://github.com/KhulnaSoft/dashworks/blob/master/package.json#L5). These can be used by running `yarn [command-name]`.
+DashWorks has several commands that can be used for various tasks, you can find a list of these either in the [Developing Docs](/docs/developing.md#project-commands), or by looking at the [`package.json`](https://github.com/KhulnaSoft/dashworks/blob/master/package.json#L5). These can be used by running `yarn [command-name]`.
 
 **[⬆️ Back to Top](#management)**
 
@@ -55,7 +55,7 @@ Dashworks has several commands that can be used for various tasks, you can find 
 
 ## Healthchecks
 
-Healthchecks are configured to periodically check that Dashworks is up and running correctly on the specified port. By default, the health script is called every 5 minutes, but this can be modified with the `--health-interval` option. You can check the current container health with: `docker inspect --format "{{json .State.Health }}" [container-id]`, and a summary of health status will show up under `docker ps`. You can also manually request the current application status by running `docker exec -it [container-id] yarn health-check`. You can disable healthchecks altogether by adding the `--no-healthcheck` flag to your Docker run command.
+Healthchecks are configured to periodically check that DashWorks is up and running correctly on the specified port. By default, the health script is called every 5 minutes, but this can be modified with the `--health-interval` option. You can check the current container health with: `docker inspect --format "{{json .State.Health }}" [container-id]`, and a summary of health status will show up under `docker ps`. You can also manually request the current application status by running `docker exec -it [container-id] yarn health-check`. You can disable healthchecks altogether by adding the `--no-healthcheck` flag to your Docker run command.
 
 To restart unhealthy containers automatically, check out [Autoheal](https://hub.docker.com/r/willfarrell/autoheal/). This image watches for unhealthy containers, and automatically triggers a restart. (This is a stand in for Docker's `--exit-on-unhealthy` that was proposed, but [not merged](https://github.com/moby/moby/pull/22719)). There's also [Deunhealth](https://github.com/qdm12/deunhealth), which is super light-weight, and doesn't require network access.
 
@@ -108,7 +108,7 @@ To restart the container after something within it has crashed, consider using [
 
 ## Updating
 
-Dashworks is under active development, so to take advantage of the latest features, you may need to update your instance every now and again.
+DashWorks is under active development, so to take advantage of the latest features, you may need to update your instance every now and again.
 
 ### Updating Docker Container
 
@@ -135,9 +135,9 @@ docker run -d \
 
 For more information, see the [Watchtower Docs](https://containrrr.dev/watchtower/)
 
-### Updating Dashworks from Source
+### Updating DashWorks from Source
 
-Stop your current instance of Dashworks, then navigate into the source directory. Pull down the latest code, with `git pull origin master`, then update dependencies with `yarn`, rebuild with `yarn build`, and start the server again with `yarn start`.
+Stop your current instance of DashWorks, then navigate into the source directory. Pull down the latest code, with `git pull origin master`, then update dependencies with `yarn`, rebuild with `yarn build`, and start the server again with `yarn start`.
 
 **[⬆️ Back to Top](#management)**
 
@@ -195,11 +195,13 @@ Restore:
 docker run --rm -v some_volume:/volume -v /tmp:/backup alpine sh -c "rm -rf /volume/* /volume/..?* /volume/.[!.]* ; tar -C /volume/ -xjf /backup/some_archive.tar.bz2"
 ```
 
-### Dashworks-Specific Backup
+### DashWorks-Specific Backup
 
-Since Dashworks is open source, and freely available, providing you're configuration data is passed in as volumes, there shouldn't be any need to backup the main container. Your main config file, and any assets you're using should be kept backed up, preferably in at least two places, and you should ensure that you can easily restore from backup, if needed.
+All configuration and dashboard settings are stored in your `user-data/conf.yml` file. If you provide additional assets (like icons, fonts, themes, etc), these will also live in the `user-data` directory. So to backup all DashWorks data, this is the only directory you need to backup.
 
-Dashworks also has a built-in cloud backup feature, which is free for personal users, and will let you make and restore fully encrypted backups of your config directly through the UI. To learn more, see the [Cloud Backup Docs](/docs/backup-restore.md)
+Since DashWorks is open source, there shouldn't be any need to backup the main container.
+
+DashWorks also has a built-in cloud backup feature, which is free for personal users, and will let you make and restore fully encrypted backups of your config directly through the UI. To learn more, see the [Cloud Backup Docs](/docs/backup-restore.md)
 
 **[⬆️ Back to Top](#management)**
 
@@ -207,7 +209,7 @@ Dashworks also has a built-in cloud backup feature, which is free for personal u
 
 ## Scheduling
 
-If you need to periodically schedule the running of a given command on Dashworks (or any other container), then a useful tool for doing so it [ofelia](https://github.com/mcuadros/ofelia). This runs as a Docker container and is really useful for things like backups, logging, updating, notifications, etc. Crons are specified using Go's crontab format, and a useful tool for visualizing this is [crontab.guru](https://crontab.guru/). This can also be done natively with Alpine: `docker run -it alpine ls /etc/periodic`.
+If you need to periodically schedule the running of a given command on DashWorks (or any other container), then a useful tool for doing so it [ofelia](https://github.com/mcuadros/ofelia). This runs as a Docker container and is really useful for things like backups, logging, updating, notifications, etc. Crons are specified using Go's crontab format, and a useful tool for visualizing this is [crontab.guru](https://crontab.guru/). This can also be done natively with Alpine: `docker run -it alpine ls /etc/periodic`.
 I recommend combining this with [healthchecks](https://github.com/healthchecks/healthchecks) for easy monitoring of jobs, and failure notifications.
 
 **[⬆️ Back to Top](#management)**
@@ -216,13 +218,13 @@ I recommend combining this with [healthchecks](https://github.com/healthchecks/h
 
 ## SSL Certificates
 
-Enabling HTTPS with an SSL certificate is recommended, especially if you are hosting Dashworks anywhere other than your home. This will ensure that all traffic is encrypted in transit.
+Enabling HTTPS with an SSL certificate is recommended, especially if you are hosting DashWorks anywhere other than your home. This will ensure that all traffic is encrypted in transit.
 
 ### Auto-SSL
 
 If you are using [NGINX Proxy Manager](https://nginxproxymanager.com/), then SSL is supported out of the box. Once you've added your proxy host and web address, then set the scheme to HTTPS, then under the SSL Tab select "Request a new SSL certificate" and follow the on-screen instructions.
 
-If you're hosting Dashworks behind Cloudflare, then they offer [free and easy SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-an-ssl-certificate/)- all you need to do is enable it under the SSL/TLS tab. Or if you are using shared hosting, you may find [this tutorial](https://www.sitepoint.com/a-guide-to-setting-up-lets-encrypt-ssl-on-shared-hosting/) helpful.
+If you're hosting DashWorks behind Cloudflare, then they offer [free and easy SSL](https://www.cloudflare.com/en-gb/learning/ssl/what-is-an-ssl-certificate/)- all you need to do is enable it under the SSL/TLS tab. Or if you are using shared hosting, you may find [this tutorial](https://www.sitepoint.com/a-guide-to-setting-up-lets-encrypt-ssl-on-shared-hosting/) helpful.
 
 ### Getting a Self-Signed SSL Certificate
 
@@ -232,13 +234,13 @@ This process can be automated, using something like the [Docker-NGINX-Auto-SSL C
 
 If you're not so comfortable on the command line, then you can use a tool like [SSL For Free](https://www.sslforfree.com/) or [ZeroSSL](https://zerossl.com/) to generate your cert. They also provide step-by-step setup instructions for most platforms.
 
-### Passing a Self-Signed Certificate to Dashworks
+### Passing a Self-Signed Certificate to DashWorks
 
-Once you've generated your SSL cert, you'll need to pass it to Dashworks. This can be done by specifying the paths to your public and private keys using the `SSL_PRIV_KEY_PATH` and `SSL_PUB_KEY_PATH` environmental variables. Or if you're using Docker, then just pass public + private SSL keys in under `/etc/ssl/certs/dashworks-pub.pem` and `/etc/ssl/certs/dashworks-priv.key` respectively, e.g:
+Once you've generated your SSL cert, you'll need to pass it to DashWorks. This can be done by specifying the paths to your public and private keys using the `SSL_PRIV_KEY_PATH` and `SSL_PUB_KEY_PATH` environmental variables. Or if you're using Docker, then just pass public + private SSL keys in under `/etc/ssl/certs/dashworks-pub.pem` and `/etc/ssl/certs/dashworks-priv.key` respectively, e.g:
 
 ```bash
 docker run -d \
-  -p 8080:80 \
+  -p 8080:8080 \
   -v ~/my-private-key.key:/etc/ssl/certs/dashworks-priv.key:ro \
   -v ~/my-public-key.pem:/etc/ssl/certs/dashworks-pub.pem:ro \
   khulnasoft/dashworks:latest
@@ -254,7 +256,7 @@ Once everything is setup, you can verify your site is secured using a tool like 
 
 ## Authentication
 
-Dashworks natively supports secure authentication using KeyCloak. There is also a Simple Auth feature that doesn't require any additional setup. Usage instructions for both, as well as alternative auth methods, has now moved to the **[Authentication Docs](/docs/authentication.md)** page.
+DashWorks natively supports secure authentication using KeyCloak. There is also a Simple Auth feature that doesn't require any additional setup. Usage instructions for both, as well as alternative auth methods, has now moved to the **[Authentication Docs](/docs/authentication.md)** page.
 
 **[⬆️ Back to Top](#management)**
 
@@ -264,7 +266,7 @@ Dashworks natively supports secure authentication using KeyCloak. There is also 
 
 When you have a lot of containers, it quickly becomes hard to manage with `docker run` commands. The solution to this is [docker compose](https://docs.docker.com/compose/), a handy tool for defining all a containers run settings in a single YAML file, and then spinning up that container with a single short command - `docker compose up`. A good example of which can be seen in [@abhilesh's docker compose collection](https://github.com/abhilesh/self-hosted_docker_setups).
 
-You can use Dashworks's default [`docker-compose.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/docker-compose.yml) file as a template, and modify it according to your needs.
+You can use DashWorks's default [`docker-compose.yml`](https://github.com/KhulnaSoft/dashworks/blob/master/docker-compose.yml) file as a template, and modify it according to your needs.
 
 An example Docker compose, using the default base image from DockerHub, might look something like this:
 
@@ -273,12 +275,12 @@ An example Docker compose, using the default base image from DockerHub, might lo
 version: "3.8"
 services:
   dashworks:
-    container_name: Dashworks
+    container_name: DashWorks
     image: khulnasoft/dashworks
     volumes:
-      - /root/my-config.yml:/app/public/conf.yml
+      - /root/my-config.yml:/app/user-data/conf.yml
     ports:
-      - 4000:80
+      - 4000:8080
     environment:
       - BASE_URL=/my-dashboard
     restart: unless-stopped
@@ -296,9 +298,9 @@ services:
 
 ## Passing in Environmental Variables
 
-With Docker, you can define environmental variables under the `environment` section of your Docker compose file. Environmental variables are used to configure high-level settings, usually before the config file has been read. For a list of all supported env vars in Dashworks, see [the developing docs](/docs/developing.md#environmental-variables), or the default [`.env`](https://github.com/KhulnaSoft/dashworks/blob/master/.env) file.
+With Docker, you can define environmental variables under the `environment` section of your Docker compose file. Environmental variables are used to configure high-level settings, usually before the config file has been read. For a list of all supported env vars in DashWorks, see [the developing docs](/docs/developing.md#environmental-variables), or the default [`.env`](https://github.com/KhulnaSoft/dashworks/blob/master/.env) file.
 
-A common use case, is to run Dashworks under a sub-page, instead of at the root of a URL (e.g. `https://my-homelab.local/dashworks` instead of `https://dashworks.my-homelab.local`). In this use-case, you'd specify the `BASE_URL` variable in your compose file.
+A common use case, is to run DashWorks under a sub-page, instead of at the root of a URL (e.g. `https://my-homelab.local/dashworks` instead of `https://dashworks.my-homelab.local`). In this use-case, you'd specify the `BASE_URL` variable in your compose file.
 
 ```yaml
 environment:
@@ -316,7 +318,7 @@ If you've got many environmental variables, you might find it useful to put them
 
 Any external requests made to a different origin (app/ service under a different domain) will be blocked if the correct headers are not specified. This is known as [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) (CORS) and is a security feature built into modern browsers.
 
-If you see a CORS error in your console, this can be easily fixed by setting the correct headers. This is not a bug with Dashworks, so please don't raise it as a bug!
+If you see a CORS error in your console, this can be easily fixed by setting the correct headers. This is not a bug with DashWorks, so please don't raise it as a bug!
 
 ### Example Headers
 
@@ -332,7 +334,7 @@ These examples are using:
 
 - `Access-Control-Allow-Origin` header, but depending on what type of content you are enabling, this will vary. For example, to allow a site to be loaded in an iframe (for the modal or workspace views) you would use `X-Frame-Options`.
 - The domain root (`/`), if your're hosting from a sub-page, replace that with your path.
-- A wildcard (`*`), which would allow access from traffic on any domain, this is discouraged, and you should replace it with the URL where you are hosting Dashworks. Note that for requests that transport sensitive info, like credentials (e.g. Keycloak login), the wildcard is [disallowed all together](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials) and will be blocked.
+- A wildcard (`*`), which would allow access from traffic on any domain, this is discouraged, and you should replace it with the URL where you are hosting DashWorks. Note that for requests that transport sensitive info, like credentials (e.g. Keycloak login), the wildcard is [disallowed all together](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#requests_with_credentials) and will be blocked.
 
 #### Caddy
 
@@ -507,15 +509,15 @@ Done :)
 
 ### TCP Tunnel
 
-If you're running Dashworks on your local network, behind a firewall, but need to temporarily share it with someone external, this can be achieved quickly and securely using [Ngrok](https://ngrok.com/). It's basically a super slick, encrypted TCP tunnel that provides an internet-accessible address that anyone use to access your local service, from anywhere.
+If you're running DashWorks on your local network, behind a firewall, but need to temporarily share it with someone external, this can be achieved quickly and securely using [Ngrok](https://ngrok.com/). It's basically a super slick, encrypted TCP tunnel that provides an internet-accessible address that anyone use to access your local service, from anywhere.
 
-To get started, [Download](https://ngrok.com/download) and install Ngrok for your system, then just run `ngrok http [port]` (replace the port with the http port where Dashworks is running, e.g. 8080). When [using https](https://ngrok.com/docs#http-local-https), specify the full local url/ ip including the protocol.
+To get started, [Download](https://ngrok.com/download) and install Ngrok for your system, then just run `ngrok http [port]` (replace the port with the http port where DashWorks is running, e.g. 8080). When [using https](https://ngrok.com/docs#http-local-https), specify the full local url/ ip including the protocol.
 
 Some Ngrok features require you to be authenticated, you can [create a free account](https://dashboard.ngrok.com/signup) and generate a token in [your dashboard](https://dashboard.ngrok.com/auth/your-authtoken), then run `ngrok authtoken [token]`.
 
-It's recommended to use authentication for any publicly accessible service. Dashworks has an [Auth](/docs/authentication.md) feature built in, but an even easier method it to use the [`-auth`](https://ngrok.com/docs#http-auth) switch. E.g. `ngrok http -auth="username:password123" 8080`
+It's recommended to use authentication for any publicly accessible service. DashWorks has an [Auth](/docs/authentication.md) feature built in, but an even easier method it to use the [`-auth`](https://ngrok.com/docs#http-auth) switch. E.g. `ngrok http -auth="username:password123" 8080`
 
-By default, your web app is assigned a randomly generated ngrok domain, but you can also use your own custom domain. Under the [Domains Tab](https://dashboard.ngrok.com/endpoints/domains) of your Ngrok dashboard, add your domain, and follow the CNAME instructions. You can now use your domain, with the [`-hostname`](https://ngrok.com/docs#http-custom-domains) switch, e.g. `ngrok http -region=us -hostname=dashworks.example.com 8080`. If you don't have your own domain name, you can instead use a custom sub-domain (e.g. `alicia-dashworks.ngrok.io`), using the [`-subdomain`](https://ngrok.com/docs#custom-subdomain-names) switch.
+By default, your web app is assigned a randomly generated ngrok domain, but you can also use your own custom domain. Under the [Domains Tab](https://dashboard.ngrok.com/endpoints/domains) of your Ngrok dashboard, add your domain, and follow the CNAME instructions. You can now use your domain, with the [`-hostname`](https://ngrok.com/docs#http-custom-domains) switch, e.g. `ngrok http -region=us -hostname=dashworks.example.com 8080`. If you don't have your own domain name, you can instead use a custom sub-domain (e.g. `khulnasoft-dashworks.ngrok.io`), using the [`-subdomain`](https://ngrok.com/docs#custom-subdomain-names) switch.
 
 To integrate this into your docker-compose, take a look at the [gtriggiano/ngrok-tunnel](https://github.com/gtriggiano/ngrok-tunnel) container.
 
@@ -534,7 +536,7 @@ It's worth noting that Ngrok isn't the only option here, other options include: 
 
 ### Using DNS
 
-For locally running services, a domain can be set up directly in the DNS records. This method is really quick and easy, and doesn't require you to purchase an actual domain. Just update your networks DNS resolver, to point your desired URL to the local IP where Dashworks (or any other app) is running. For example, a line in your hosts file might look something like: `192.168.0.2 dashworks.homelab.local`.
+For locally running services, a domain can be set up directly in the DNS records. This method is really quick and easy, and doesn't require you to purchase an actual domain. Just update your networks DNS resolver, to point your desired URL to the local IP where DashWorks (or any other app) is running. For example, a line in your hosts file might look something like: `192.168.0.2 dashworks.homelab.local`.
 
 If you're using Pi-Hole, a similar thing can be done in the `/etc/dnsmasq.d/03-custom-dns.conf` file, add a line like: `address=/dashworks.example.com/192.168.2.0` for each of your services.
 
@@ -550,7 +552,7 @@ upstream dashworks {
 }
 
 server {
-  listen         80;
+  listen         8080;
   server_name    dashworks.mydomain.com;
 
   # Setup SSL
@@ -577,7 +579,7 @@ Similarly, a basic `Caddyfile` might look like:
 
 ```text
 dashworks.example.com {
-    reverse_proxy / nginx:80
+    reverse_proxy / nginx:8080
 }
 ```
 
@@ -613,12 +615,12 @@ To prevent known container escape vulnerabilities, which typically end in escala
 
 Docker enables you to limit resource consumption (CPU, memory, disk) on a per-container basis. This not only enhances system performance, but also prevents a compromised container from consuming a large amount of resources, in order to disrupt service or perform malicious activities. To learn more, see the [Resource Constraints Docs](https://docs.docker.com/config/containers/resource_constraints/)
 
-For example, to run Dashworks with max of 1GB ram, and max of 50% of 1 CP core:
-`docker run -d -p 8080:80 --cpus=".5" --memory="1024m" khulnasoft/dashworks:latest`
+For example, to run DashWorks with max of 1GB ram, and max of 50% of 1 CP core:
+`docker run -d -p 8080:8080 --cpus=".5" --memory="1024m" khulnasoft/dashworks:latest`
 
 ### Don't Run as Root
 
-Running a container with admin privileges gives it more power than it needs, and can be abused. Dashworks does not need any root privileges, and Docker by default doesn't run containers as root, so providing you don't specifically type sudo, you should be all good here.
+Running a container with admin privileges gives it more power than it needs, and can be abused. DashWorks does not need any root privileges, and Docker by default doesn't run containers as root, so providing you don't specifically type sudo, you should be all good here.
 
 Note that if you're facing permission issues on Debian-based systems, you may need to add your user to the Docker group. First create the group: `sudo groupadd docker`,  then add your (non-root) user: `sudo usermod −aG docker [my-username]`, finally `newgrp docker` to refresh.
 
@@ -629,7 +631,7 @@ One of the best ways to prevent privilege escalation attacks, is to configure th
 You can specify a user, using the [`--user` param](https://docs.docker.com/engine/reference/run/#user), and should include the user ID (`UID`), which can be found by running `id -u`, and the and the group ID (`GID`), using `id -g`.
 
 With Docker run, you specify it like:
-`docker run --user 1000:1000 -p 8080:80 khulnasoft/dashworks`
+`docker run --user 1000:1000 -p 8080:8080 khulnasoft/dashworks`
 
 Of if you're using Docker-compose, you could use an environmental variable
 
@@ -639,7 +641,7 @@ services:
   dashworks:
     image: khulnasoft/dashworks
     user: ${CURRENT_UID}
-    ports: [ 4000:80 ]
+    ports: [ 4000:8080 ]
 ```
 
 And then to set the variable, and start the container, run: `CURRENT_UID=$(id -u):$(id -g) docker-compose up`
@@ -652,14 +654,14 @@ With Docker run, you can use the `--cap-drop` flag to remove capabilities, you c
 
 Note that dropping privileges and capabilities on runtime is not fool-proof, and often any leftover privileges can be used to re-escalate, see [POS36-C](https://wiki.sei.cmu.edu/confluence/display/c/POS36-C.+Observe+correct+revocation+order+while+relinquishing+privileges).
 
-Here's an example using docker-compose, removing privileges that are not required for Dashworks to run:
+Here's an example using docker-compose, removing privileges that are not required for DashWorks to run:
 
 ```yaml
 version: "3.8"
 services:
   dashworks:
     image: khulnasoft/dashworks
-    ports: [ 4000:80 ]
+    ports: [ 4000:8080 ]
     cap_drop:
     - ALL
     cap_add:
@@ -675,7 +677,7 @@ services:
 To prevent processes inside the container from getting additional privileges, pass in the `--security-opt=no-new-privileges:true` option to the Docker run command (see [docs](https://docs.docker.com/engine/reference/run/#security-configuration)).
 
 Run Command:
-`docker run --security-opt=no-new-privileges:true -p 8080:80 khulnasoft/dashworks`
+`docker run --security-opt=no-new-privileges:true -p 8080:8080 khulnasoft/dashworks`
 
 Docker Compose
 
@@ -697,18 +699,18 @@ Similarly, never expose `/var/run/docker.sock` to other containers as a volume, 
 
 ### Use Read-Only Volumes
 
-You can specify that a specific volume should be read-only by appending `:ro` to the `-v` switch. For example, while running Dashworks, if we want our config to be writable, but keep all other assets protected, we would do:
+You can specify that a specific volume should be read-only by appending `:ro` to the `-v` switch. For example, while running DashWorks, if we want our config to be writable, but keep all other assets protected, we would do:
 
 ```bash
 docker run -d \
-  -p 8080:80 \
-  -v ~/dashworks-conf.yml:/app/public/conf.yml \
+  -p 8080:8080 \
+  -v ~/dashworks-conf.yml:/app/user-data/conf.yml \
   -v ~/dashworks-icons:/app/public/item-icons:ro \
   -v ~/dashworks-theme.scss:/app/src/styles/user-defined-themes.scss:ro \
   khulnasoft/dashworks:latest
 ```
 
-You can also prevent a container from writing any changes to volumes on your host's disk, using the `--read-only` flag. Although, for Dashworks, you will not be able to write config changes to disk, when edited through the UI with this method. You could make this work, by specifying the config directory as a temp write location, with `--tmpfs /app/public/conf.yml` - but  that this will not write the volume back to your host.
+You can also prevent a container from writing any changes to volumes on your host's disk, using the `--read-only` flag. Although, for DashWorks, you will not be able to write config changes to disk, when edited through the UI with this method. You could make this work, by specifying the config directory as a temp write location, with `--tmpfs /app/user-data/conf.yml` - but  that this will not write the volume back to your host.
 
 ### Set the Logging Level
 
@@ -722,7 +724,7 @@ Unless otherwise configured, containers can communicate among each other, so run
 
 ### Specify the Tag
 
-Using fixed tags (as opposed to `:latest` ) will ensure immutability, meaning the base image will not change between builds. Note that for Dashworks, the app is being actively developed, new features, bug fixes and general improvements are merged each week, and if you use a fixed version you will not enjoy these benefits. So it's up to you weather you would prefer a stable and reproducible environment, or the latest features and enhancements.
+Using fixed tags (as opposed to `:latest` ) will ensure immutability, meaning the base image will not change between builds. Note that for DashWorks, the app is being actively developed, new features, bug fixes and general improvements are merged each week, and if you use a fixed version you will not enjoy these benefits. So it's up to you weather you would prefer a stable and reproducible environment, or the latest features and enhancements.
 
 ### Container Security Scanning
 
@@ -752,11 +754,11 @@ Docker supports several modules that let you write your own security profiles.
 
 > _The following section only applies if you are not using Docker, and would like to use your own web server_
 
-Dashworks ships with a pre-configured Node.js server, in [`server.js`](https://github.com/KhulnaSoft/dashworks/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `yarn build`), and you need [Node.js](https://nodejs.org) installed.
+DashWorks ships with a pre-configured Node.js server, in [`server.js`](https://github.com/KhulnaSoft/dashworks/blob/master/server.js) which serves up the contents of the `./dist` directory on a given port. You can start the server by running `node server`. Note that the app must have been build (run `yarn build`), and you need [Node.js](https://nodejs.org) installed.
 
-If you wish to run Dashworks from a sub page (e.g. `example.com/dashworks`), then just set the `BASE_URL` environmental variable to that page name (in this example, `/dashworks`), before building the app, and the path to all assets will then resolve to the new path, instead of `./`.
+If you wish to run DashWorks from a sub page (e.g. `example.com/dashworks`), then just set the `BASE_URL` environmental variable to that page name (in this example, `/dashworks`), before building the app, and the path to all assets will then resolve to the new path, instead of `./`.
 
-However, since Dashworks is just a static web application, it can be served with whatever server you like. The following section outlines how you can configure a web server.
+However, since DashWorks is just a static web application, it can be served with whatever server you like. The following section outlines how you can configure a web server.
 
 Note, that if you choose not to use `server.js` to serve up the app, you will loose access to the following features:
 
@@ -778,8 +780,8 @@ Create a new file in `/etc/nginx/sites-enabled/dashworks`
 
 ```text
 server {
-	listen 80;
-	listen [::]:80;
+	listen 8080;
+	listen [::]:8080;
 
 	root /var/www/dashworks/html;
 	index index.html;
@@ -794,12 +796,12 @@ server {
 
 To use HTML5 history mode (`appConfig.routingMode: history`), replace the inside of the location block with: `try_files $uri $uri/ /index.html;`.
 
-Then upload the build contents of Dashworks's dist directory to that location.
+Then upload the build contents of DashWorks's dist directory to that location.
 For example: `scp -r ./dist/* [username]@[server_ip]:/var/www/dashworks/html`
 
 ### Apache
 
-Copy Dashworks's dist folder to your apache server, `sudo cp -r ./dashworks/dist /var/www/html/dashworks`.
+Copy DashWorks's dist folder to your apache server, `sudo cp -r ./dashworks/dist /var/www/html/dashworks`.
 
 In your Apache config, `/etc/apche2/apache2.conf` add:
 
@@ -873,10 +875,10 @@ Create a file names `firebase.json`, and populate it with something similar to:
 3. Under 'Manage feature list', click 'Edit'
 4. Find 'Application manager' in the list, enable it and hit 'Save'
 5. Log into your users cPanel account, and under 'Software' find 'Application Manager'
-6. Click 'Register Application', fill in the form using the path that Dashworks is located, and choose a domain, and hit 'Save'
+6. Click 'Register Application', fill in the form using the path that DashWorks is located, and choose a domain, and hit 'Save'
 7. The application should now show up in the list, click 'Ensure dependencies', and move the toggle switch to 'Enabled'
 8. If you need to change the port, click 'Add environmental variable', give it the name 'PORT', choose a port number and press 'Save'.
-9. Dashworks should now be running at your selected path an on a given port
+9. DashWorks should now be running at your selected path an on a given port
 
 **[⬆️ Back to Top](#management)**
 
@@ -894,11 +896,11 @@ The first step is to fork the project on GitHub, and clone it to your local syst
 
 ## Building your Own Container
 
-Similar to above, you'll first need to fork and clone Dashworks to your local system, and then install dependencies.
+Similar to above, you'll first need to fork and clone DashWorks to your local system, and then install dependencies.
 
-Then, either use Dashworks's default [`Dockerfile`](https://github.com/KhulnaSoft/dashworks/blob/master/Dockerfile) as is, or modify it according to your needs.
+Then, either use DashWorks's default [`Dockerfile`](https://github.com/KhulnaSoft/dashworks/blob/master/Dockerfile) as is, or modify it according to your needs.
 
-To build and deploy locally, first build the app with: `docker build -t dashworks .`, and then start the app with `docker run -p 8080:80 --name my-dashboard dashworks`.  Or modify the `docker-compose.yml` file, replacing `image: khulnasoft/dashworks` with `build: .` and run `docker compose up`.
+To build and deploy locally, first build the app with: `docker build -t dashworks .`, and then start the app with `docker run -p 8080:8080 --name my-dashboard dashworks`.  Or modify the `docker-compose.yml` file, replacing `image: khulnasoft/dashworks` with `build: .` and run `docker compose up`.
 
 Your container should now be running, and will appear in the list when you run `docker container ls –a`. If you'd like to enter the container, run `docker exec -it [container-id] /bin/ash`.
 

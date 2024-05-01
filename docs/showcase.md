@@ -1,4 +1,4 @@
-# *Dashworks Showcase* 🌟
+# *DashWorks Showcase* 🌟
 
 | 💗 Got a sweet dashboard? Submit it to the showcase! 👉 [See How](#submitting-your-dashboard) |
 |-|
@@ -21,8 +21,8 @@
 
 > By [@Dipanghosh](https://github.com/dipanghosh) - [dipan.de](https://dipan.de/) <sup>Re: [#777](https://github.com/KhulnaSoft/dashworks/discussions/777)</sup>
 
-> With the option of embedding iframes, it becomes possible to combine and conquer. I have set up Dashworks to include graphs from grafana, and set them so that they update automatically. I also have uptime monitors from uptime Kuma, panels from homeassistant are also possible to be included.<br>
-> Dashworks is awesome!
+> With the option of embedding iframes, it becomes possible to combine and conquer. I have set up DashWorks to include graphs from grafana, and set them so that they update automatically. I also have uptime monitors from uptime Kuma, panels from homeassistant are also possible to be included.<br>
+> DashWorks is awesome!
 
 ![screenshot-dipanghosh-dashboard](https://i.ibb.co/bPC6w2n/dipanghosh-dashboard.png)
 
@@ -36,7 +36,7 @@
 
 ---
 
-## Hugalafutro Dashworks
+## Hugalafutro DashWorks
 
 > By [@hugalafutro](https://github.com/hugalafutro) <sup>Re: [#505](https://github.com/KhulnaSoft/dashworks/discussions/505)</sup>
 
@@ -120,11 +120,11 @@
 
 ---
 
-## Dashworks Live
+## DashWorks Live
 
 > By [@KhulnaSoft](https://github.com/khulnasoft)
 
-> A dashboard I made to manage all project development links from one place. View demo at [live.dashworks.to](https://live.dashworks.to/).
+> A dashboard I made to manage all project development links from one place. View demo at [live.dashworks.khulnasoft.com](https://live.dashworks.khulnasoft.com/).
 
 ![screenshot-dashworks-live](https://raw.githubusercontent.com/KhulnaSoft/dashworks/master/docs/showcase/10-dashworks-live.png)
 
@@ -162,9 +162,9 @@
 
 ---
 
-## Dashworks Example
+## DashWorks Example
 
-> An example dashboard, by [@KhulnaSoft](https://github.com/khulnasoft). View live at [demo.dashworks.to](https://demo.dashworks.to/).
+> An example dashboard, by [@KhulnaSoft](https://github.com/khulnasoft). View live at [demo.dashworks.khulnasoft.com](https://demo.dashworks.khulnasoft.com/).
 
 ![screenshot-dashworks-example](https://i.ibb.co/YbzqPK7/demo-dashworks.png)
 
@@ -174,7 +174,7 @@
 
 > By [@skoogee](https://github.com/skoogee) (<http://zhrn.cc>) <sup>[#279](https://github.com/KhulnaSoft/dashworks/issues/279)</sup>
 
-> Dashworks, is the most complete dashboard I ever tried, has all the features, and it sets itself apart from the rest. It is my default homepage now. I am thankful to the developer @KhulnaSoft for sharing such a wonderful creation.
+> DashWorks, is the most complete dashboard I ever tried, has all the features, and it sets itself apart from the rest. It is my default homepage now. I am thankful to the developer @KhulnaSoft for sharing such a wonderful creation.
 
 [![screenshot-12-skoogee-homelab-3](https://i.ibb.co/F5yBTsT/12-skoogee-homelab-3.png?)](https://ibb.co/album/ynSwzm)
 

@@ -1,12 +1,12 @@
 # Theming
 
-By default Dashworks comes with 25+ built-in themes, which can be applied from the dropdown menu in the UI.
+By default DashWorks comes with 25+ built-in themes, which can be applied from the dropdown menu in the UI.
 
-![Built-in Themes](https://i.ibb.co/GV3wRss/Dashworks-Themes.png)
+![Built-in Themes](https://i.ibb.co/GV3wRss/DashWorks-Themes.png)
 
 You can also add your own themes, apply custom styles, and modify colors.
 
-You can customize Dashworks by writing your own CSS, which can be loaded either as an external stylesheet, set directly through the UI, or specified in the config file. Most styling options can be set through CSS variables, which are outlined below.
+You can customize DashWorks by writing your own CSS, which can be loaded either as an external stylesheet, set directly through the UI, or specified in the config file. Most styling options can be set through CSS variables, which are outlined below.
 
 The following content requires that you have a basic understanding of CSS. If you're just beginning, you may find [this article](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps) helpful.
 

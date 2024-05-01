@@ -1,6 +1,6 @@
 # Widgets
 
-Dashworks has support for displaying dynamic content in the form of widgets. There are several built-in widgets available out-of-the-box as well as support for custom widgets to display stats from almost any service with an API.
+DashWorks has support for displaying dynamic content in the form of widgets. There are several built-in widgets available out-of-the-box as well as support for custom widgets to display stats from almost any service with an API.
 
 ## Contents
 
@@ -92,6 +92,7 @@ Dashworks has support for displaying dynamic content in the form of widgets. The
   - [Widget Usage Guide](#widget-usage-guide)
   - [Continuous Updates](#continuous-updates)
   - [Proxying Requests](#proxying-requests)
+  - [Handling Secrets](#handling-secrets)
   - [Setting Timeout](#setting-timeout)
   - [Adding Labels](#adding-labels)
   - [Ignoring Errors](#ignoring-errors)
@@ -252,7 +253,7 @@ Displays an image.
 
 This may be useful if you have a service (such as Grafana - [see example](https://mattionline.de/grafana-api-export-graph-as-png/)), which periodically exports charts or other data as an image.
 
-You can also store images within Dashworks's public directory (using a Docker volume), and reference them directly. E.g. `-v ./path/to/my-homelab-logo.png:/app/public/logo.png`, then in the widget `imagePath: /logo.png`.
+You can also store images within DashWorks's public directory (using a Docker volume), and reference them directly. E.g. `-v ./path/to/my-homelab-logo.png:/app/public/logo.png`, then in the widget `imagePath: /logo.png`.
 
 Similarly, any web service that serves up widgets as image can be used. E.g. you could show current star chart for a GitHub repo, with: `imagePath: https://starchart.cc/KhulnaSoft/dashworks.svg`.
 
@@ -334,7 +335,7 @@ Notice certain web pages aren't loading? This widget quickly shows which blackli
 
 **Field** | **Type** | **Required** | **Description**
 --- | --- | --- | ---
-**`ipAddress`** | `string` |  _Optional_ | The IP to check. This can also be a domain/ host name or even an email address. If left blank, Dashworks will use your current public IP address.
+**`ipAddress`** | `string` |  _Optional_ | The IP to check. This can also be a domain/ host name or even an email address. If left blank, DashWorks will use your current public IP address.
 **`apiKey`** | `string` |  Required | You can get your free API key from [blacklistchecker.com](https://blacklistchecker.com/keys)
 
 #### Example
@@ -512,7 +513,7 @@ Keep track of your crypto balances and see recent transactions. Data is fetched 
 
 ### Code Stats
 
-Display your coding summary. [Code::Stats](https://codestats.net/) is a free and open source app that aggregates statistics about your programming activity. Dashworks supports both the public instance, as well as self-hosted versions.
+Display your coding summary. [Code::Stats](https://codestats.net/) is a free and open source app that aggregates statistics about your programming activity. DashWorks supports both the public instance, as well as self-hosted versions.
 
 <p align="center"><img width="400" src="https://i.ibb.co/dc0DTBW/code-stats.png" /></p>
 
@@ -533,7 +534,7 @@ Display your coding summary. [Code::Stats](https://codestats.net/) is a free and
 ```yaml
 - type: code-stats
   options:
-    username: alicia
+    username: khulnasoft
 ```
 
 #### Info
@@ -1382,7 +1383,7 @@ Show an overview of how you have spent your time for the current day.
 
 ### System Info
 _See [MVG Datenschutz](https://www.mvg.de/datenschutz-mvg.html)_
-Displays info about the server which Dashworks is hosted on. Includes user + host, operating system, uptime and basic memory & load data.
+Displays info about the server which DashWorks is hosted on. Includes user + host, operating system, uptime and basic memory & load data.
 
 <p align="center"><img width="400" src="https://i.ibb.co/rvDPBDF/system-info.png" /></p>
 
@@ -1400,7 +1401,7 @@ _No config options._
 
 No external data requests made
 
-Note that this widget is not available if you are running Dashworks in a container or VM. Instead you can use the [System Monitoring](#system-resource-monitoring) widgets to display stats from the host system instead.
+Note that this widget is not available if you are running DashWorks in a container or VM. Instead you can use the [System Monitoring](#system-resource-monitoring) widgets to display stats from the host system instead.
 
 ---
 
@@ -1553,6 +1554,19 @@ Displays the number of queries blocked by [Pi-Hole](https://pi-hole.net/).
     hostname: http://192.168.130.1
     apiKey: xxxxxxxxxxxxxxxxxxxxxxx
 ```
+
+> [!TIP]
+> In order to avoid leaking secret data, both `hostname` and `apiKey` can leverage environment variables. Simply pass the name of the variable, which MUST start with `VUE_APP_`.
+
+```yaml
+- type: pi-hole-stats
+  options:
+    hostname: VUE_APP_pihole_ip
+    apiKey: VUE_APP_pihole_key
+```
+
+> [!IMPORTANT]
+> You will need to restart the server (or the docker image) if adding/editing an env var for this to be refreshed.
 
 #### Info
 
@@ -2145,7 +2159,7 @@ This will show the list of VMs, with a title and a linked fotter, hiding VM temp
 #### Troubleshooting
 - **404 Error in development mode**: The error might disappear in production mode `yarn start`
 - **500 Error in production mode**: Try adding the certificate authority (CA) certificate of your Proxmox host to Node.js. 
-  - Download the Proxmox CA certificate to your Dashworks host.
+  - Download the Proxmox CA certificate to your DashWorks host.
   - Export environment variable `NODE_EXTRA_CA_CERTS` and set its value to the path of the downloaded CA certificate. Example:  `export NODE_EXTRA_CA_CERTS=/usr/local/share/ca-certificates/devlab_ca.pem`
 
 ---
@@ -2324,7 +2338,7 @@ Linkding is a self-hosted bookmarking service, which has a clean interface and i
 ## System Resource Monitoring
 
 ### Glances
-The easiest method for displaying system info and resource usage in Dashworks is with [Glances](https://nicolargo.github.io/glances/).
+The easiest method for displaying system info and resource usage in DashWorks is with [Glances](https://nicolargo.github.io/glances/).
 
 Glances is a cross-platform monitoring tool developed by [@nicolargo](https://github.com/nicolargo). It's similar to top/htop but with a [Rest API](https://glances.readthedocs.io/en/latest/api.html) and many [data exporters](https://glances.readthedocs.io/en/latest/gw/index.html) available. Under the hood, it uses [psutil](https://github.com/giampaolo/psutil) for retrieving system info.
 
@@ -2350,7 +2364,7 @@ Here an example for Docker
 
 Glances can be launched with the `glances` command. You'll need to run it in web server mode, using the `-w` option for the API to be reachable. If you don't plan on using the Web UI, then you can disable it using `--disable-webui`. See the [command reference docs](https://glances.readthedocs.io/en/latest/cmds.html) for more info.
 
-If Glaces is running on a Windows system it is recommanded to add the following arguments ```--disable-plugin all --enable-plugin cpu,mem,diskio,ip,network,containers,quicklook,load,fs,alert -w``` This is due to Glances not being that stable on windows, so disabling all plugins that aren't used by Dashworks widgets can save on ressources.
+If Glaces is running on a Windows system it is recommanded to add the following arguments ```--disable-plugin all --enable-plugin cpu,mem,diskio,ip,network,containers,quicklook,load,fs,alert -w``` This is due to Glances not being that stable on windows, so disabling all plugins that aren't used by DashWorks widgets can save on ressources.
 
 #### Options
 
@@ -2688,7 +2702,7 @@ Embed any webpage into your dashboard as a widget.
 
 ### HTML Embedded Widget
 
-Many websites and apps provide their own embeddable widgets. These can be used with Dashworks using the Embed widget, which lets you dynamically embed and HTML, CSS or JavaScript contents.
+Many websites and apps provide their own embeddable widgets. These can be used with DashWorks using the Embed widget, which lets you dynamically embed and HTML, CSS or JavaScript contents.
 
 ⚠️ **NOTE:** Use with extreme caution. Embedding a script from an untrustworthy source may have serious unintended consequences.
 
@@ -2822,7 +2836,7 @@ Note that if you have many widgets, and set them to continuously update frequent
 
 If a widget fails to make a data request, and the console shows a CORS error, this means the server is blocking client-side requests.
 
-Dashworks has a built-in CORS proxy ([`services/cors-proxy.js`](https://github.com/KhulnaSoft/dashworks/blob/master/services/cors-proxy.js)), which will be used automatically by some widgets, or can be forced to use by other by setting the `useProxy` option.
+DashWorks has a built-in CORS proxy ([`services/cors-proxy.js`](https://github.com/KhulnaSoft/dashworks/blob/master/services/cors-proxy.js)), which will be used automatically by some widgets, or can be forced to use by other by setting the `useProxy` option.
 
 For example:
 
@@ -2834,12 +2848,38 @@ widgets:
     hostname: http://pi-hole.local
 ```
 
-Alternatively, and more securely, you can set the auth headers on your service to accept requests from Dashworks. For example:
+Alternatively, and more securely, you can set the auth headers on your service to accept requests from DashWorks. For example:
 
 ```text
 Access-Control-Allow-Origin: https://location-of-dashworks/
 Vary: Origin
 ```
+
+---
+
+### Handling Secrets
+
+Some widgets require you to pass potentially sensetive info such as API keys. The `conf.yml` is not ideal for this, as it's stored in plaintext.
+Instead, for secrets you should use environmental vairables.
+
+You can do this, by setting the environmental variable name as the value, instead of the actual key, and then setting that env var in your container or local environment.
+
+The key can be named whatever you like, but it must start with `VUE_APP_` (to be picked up by Vue). If you need to update any of these values, a rebuild is required (this can be done under the Config menu in the UI, or by running `yarn build` then restarting the container).
+
+For more infomation about setting and managing your environmental variables, see [Management Docs --> Environmental Variables](/docs/management.md#passing-in-environmental-variables).
+
+For example:
+
+```yaml
+- type: weather
+  options:
+    apiKey: VUE_APP_WEATHER_TOKEN
+    city: London
+    units: metric
+    hideDetails: true
+```
+
+Then, set `VUE_APP_WEATHER_TOKEN='xxx'`
 
 ---
 
@@ -2901,7 +2941,7 @@ In some instances, this is a false positive, and the widget is actually function
 
 ### Widget Styling
 
-Like elsewhere in Dashworks, all colours can be easily modified with CSS variables.
+Like elsewhere in DashWorks, all colours can be easily modified with CSS variables.
 
 Widgets use the following color variables, which can be overridden if desired:
 
@@ -2989,7 +3029,7 @@ If you're able to, you can find more information about why the request may be fa
 
 #### CORS Errors
 
-The most common issue is a CORS error. This is a browser security mechanism which prevents the client-side app (Dashworks) from from accessing resources on a remote origin, without that server's explicit permission (e.g. with headers like Access-Control-Allow-Origin). See the MDN Docs for more info: [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
+The most common issue is a CORS error. This is a browser security mechanism which prevents the client-side app (DashWorks) from from accessing resources on a remote origin, without that server's explicit permission (e.g. with headers like Access-Control-Allow-Origin). See the MDN Docs for more info: [Cross-Origin Resource Sharing](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
 There are several ways to fix a CORS error:
 
@@ -3000,7 +3040,7 @@ You will get a CORS error if you try and access a http service from a https sour
 #### Option 2 - Set Headers
 
 If you have control over the destination (e.g. for a self-hosted service), then you can simply apply the correct headers.
-Add the `Access-Control-Allow-Origin` header, with the value of either `*` to allow requests from anywhere, or more securely, the host of where Dashworks is served from. For example:
+Add the `Access-Control-Allow-Origin` header, with the value of either `*` to allow requests from anywhere, or more securely, the host of where DashWorks is served from. For example:
 
 ```text
 Access-Control-Allow-Origin: https://url-of-dashworks.local
@@ -3014,7 +3054,7 @@ Access-Control-Allow-Origin: *
 
 #### Option 3 - Proxying Request
 
-You can route requests through Dashworks's built-in CORS proxy. Instructions and more details can be found [here](#proxying-requests). If you don't have control over the target origin, and you are running Dashworks either through Docker, with the Node server or on Netlify, then this solution will work for you.
+You can route requests through DashWorks's built-in CORS proxy. Instructions and more details can be found [here](#proxying-requests). If you don't have control over the target origin, and you are running DashWorks either through Docker, with the Node server or on Netlify, then this solution will work for you.
 
 Just add the `useProxy: true` option to the failing widget.
 

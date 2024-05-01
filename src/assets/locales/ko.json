@@ -11,7 +11,7 @@
     "enter-to-search-web": "웹에서 검색하려면 Enter 키를 누르세요"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "username-label": "사용자 이름",
     "password-label": "비밀번호",
     "login-button": "로그인",
@@ -86,10 +86,10 @@
     "sign-in-welcome": "{username}님 환영합니다!"
   },
   "updates": {
-    "app-version-note": "Dashworks 버전",
+    "app-version-note": "DashWorks 버전",
     "up-to-date": "최신 버전",
     "out-of-date": "업데이트 가능",
-    "unsupported-version-l1": "지원되지 않는 버전의 Dashworks를 사용하고 있습니다.",
+    "unsupported-version-l1": "지원되지 않는 버전의 DashWorks를 사용하고 있습니다.",
     "unsupported-version-l2": "최상의 경험과 최신 보안 패치를 위해 다음 버전으로 업데이트하세요."
   },
   "language-switcher": {
@@ -146,7 +146,7 @@
   },
   "cloud-sync": {
     "title": "클라우드 백업 및 복원",
-    "intro-l1": "클라우드 백업 및 복원은 옵션 기능으로 설정을 인터넷에 업로드한 다음 다른 기기나 Dashworks 인스턴스에서 복원할 수 있습니다.",
+    "intro-l1": "클라우드 백업 및 복원은 옵션 기능으로 설정을 인터넷에 업로드한 다음 다른 기기나 DashWorks 인스턴스에서 복원할 수 있습니다.",
     "intro-l2": "모든 데이터는 암호를 키로 사용하여 AES로 종단 간 암호화됩니다..",
     "intro-l3": "자세한 내용은",
     "backup-title-setup": "백업 생성하기",

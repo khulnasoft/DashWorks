@@ -11,7 +11,7 @@
     "enter-to-search-web":"Tryck på retur för att söka på webben"
   },
   "login":{
-    "title":"Dashworks",
+    "title":"DashWorks",
     "username-label":"Användarnamn",
     "password-label":"Lösenord",
     "login-button":"Logga in",
@@ -86,10 +86,10 @@
     "sign-in-welcome":"Hej {username}!"
   },
   "updates":{
-    "app-version-note":"Dashworks-version",
+    "app-version-note":"DashWorks-version",
     "up-to-date":"Uppdaterat",
     "out-of-date":"Uppdatering finns",
-    "unsupported-version-l1":"Du använder en icke-stödd version av Dashworks",
+    "unsupported-version-l1":"Du använder en icke-stödd version av DashWorks",
     "unsupported-version-l2":"För den bästa upplevelsen och de senaste säkerhetskorrigeringarna, uppdatera till"
   },
   "language-switcher":{
@@ -146,7 +146,7 @@
   },
   "cloud-sync":{
     "title":"Molnsäkerhetskopiering och återställning",
-    "intro-l1":"Molnsäkerhetskopiering och återställning är en valfri funktion som gör att du kan ladda upp din konfiguration till internet och sedan återställa den på någon annan enhet eller instans av Dashworks.",
+    "intro-l1":"Molnsäkerhetskopiering och återställning är en valfri funktion som gör att du kan ladda upp din konfiguration till internet och sedan återställa den på någon annan enhet eller instans av DashWorks.",
     "intro-l2":"All data är fullständigt end-to-end krypterad med AES, med ditt lösenord som nyckel.",
     "intro-l3":"För mer information, vänligen se",
     "backup-title-setup":"Gör en säkerhetskopia",

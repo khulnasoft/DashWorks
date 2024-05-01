@@ -14,7 +14,7 @@
     "loading": "Încărcare"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "guest-label": "Acces Vizitator",
     "username-label": "Nume utilizator",
     "password-label": "Parolă",
@@ -49,9 +49,9 @@
     "error-log": "Jurnal Erori",
     "no-errors": "Nicio eroare recentă detectată",
     "help-support": "Ajutor & Suport",
-    "help-support-description" : "Pentru suport în utilizarea sau configurarea Dashworks, consultați",
+    "help-support-description" : "Pentru suport în utilizarea sau configurarea DashWorks, consultați",
     "help-support-discussions": "Discuțiile",
-    "support-dashworks": "Suport pentru Dashworks",
+    "support-dashworks": "Suport pentru DashWorks",
     "support-dashworks-description": "Pentru moduri în care poți contribui, verificați",
     "support-dashworks-link": "Pagina de Contribuții",
     "report-bug": "Raportează o Eroare",
@@ -61,7 +61,7 @@
     "source": "Sursă",
     "documentation": "Documentație",
     "privacy-and-security": "Confidențialitate & Securitate",
-    "privacy-and-security-l1": "Pentru o descompunere a modului în care datele tale sunt gestionate de Dashworks, consultați",
+    "privacy-and-security-l1": "Pentru o descompunere a modului în care datele tale sunt gestionate de DashWorks, consultați",
     "privacy-and-security-privacy-policy": "Politica de Confidențialitate",
     "privacy-and-security-advice": "Pentru sfaturi în securizarea tabloului tău de bord, poți consulta",
     "privacy-and-security-advice-link": "Documentele de Management",
@@ -136,10 +136,10 @@
     "open": "Deschide"
   },
   "updates": {
-    "app-version-note": "Versiune Dashworks",
+    "app-version-note": "Versiune DashWorks",
     "up-to-date": "Actualizat",
     "out-of-date": "Actualizare Disponibilă",
-    "unsupported-version-l1": "Utilizați o versiune nesuportată de Dashworks",
+    "unsupported-version-l1": "Utilizați o versiune nesuportată de DashWorks",
     "unsupported-version-l2": "Pentru cea mai bună experiență și patch-uri de securitate recente, vă rugăm să actualizați la"
   },
   "language-switcher": {
@@ -196,7 +196,7 @@
   },
   "cloud-sync": {
     "title": "Backup și Restaurare în Cloud",
-    "intro-l1": "Backup-ul și restaurarea în cloud este o caracteristică opțională, care vă permite să încărcați configurația pe internet și apoi să o restaurați pe orice alt dispozitiv sau instanță de Dashworks.",
+    "intro-l1": "Backup-ul și restaurarea în cloud este o caracteristică opțională, care vă permite să încărcați configurația pe internet și apoi să o restaurați pe orice alt dispozitiv sau instanță de DashWorks.",
     "intro-l2": "Toate datele sunt criptate end-to-end cu AES, folosind parola dumneavoastră ca cheie.",
     "intro-l3": "Pentru mai multe informații, vă rugăm să consultați",
     "intro-docs": "documentația",

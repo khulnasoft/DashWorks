@@ -1,6 +1,6 @@
 # Status Indicators
 
-Dashworks has an optional feature that can display a small icon next to each of your running services, indicating it's current status. This can be useful if you are using Dashworks as your homelab's start page, as it gives you an overview of the health of each of your running services. The status feature will show response time, response code, online/ offline check and if applicable, a relevant error message.
+DashWorks has an optional feature that can display a small icon next to each of your running services, indicating it's current status. This can be useful if you are using DashWorks as your homelab's start page, as it gives you an overview of the health of each of your running services. The status feature will show response time, response code, online/ offline check and if applicable, a relevant error message.
 
 <p align="center">
   <img width="800" src="/docs/assets/status-check-demo.gif" />
@@ -42,9 +42,9 @@ sections:
 
 ## Continuous Checking
 
-By default, with status indicators enabled Dashworks will check an applications status on page load, and will not keep indicators updated. This is usually desirable behavior. However, if you do want the status indicators to continue to poll your running services, this can be enabled by setting the `statusCheckInterval` attribute. Here you define an interval as an integer in seconds, and Dashworks will poll your apps every x seconds. Note that if this number is very low (below 5 seconds), you may notice the app running slightly slower.
+By default, with status indicators enabled DashWorks will check an applications status on page load, and will not keep indicators updated. This is usually desirable behavior. However, if you do want the status indicators to continue to poll your running services, this can be enabled by setting the `statusCheckInterval` attribute. Here you define an interval as an integer in seconds, and DashWorks will poll your apps every x seconds. Note that if this number is very low (below 5 seconds), you may notice the app running slightly slower.
 
-The following example, will instruct Dashworks to continuously check the status of your services every 20 seconds.
+The following example, will instruct DashWorks to continuously check the status of your services every 20 seconds.
 
 ```text
 appConfig:
@@ -77,7 +77,7 @@ If you're using status checks, and despite a given service being online, the che
 
 If your service requires requests to include any authorization in the headers, then use the  `statusCheckHeaders` property, as described  [above](#setting-custom-headers).
 
-If you are still having issues, it may be because your target application is blocking requests from Dashworks's IP. This is a [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and can be fixed by setting the headers on your target app, to include:
+If you are still having issues, it may be because your target application is blocking requests from DashWorks's IP. This is a [CORS error](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), and can be fixed by setting the headers on your target app, to include:
 
 ```text
 Access-Control-Allow-Origin: https://location-of-dashworks/
@@ -90,20 +90,20 @@ If your service is online, but responds with a status code that is not in the 2x
 
 If you get an error, like `Service Unavailable: Server resulted in a fatal error`, even when it's definitely online, this is most likely caused by missing the protocol. Don't forget to include `https://` (or whatever protocol) before the URL, and ensure that if needed, you've specified the port.
 
-Running Dashworks in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/KhulnaSoft/dashworks/discussions/445).
+Running DashWorks in HOST network mode, instead of BRIDGE will allow status check access to other services in HOST mode. For more info, see [#445](https://github.com/KhulnaSoft/dashworks/discussions/445).
 
-If you have firewall rules configured, then ensure that they don't prevent Dashworks from making requests to the other services you are trying to access.
+If you have firewall rules configured, then ensure that they don't prevent DashWorks from making requests to the other services you are trying to access.
 
 Currently, the status check needs a page to be rendered, so if this URL in your browser does not return anything, then status checks will not work. This may be modified in the future, but in the meantime, a fix would be to make your own status service, which just checks if your app responds with whatever code you'd like, and then return a 200 plus renders an arbitrary message. Then just point `statusCheckUrl` to your custom page.
 
 For further troubleshooting, use an application like [Postman](https://postman.com) to diagnose the issue. Set the parameter to `GET`, and then make a call to: `https://[url-of-dashworks]/status-check/?&url=[service-url]`. Where the service URL must have first been encoded (e.g. with `encodeURIComponent()` or [urlencoder.io](https://www.urlencoder.io/))
 
-If you're serving Dashworks though a CDN, instead of using the Node server or Docker image, then the Node endpoint that makes requests will not be available to you, and all requests will fail. A workaround for this may be implemented in the future, but in the meantime, your only option is to use the Docker or Node deployment method.
+If you're serving DashWorks though a CDN, instead of using the Node server or Docker image, then the Node endpoint that makes requests will not be available to you, and all requests will fail. A workaround for this may be implemented in the future, but in the meantime, your only option is to use the Docker or Node deployment method.
 
 ## How it Works
 
-When the app is loaded, if `appConfig.statusCheck: true` is set, or if any items have the `statusCheck: true` enabled, then Dashworks will make a request, to `https://[your-host-name]/status-check?url=[address-or-servce]` (may al include GET params for headers and the secure flag), which in turn will ping that running service, and respond with a status code. Response time is calculated from the difference between start and end time of the request.
+When the app is loaded, if `appConfig.statusCheck: true` is set, or if any items have the `statusCheck: true` enabled, then DashWorks will make a request, to `https://[your-host-name]/status-check?url=[address-or-servce]` (may al include GET params for headers and the secure flag), which in turn will ping that running service, and respond with a status code. Response time is calculated from the difference between start and end time of the request.
 
 When the response completes, an indicator will display next to each item. The color denotes the status: Yellow while waiting for the response to return, green if request was successful, red if it failed, and grey if it was unable to make the request all together.
 
-All requests are made straight from your server, there is no intermediary. So providing you are hosting Dashworks yourself, and are checking the status of other self-hosted services, there shouldn't be any privacy concerns. Requests are made asynchronously, so this won't have any significant impact on page load speeds. However recurring requests (using `statusCheckInterval`) may run more slowly if the interval between requests is very short.
+All requests are made straight from your server, there is no intermediary. So providing you are hosting DashWorks yourself, and are checking the status of other self-hosted services, there shouldn't be any privacy concerns. Requests are made asynchronously, so this won't have any significant impact on page load speeds. However recurring requests (using `statusCheckInterval`) may run more slowly if the interval between requests is very short.

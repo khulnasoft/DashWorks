@@ -14,7 +14,7 @@
     "loading": "正在載入"
   },
   "login": {
-    "title": "Dashworks",
+    "title": "DashWorks",
     "guest-label": "訪客存取",
     "username-label": "使用者名稱",
     "password-label": "密碼",
@@ -49,10 +49,10 @@
     "error-log": "錯誤紀錄",
     "no-errors": "近期未偵測到錯誤",
     "help-support": "幫助與支援",
-    "help-support-description": "關於取得執行或設定 Dashworks 的支援，請前往",
+    "help-support-description": "關於取得執行或設定 DashWorks 的支援，請前往",
     "help-support-discussions": "討論區",
-    "support-dashworks": "支持 Dashworks",
-    "support-dashworks-description": "您也能幫助 Dashworks！請參閱",
+    "support-dashworks": "支持 DashWorks",
+    "support-dashworks-description": "您也能幫助 DashWorks！請參閱",
     "support-dashworks-link": "貢獻頁面",
     "report-bug": "回報錯誤",
     "report-bug-description": "若您認為您找到錯誤，請",
@@ -61,7 +61,7 @@
     "source": "原始碼",
     "documentation": "說明文件",
     "privacy-and-security": "隱私權和安全性",
-    "privacy-and-security-l1": "若要了解 Dashworks 是如何管理您的資料，請參閱",
+    "privacy-and-security-l1": "若要了解 DashWorks 是如何管理您的資料，請參閱",
     "privacy-and-security-privacy-policy": "隱私權政策",
     "privacy-and-security-advice": "關於提升儀錶板安全性的建議，請參閱",
     "privacy-and-security-advice-link": "管理文件",
@@ -136,10 +136,10 @@
     "open": "開啟"
   },
   "updates": {
-    "app-version-note": "Dashworks 版本",
+    "app-version-note": "DashWorks 版本",
     "up-to-date": "已經是最新版本",
     "out-of-date": "有可用更新",
-    "unsupported-version-l1": "您使用的是不受支援的 Dashworks 版本",
+    "unsupported-version-l1": "您使用的是不受支援的 DashWorks 版本",
     "unsupported-version-l2": "為獲得最佳體驗和最新的安全性更新，請更新至"
   },
   "language-switcher": {
@@ -196,7 +196,7 @@
   },
   "cloud-sync": {
     "title": "雲端備份 & 復原",
-    "intro-l1": "雲端備份和復原是選用功能，讓您能夠把設定上傳到網路，然後在其他裝置或 Dashworks 實例上復原。",
+    "intro-l1": "雲端備份和復原是選用功能，讓您能夠把設定上傳到網路，然後在其他裝置或 DashWorks 實例上復原。",
     "intro-l2": "所有資料都使用 AES 端到端加密，並使用您的密碼作為金鑰。",
     "intro-l3": "若想了解更多資訊，請參考",
     "intro-docs": "說明文件",

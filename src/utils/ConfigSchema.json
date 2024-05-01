@@ -500,14 +500,9 @@
             "users": {
               "title": "Users",
               "type": "array",
-              "description": "Usernames and hashed credentials for frontend authentication",
+              "description": "Usernames and hashed credentials for frontend authentication. Needs to be set at build-time.",
               "items": {
                 "type": "object",
-                "additionalProperties": false,
-                "required": [
-                  "user",
-                  "hash"
-                ],
                 "properties": {
                   "user": {
                     "title": "Username",
@@ -521,6 +516,12 @@
                     "minLength": 64,
                     "maxLength": 64
                   },
+                  "password": {
+                    "title": "Password",
+                    "type": "string",
+                    "description": "The environmental variable pointing to a plaintext password for that user. Must start with VUE_APP_",
+                    "pattern": "^VUE_APP_.*"
+                  },
                   "type": {
                     "title": "Privileges",
                     "type": "string",
@@ -530,6 +531,43 @@
                     ],
                     "description": "User type, denoting privilege level, either admin or normal",
                     "default": "normal"
+                  }
+                },
+                "additionalProperties": false,
+                "required": ["user"],
+                "oneOf": [
+                  { "required": ["hash"] },
+                  { "required": ["password"] }
+                ]
+              }
+            },            
+            "enableHeaderAuth": {
+              "title": "Enable HeaderAuth?",
+              "type": "boolean",
+              "default": false,
+              "description": "If set to true, enable Header Authentication. See appConfig.auth.headerAuth"
+            },
+            "headerAuth": {
+              "type": "object",
+              "description": "Configuration for headerAuth",
+              "additionalProperties": false,
+              "required": [
+                "proxyWhitelist"
+              ],
+              "properties": {
+                "userHeader": {
+                  "title": "User Header",
+                  "type": "string",
+                  "description": "Header name which contains username",
+                  "default": "REMOTE_USER"
+                },
+                "proxyWhitelist": {
+                  "title": "Upstream Proxy Auth Trust",
+                  "type": "array",
+                  "description": "Upstream proxy servers to expect authenticated requests from",
+                  "items": {
+                    "type": "string",
+                    "description": "IPs of upstream proxies that will be trusted"
                   }
                 }
               }
@@ -563,7 +601,7 @@
                 "clientId": {
                   "title": "Client ID",
                   "type": "string",
-                  "description": "The Client ID of the client you created for use with Dashworks"
+                  "description": "The Client ID of the client you created for use with DashWorks"
                 },
                 "idpHint": {
                   "title" : "IdP hint",
@@ -631,7 +669,7 @@
           "title": "Disable Update Checks",
           "type": "boolean",
           "default": false,
-          "description": "Prevents Dashworks from checking for updates"
+          "description": "Prevents DashWorks from checking for updates"
         },
         "disableSmartSort": {
           "title": "Disable Smart-Sort",
@@ -643,7 +681,7 @@
           "title": "Enable Error Reporting",
           "type": "boolean",
           "default": false,
-          "description": "Enable anonymous crash reports. This helps bugs be found and fixed, in order to make Dashworks more stable. Reporting is off by default, and no data will EVER be collected without your explicit and active concent."
+          "description": "Enable anonymous crash reports. This helps bugs be found and fixed, in order to make DashWorks more stable. Reporting is off by default, and no data will EVER be collected without your explicit and active concent."
         },
         "sentryDsn": {
           "title": "Custom Sentry DSN",

@@ -2,7 +2,7 @@
  * A Vue directive to trigger an event when the user
  * clicks anywhere other than the specified elements
  * Used to close context menus popup modals and tips
- * Dashworks: Licensed under MIT - (C) KhulnaSoft DevOps 2024
+ * DashWorks: Licensed under MIT - (C) KhulnaSoft DevOps 2024
  */
 
 const instances = []; // List of click event instances

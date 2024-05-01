@@ -1,5 +1,5 @@
 name: Feature Request ✨
-description: Suggest an idea for future development of Dashworks
+description: Suggest an idea for future development of DashWorks
 title: '[FEATURE_REQUEST] <title>'
 labels: ['🦄 Feature Request']
 
@@ -57,6 +57,6 @@ body:
         ## Thanks 🙏
         Thank you for your feature suggestion, you should expect a reply within 48 hours :)
         Please note that there is no guarantee that your idea will be implemented
-        If you haven't already done so, please Star the Dashworks's repository on GitHub, to help other users discover it
+        If you haven't already done so, please Star the DashWorks's repository on GitHub, to help other users discover it
     validations:
       required: false
